@@ -1,0 +1,188 @@
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 1
+DOCUMENTO 1. ENTREVISTA SEMIESTRUCTURADA Y
+DIAGNÓSTICO
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026
+Uso: entrevistar por separado al propietario y a la gerente. Registrar hechos y ejemplos. No asumir que una
+función propuesta ya fue solicitada por los usuarios. Duración sugerida: 45–60 minutos por persona.
+Ficha de entrevista
+Código del participante (U1/U2): U1
+Cargo/función: PROPIETARIO
+Fecha: 03/11/2026
+Hora de inicio y fin: 16:44 – 17:15
+¿Autoriza tomar notas? ☒ Sí ☐ No ¿Autoriza grabación de audio? ☐ Sí ☒ No
+A. Rol y operación del Centro
+1. ¿Qué tareas realiza usted desde que llega una consulta hasta que termina un evento?
+Se necesita consultar disponibilidad de fechas, coordinación con proveedores si ya tenemos alguna
+reserva ese día.
+2. ¿Qué tipos de eventos y paquetes ofrecen? ¿Qué incluye cada uno?
+El propietario indica que coincide con lo ya declarado por la gerente (U2): Bueno, son diversos los
+paquetes y los el tipo de eventos también. Por ejemplo hay compromisos de celebración de bodas de 15
+años de cumpleaños, aniversarios corporativos, fiestas de promoción, graduación, etc. y los paquetes
+que ofrezco son el básico. Prácticamente es de acuerdo al presupuesto del cliente no se le ofrece, lo que
+es es el básico, el intermedio y el premium.
+3. En un mes normal, ¿cuántas consultas, cotizaciones y eventos gestionan? ¿Y en temporada
+alta?
+Propietario: temporada normal, 2 a 3 eventos al mes; temporada alta, «Entre 12 a veces». (La gerente
+indicó hasta 13 eventos en temporada normal y hasta 12 en alta: confirmar cifras.)
+4. ¿Quién puede cotizar, aplicar descuentos, confirmar reservas o cambiar precios?
+El propietario indica que coincide con lo ya declarado por la gerente (U2): Bueno, yo trabajo como
+gerente, estoy encargada de realizar las cotizaciones y también tengo la facultad de ajustar los precios
+y realizar contrato. El dueño hace contratos y cotizaciones, eventualmente porque él no está tan
+enterado de las últimos precios de nuestros paquetes y también él no está dedicado a raíces al 100%.
+Además, el propietario indicó que ambos (propietario y gerente) pueden cambiar tarifas, autorizar
+descuentos y eliminar registros.
+B. Flujo actual de consulta, cotización y tarifa
+5. Describa paso a paso cómo prepara hoy una cotización y qué datos necesita.
+El propietario indica que coincide con lo ya declarado por la gerente (U2): Para realizar una cotización
+primero uno tiene que estar enterado qué tipo de evento va a realizar el Cliente y qué servicios necesita
+de acuerdo a su presupuesto entonces se le ha dado dos opciones a elegir una cotización básica y una
+cotización intermedia y si el cliente tiene más presupuesto ya el independientemente puede recurrir a
+un tercero para agregar más servicios. Nombre completo tipo de evento, número de personas, invitadas
+fecha del evento tipo de paquete, saber si la fecha en lo que quieren reservar está disponible
+6. ¿Dónde consulta precios, paquetes, temporadas, días, opcionales y promociones?
+El propietario indica que coincide con lo ya declarado por la gerente (U2): Bueno, tengo una lista en una
+hoja Excel detallado sobre los precios de los de los servicios que atiendo. También lo puedo verificar en
+el WhatsApp luego también tengo anotes en cuaderno, guardo cotizaciones en el Drive.
+7. ¿Cómo calculan el precio, el adelanto y el saldo? Escriba ejemplos reales sin datos del
+cliente.
+El propietario indica que coincide con lo ya declarado por la gerente (U2): Bueno, en un principio tengo
+la hoja Excel al detalle de las listas de los servicios y luego también tengo un generador de cotizaciones
+
+-- 1 of 4 --
+
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 2
+que me ayuda a llenar el formulario de datos del cliente, me ayuda a seleccionar el tipo de paquete que
+quiere. Me ayuda a seleccionar los precios, las cantidades, el tipo de comida, servicios opcionales
+observaciones tiene una opción para modificar el precio si es que quiero añadir descuentos o si es que
+quiero aumentar el precio, el sistema sólo hace los descuentos y los cálculos de los precios
+automáticamente por persona o por monto total.
+8. ¿Qué errores, demoras o consultas repetidas ocurren? Cuente un caso reciente.
+El propietario indica que coincide con lo ya declarado por la gerente (U2): Bueno, al momento de hacer
+el registro de mi hoja Excel y haber verificado contrastado con los reportes que tengo en el cuaderno, la
+sumatoria han sido equivocadas omitido, incluso algunos ítems y a las cuales me ha generado confusión
+, no Shazam, no suelo confundirme porque lo anoto en un calendario en un calendario físico y donde sí
+es confuso. Para mí, es en cuanto a al cálculo de los precios a la lista de servicios que se contrata,
+porque muchas veces se duplica, incluso un ítem y luego en el cálculo para el para el pago por persona,
+no por persona y el fraccionamiento el del precio de un niño con un adulto , en ese caso también es bien
+confuso para mí, porque sólo olvidarme no no recuerdo al cliente que me ha cotizado la semana pasada
+y nuevamente vuelta me llama el mismo y le voy alcanzando otra cotización que resulta más o menos la
+cotización y no es la misma que le había cotizado en un momento, entonces también para eso es
+confusión para mí y errores, no que que pierda incluso al cliente seguimiento del Cliente , para la
+coordinación de proveedores y el personal. Bueno en eso también me estoy equivocando bastante. Por
+ejemplo me ha ocurrido a mí a una de mis de mis proveedores de menaje y cristalería. He omitido en
+decirle por ejemplo el color, el color de la servilletas o adicionar algún ítem, no lo he registrado de
+acuerdo al cliente que él me ha pedido, por ejemplo que lleve letras iluminadas y no lo registré y no lo
+pedí, así que por último momento lo lo intento pedir y ya no logro pues pierdo ya no consigo El el
+insumo o el material o la decoración que necesito entonces quedo mal también igual con los clientes y
+el personal en cuanto al personal también igual me pasa porque por ejemplo con él los mozos y con los
+personal de seguridad y con los de limpieza estoy manejando quiero manejar dos horarios por ejemplo
+por turnos, entonces hay veces me bloqueo y no sé a quién he anotado en el primer turno y no sé quién
+toca en el segundo turno, entonces estoy que demoro nuevamente viendo mis reportes demoro a quien
+he anotado primero y a quien he anotado segundo entonces ahí demoro me quita tiempo y no es rápido
+pues.
+C. Reservas y disponibilidad
+9. ¿Cómo verifica que una fecha esté libre y dónde registra la reserva confirmada?
+El propietario indica que coincide con lo ya declarado por la gerente (U2): Como había mencionado,
+tengo un calendario físico en ese calendario físico lee lee, lee este le pongo con plumón en círculo y le
+tomo nota de qué evento es y quien lo ha tomado no de hecho que esto parece engorroso porque en el
+en el almanaque en el calendario, no siempre me alcanza espacio para anotar todo eso y también igual
+me genera problemas confusión porque muchas veces él le digo tengo reserva el ocho sin embargo, ya
+no tengo reserva entonces ahí no no ahí me genera inseguridad y olvido , O sea no a la vez los dos
+calendarios no lo puedo anotar bien en la oficina y el segundo que lo llevo en la cartera no siempre lo he
+anotado no está actualizada.
+10. ¿Qué estados puede tener una cotización o reserva? ¿Qué hace que una fecha quede
+separada o se libere?
+El propietario indica que coincide con lo ya declarado por la gerente (U2): Los estados son pendiente y
+confirmado Para que una fecha un evento sea separado. El Cliente debe dar un adelanto de todas
+maneras ya sea con 10 20 hasta 30% de lo contrario, la la fecha sigue siendo libre a la cotización que yo
+le hago será máximo en el lapso de una semana.
+11. ¿Hay reservas directas sin cotización? ¿Cómo se registran?
+El propietario indica que coincide con lo ya declarado por la gerente (U2): Si los clientes que vienen
+apurados, ya tienen una referencia porque alguien les ha comentado que se parece también al al evento
+que han reservado otros otros clientes, entonces como ya tiene referencia el otro Cliente viene que
+adicionar otra fiesta parecida y lo que da esa en adelanto posterior a ello viene la clienta y ya lo
+detallamos con más calma, porque esto es debido a que el Cliente está apurado no tiene tiempo o
+quiere separar así sin saber más del paquete que ofrecemos sólo por una referencia no
+12. ¿Qué espacios/ambientes se pueden combinar y qué restricciones tienen?
+
+-- 2 of 4 --
+
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 3
+El propietario indica que coincide con lo ya declarado por la gerente (U2): Si tenemos área verde que
+siempre va en todos los ambientes salón principal Mezanine, y hay veces que el salón principal se divide
+en dos para eventos más pequeños, El cliente sólo solicita para un Numero menor para su evento, y que
+él sólo haga uso del segundo piso. El Mezanine nada más no podría el ingresar o tener acceso al salón
+principal ni al escenario no porque es un ambiente pequeño reducido
+D. Seguimiento, coordinación y reportes
+13. ¿Cómo recuerdan contactar a un cliente y registrar si aceptó o rechazó una cotización?
+El propietario indica que coincide con lo ya declarado por la gerente (U2): En este caso no tengo esa esa
+ese reporte y me dificulta hacer ese esa tarea esa acción, porque cuando me llame el Cliente yo no
+recuerdo cuando me llamó y qué cotización le otorgue
+14. ¿Qué información de proveedores, personal, tareas y cambios del evento necesitan
+consultar?
+El propietario indica que coincide con lo ya declarado por la gerente (U2): Bueno, De, personal, lo más
+frecuente es el maestro de ceremonia, los mozos, el personal de seguridad y de limpieza, muchas veces
+han existido en cuanto a la contratación del servicio de fotos y videos y lo otro también en cuanto a a la
+a la María no a la María que ya no quieren con las cuatro piezas y no solamente tres porque van a servir
+un plato que no necesito cubiertos y luego en cuanto a la decoración, porque muchas veces ya no
+desean que se decore todo el local, sino parcial solamente en la mesa protocolar
+15. ¿Qué reportes o resúmenes usan para tomar decisiones? ¿Qué decisión tomarían con
+ellos?
+El propietario indica que coincide con lo ya declarado por la gerente (U2): Aún no tenemos reportes
+definidos o resúmenes para tomar decisiones completas
+E. Problemas, prioridades y condiciones
+16. Si solo pudiéramos resolver tres problemas primero, ¿cuáles serían y por qué?
+El propietario indica que coincide con lo ya declarado por la gerente (U2): Bueno, he tenido un problema
+el último evento una de mis proveedoras no tenía las las letras iluminadas y otro De que también en
+cuanto a las copas labradas que he solicitado en alquiler habían subido el costo, lo que era menor se
+aumentó más o -1 70% de más y lo otro igual el cambio de De del de las mesas circulares pequeñas a
+las mesas circulares grandes, eso me genera bastante inconveniencia
+17. ¿Qué función sería indispensable para empezar a usar el sistema? ¿Qué puede esperar?
+El propietario indica que coincide con lo ya declarado por la gerente (U2): Bueno, uno la lista de precios,
+lo otro, el calendario de De de reserva y lo otro para poder, modificar o quitar, quitar o agregar más más
+servicios a una reserva y un contrato ya hecho
+18. ¿Desde qué equipos y lugares lo usarían? ¿Hay problemas de internet o energía?
+El propietario indica que coincide con lo ya declarado por la gerente (U2): Tenemos una laptop dedicada
+para raíces, pero no contamos con Internet. Lo que hacemos es compartirle datos del celular.
+19. ¿Qué datos no deberían ver todos los usuarios? ¿Quién puede crear, editar o eliminar?
+El propietario indica que coincide con lo ya declarado por la gerente (U2): Cuando se genera la
+cotización, los clientes pueden ver los productos que se les lista pueden ver la cantidad de productos o
+de sillas o de mesas pueden ver la cantidad pero no pueden ver el precio por producto. Lo único que
+pueden ver es el precio final o el precio ya por persona?.
+20. ¿Qué información adicional no hemos preguntado y es importante para trabajar bien?
+El propietario indica que coincide con lo ya declarado por la gerente (U2): El horario de atención a veces
+es indefinido muchas veces el cliente viene en su tiempo libre y el gerente o bien está o bien está el
+dueño o bien está una señora encargada que viene a veces de limpieza o a ser cuidado del local o hacer
+Atencion. Bueno son 21 quisiera tener un inventario de bienes existentes para raíces por ejemplo en
+cuanto a la a la mueblería a los muebles, las mesas, las sillas la cristalería, la María, las telas el color de
+las telas las flores esto sería de tallado en color y la cantidad que y el modelo que uno tiene en el local.
+Por otro lado para la cotización. Sería muy interesante mostrar en una galería de fotos las los servicios
+específicos que o básicos que el cliente pide.
+Resumen del entrevistador
+
+-- 3 of 4 --
+
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 4
+Tres necesidades prioritarias:
+1) Reservas y fechas dinámicas (disponibilidad actualizada). 2) Cotizaciones y seguimiento de clientes.
+3) Coordinación con proveedores y personal. Indicó además que el generador de cotizaciones actual
+(HTML) funciona bien pero no escala a los demás módulos.
+Regla de negocio que requiere confirmación:
+Vigencia de cotización 15 días (propietario) frente a una semana (gerente, entrevista). Adelanto:
+propietario 20–30 %; gerente 10–30 % (entrevista) y 20–60 % (Doc. 3). Eventos por mes: cifras distintas
+entre propietario y gerente.
+Documento o ejemplo revisado (sin copiar datos personales):
+Constancia y firmas
+Declaro que revisé las respuestas registradas en este formato y que reflejan la información proporcionada o la
+evidencia observada.
+Nombre y cargo
+(Participante): WILLIAM PAÑO CHINCHAZO — Propietario
+Firma:
+Fecha:
+Nombre y cargo
+(Entrevistador): José Adelky Andia Sullcaccori
+Firma:
+Fecha:
+
+-- 4 of 4 --
+

@@ -1,0 +1,2755 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cotizaciones — Raíces</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
+:root{
+  --negro:#0f0e0d;--dorado:#b8860b;--dorado-c:#d4a820;--crema:#faf7f2;
+  --crema-o:#f0ebe1;--gris:#6b6560;--gris-c:#e8e4de;--blanco:#ffffff;
+  --verde:#2d6a4f;--rojo:#c0392b;--borde:#e8e4de;
+  --bc:#1565c0;--ec:#2e7d32;--pc:#6a1b9a;
+  --bc-bg:#e3f2fd;--ec-bg:#e8f5e9;--pc-bg:#f3e5f5;
+  --sombra:0 2px 20px rgba(0,0,0,.08);--sombra-h:0 8px 32px rgba(0,0,0,.15);--r:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--crema);color:var(--negro);min-height:100vh}
+.hdr{background:var(--negro);padding:14px 20px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.3)}
+.hdr img{height:40px}
+.hdr-t h1{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--blanco)}
+.hdr-t p{font-size:10px;color:var(--dorado);letter-spacing:1px;text-transform:uppercase}
+.hdr-acc{margin-left:auto;display:flex;gap:8px;align-items:center}
+.prog{background:var(--blanco);padding:12px 20px;border-bottom:1px solid var(--gris-c);display:flex;align-items:center;justify-content:center;gap:6px;overflow-x:auto}
+.pn{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;background:var(--gris-c);color:var(--gris);transition:all .3s}
+.pn.a{background:var(--dorado);color:var(--blanco)}.pn.c{background:var(--verde);color:var(--blanco)}
+.pl{font-size:11px;color:var(--gris);white-space:nowrap}.pl.a{color:var(--dorado);font-weight:600}
+.pcon{width:20px;height:2px;background:var(--gris-c);flex-shrink:0}.pcon.c{background:var(--verde)}
+.wrap{max-width:960px;margin:0 auto;padding:20px 14px 80px}
+.screen{display:none}.screen.on{display:block}
+.card{background:var(--blanco);border-radius:var(--r);box-shadow:var(--sombra);padding:24px;margin-bottom:18px}
+.ctit{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;margin-bottom:4px}
+.csub{font-size:12px;color:var(--gris);margin-bottom:20px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg label{font-size:11px;font-weight:600;color:var(--gris);text-transform:uppercase;letter-spacing:.5px}
+.fg input,.fg select,.fg textarea{padding:11px 13px;border:1.5px solid var(--gris-c);border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;background:var(--crema);color:var(--negro);transition:border-color .2s;appearance:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--dorado);background:var(--blanco)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.full{grid-column:1/-1}
+@media(max-width:580px){.fgrid{grid-template-columns:1fr}}
+.btn{padding:11px 24px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .2s;display:inline-flex;align-items:center;gap:7px}
+.btn-p{background:var(--negro);color:var(--blanco)}.btn-p:hover{background:var(--dorado);transform:translateY(-1px)}
+.btn-s{background:var(--crema-o);color:var(--negro);border:1.5px solid var(--gris-c)}.btn-s:hover{border-color:var(--dorado)}
+.btn-d{background:var(--dorado);color:var(--blanco)}.btn-d:hover{background:var(--dorado-c)}
+.btn-full{width:100%;justify-content:center}
+.acc{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:10px}
+.paq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}
+@media(max-width:680px){.paq-grid{grid-template-columns:1fr}}
+.paq-card{background:var(--blanco);border-radius:var(--r);border:2px solid var(--gris-c);overflow:hidden;transition:all .3s;cursor:pointer}
+.paq-card:hover{transform:translateY(-3px);box-shadow:var(--sombra-h)}.paq-card.sel{border-color:var(--dorado);box-shadow:0 0 0 3px rgba(184,134,11,.2)}
+.paq-hdr{padding:18px 14px 14px;text-align:center;color:var(--blanco)}
+.paq-hdr.b{background:var(--bc)}.paq-hdr.e{background:var(--ec)}.paq-hdr.p{background:var(--pc)}
+.paq-nom{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;opacity:.85;margin-bottom:6px}
+.paq-prc{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;line-height:1}
+.paq-xp{font-size:11px;opacity:.8;margin-top:3px}
+.paq-items{padding:14px}
+.paq-item{display:flex;align-items:flex-start;gap:7px;padding:5px 0;font-size:11px;color:var(--gris);border-bottom:1px solid var(--crema-o)}
+.paq-item:last-child{border-bottom:none}.paq-item.si{color:var(--negro)}.paq-item.no{opacity:.4;text-decoration:line-through}
+.btn-el{width:calc(100% - 28px);margin:0 14px 14px;padding:9px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:2px solid transparent;transition:all .2s}
+.btn-el.b{background:var(--bc-bg);color:var(--bc);border-color:var(--bc)}.btn-el.b:hover{background:var(--bc);color:var(--blanco)}
+.btn-el.e{background:var(--ec-bg);color:var(--ec);border-color:var(--ec)}.btn-el.e:hover{background:var(--ec);color:var(--blanco)}
+.btn-el.p{background:var(--pc-bg);color:var(--pc);border-color:var(--pc)}.btn-el.p:hover{background:var(--pc);color:var(--blanco)}
+.cli-badge{display:inline-flex;align-items:center;gap:7px;background:var(--crema-o);border:1px solid var(--gris-c);border-radius:20px;padding:5px 14px;font-size:12px;color:var(--gris);margin-bottom:10px}
+/* P3 */
+.p3l{display:grid;grid-template-columns:1fr 300px;gap:18px;align-items:start}
+@media(max-width:780px){.p3l{grid-template-columns:1fr}}
+.p3-topbar{display:flex;align-items:center;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.btn-back-pill{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;background:var(--negro);color:var(--blanco);border:2px solid var(--dorado);border-radius:24px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px rgba(184,134,11,.4);transition:all .2s;white-space:nowrap}
+.btn-back-pill:hover{background:var(--dorado);border-color:var(--dorado);box-shadow:var(--sombra-h);transform:translateY(-1px)}
+.btn-back{background:var(--negro);color:var(--blanco);border:2px solid var(--dorado);box-shadow:0 4px 16px rgba(184,134,11,.4);font-weight:700}
+.btn-back:hover{background:var(--dorado);border-color:var(--dorado);transform:translateY(-1px);box-shadow:var(--sombra-h)}
+.stit{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gris);padding:14px 0 7px;border-bottom:1px solid var(--gris-c);margin-bottom:7px}
+.stit:first-child{padding-top:0}
+.irow{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:7px;margin-bottom:5px;transition:background .15s}
+.irow:hover{background:var(--crema-o)}.irow.inc{background:#f0faf4}.irow.opc{background:#fffbf0}
+.ichk{width:19px;height:19px;border-radius:4px;border:2px solid var(--gris-c);cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s;background:var(--blanco)}
+.ichk.on{background:var(--dorado);border-color:var(--dorado);color:var(--blanco);font-size:10px}
+.iinfo{flex:1;min-width:0}
+.inom{font-size:12px;font-weight:500}.icnt{font-size:10px;color:var(--gris);margin-top:1px}
+.ibadge{font-size:9px;padding:2px 7px;border-radius:8px;font-weight:600;margin-left:5px}
+.bi{background:#e8f5e9;color:var(--ec)}.bo{background:#fff8e1;color:#f57f17}
+.iqty-input,.iprice-input{border:1.5px solid var(--gris-c);border-radius:6px;font-size:12px;font-family:'Inter',sans-serif;background:var(--blanco);color:var(--negro);text-align:center;padding:5px 7px}
+.iqty-input{width:55px}.iprice-input{width:80px;text-align:right}
+.iqty-input:focus,.iprice-input:focus{outline:none;border-color:var(--dorado)}
+.itot{font-size:11px;font-weight:600;color:var(--dorado);min-width:65px;text-align:right}
+.cart{background:var(--blanco);border-radius:var(--r);box-shadow:var(--sombra);position:sticky;top:110px;overflow:hidden}
+.cart-hdr{background:var(--negro);color:var(--blanco);padding:14px 18px;font-size:12px;font-weight:600}
+.cart-body{padding:14px 18px;max-height:340px;overflow-y:auto}
+.cart-item{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--crema-o);font-size:11px}
+.cart-item:last-child{border-bottom:none}
+.cart-nom{color:var(--negro);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.cart-prc{font-weight:600;color:var(--dorado);flex-shrink:0;margin-left:7px}
+.cart-ftr{padding:14px 18px;border-top:2px solid var(--crema-o);background:var(--crema)}
+.cart-tot{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.cart-tot-lbl{font-size:11px;color:var(--gris);font-weight:600;text-transform:uppercase}
+.cart-tot-mnt{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600}
+.adlbox{padding:12px 14px;background:var(--crema-o);border-radius:8px;border:1px solid var(--gris-c);margin-bottom:12px}
+.adl-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gris);margin-bottom:7px}
+.adl-opts{display:flex;gap:6px;flex-wrap:wrap}
+.adl-opt{padding:5px 12px;border-radius:16px;border:1.5px solid var(--gris-c);font-size:11px;font-weight:600;cursor:pointer;background:var(--blanco);transition:all .15s}
+.adl-opt.on{background:var(--dorado);border-color:var(--dorado);color:var(--blanco)}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:7px}
+@media(max-width:480px){.menu-grid{grid-template-columns:1fr}}
+.mo{padding:9px 11px;border-radius:7px;border:1.5px solid var(--gris-c);cursor:pointer;font-size:11px;transition:all .15s;background:var(--blanco);display:flex;align-items:center;gap:7px}
+.mo:hover{border-color:var(--dorado)}.mo.on{border-color:var(--dorado);background:#fffbf0;font-weight:600}
+.mdot{width:9px;height:9px;border-radius:50%;border:2px solid var(--gris-c);flex-shrink:0}
+.mo.on .mdot{background:var(--dorado);border-color:var(--dorado)}
+/* PDF */
+
+/* ══ PDF ══ */
+.pdf-page{background:white;width:794px;min-height:1123px;margin:0 auto;position:relative;font-family:'Inter',sans-serif;color:#111;display:flex;flex-direction:column;box-shadow:0 4px 40px rgba(0,0,0,.12)}
+.pdf-hdr{display:flex;justify-content:space-between;align-items:center;padding:22px 40px 14px;position:relative;z-index:1}
+.pdf-hdr-txt{display:flex;flex-direction:column}
+.pdf-hdr-t1{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:#111;letter-spacing:1px;line-height:1.2}
+.pdf-hdr-t2{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:#B8860B;letter-spacing:1px}
+.pdf-hdr-logo{height:75px;object-fit:contain}
+.pdf-linea-dorada{height:2px;background:linear-gradient(to right,#B8860B,#d4a820,#B8860B);margin:0 40px 0;position:relative;z-index:1}
+.pdf-body{flex:1;padding:18px 40px 16px;position:relative;z-index:1}
+.pdf-cot-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.pdf-cot-tit{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;color:#B8860B;letter-spacing:3px}
+.pdf-num{font-size:12px;font-weight:700;color:#111}
+.pdf-num-sub{font-size:10px;color:#888;margin-top:2px}
+.pdf-datos{display:grid;grid-template-columns:1fr 1fr;border:1px solid #ddd;border-radius:6px;overflow:hidden;margin-bottom:14px}
+.pdf-dato{padding:8px 14px;border-bottom:1px solid #eee}
+.pdf-dato:nth-last-child(-n+2){border-bottom:none}
+.pdf-dato:nth-child(odd){border-right:1px solid #eee;background:#faf8f5}
+.pdf-dato label{font-size:8px;text-transform:uppercase;letter-spacing:1px;color:#888;font-weight:700;display:block;margin-bottom:2px}
+.pdf-dato span{font-size:12px;font-weight:600;color:#111}
+.pdf-badge-paq{display:inline-block;padding:4px 18px;border-radius:14px;font-size:11px;font-weight:700;margin-bottom:12px;letter-spacing:.5px;border:2px solid #111;color:#111;background:white}
+.pdf-sec-tit{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;color:#111;border-bottom:1.5px solid #B8860B;padding-bottom:4px;margin:12px 0 8px}
+.pdf-fotos{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:8px 0 14px}
+.pdf-foto-wrap{display:flex;flex-direction:column;gap:4px}
+.pdf-foto-lbl{font-size:9px;text-align:center;color:#222;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.pdf-foto{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:5px}
+.pdf-tabla{width:100%;border-collapse:collapse;font-size:10px;margin-bottom:4px}
+.pdf-tabla thead tr{background:#111;color:white}
+.pdf-tabla thead th{padding:7px 10px;text-align:left;font-size:9px;font-weight:600;letter-spacing:.3px}
+.pdf-tabla tbody tr:nth-child(even){background:#f7f5f2}
+.pdf-tabla tbody td{padding:7px 10px;color:#111;border-bottom:1px solid #eee}
+.pdf-tabla tbody td:nth-child(2),.pdf-tabla tbody td:nth-child(3){text-align:center}
+.pdf-tabla tbody td:last-child{text-align:right;font-weight:600}
+.pdf-total-box{background:#f5f0e8;border-radius:8px;padding:14px 18px;margin-top:12px;border:1.5px solid #B8860B;max-width:400px}
+.pdf-tot-row{display:flex;justify-content:space-between;align-items:center}
+.pdf-tot-lbl2{font-size:10px;font-weight:600;color:#444;text-transform:uppercase;letter-spacing:.5px}
+.pdf-tot-num{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:700;color:#222;min-width:100px;text-align:right}
+.pdf-tot-num.pdf-tot-monto{font-family:Georgia,serif;font-size:13px;font-weight:700;white-space:nowrap}
+.p4-tit{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center}
+.p4-tit-t{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;letter-spacing:1.5px;line-height:1;color:var(--dorado)}
+.p4-tit-l{width:64px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--dorado),transparent)}
+@media(max-width:520px){.p4-tit-t{font-size:19px;letter-spacing:.5px}.p4-tit-l{width:40px}}
+.pdf-total-lbl{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#444;font-weight:700}
+.pdf-total-sub{font-size:10px;color:#666;margin-top:2px}
+.pdf-total-monto{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:#111}
+.pdf-cond{margin-top:10px;padding:10px 14px;background:#faf8f5;border-radius:6px;border-left:3px solid #B8860B}
+.pdf-cond-tit{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:#888;font-weight:700;margin-bottom:6px}
+.pdf-cond ul{list-style:none;padding:0;margin:0}
+.pdf-cond li{font-size:9px;color:#555;padding:2px 0 2px 12px;position:relative}
+.pdf-cond li::before{content:"—";position:absolute;left:0;color:#B8860B}
+.pdf-ftr{background:#f5f0e8;border-top:2px solid #B8860B;padding:10px 40px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;margin-top:auto}
+.pdf-ftr-txt{color:#444;font-size:9px}
+.pdf-ftr-redes{height:26px;object-fit:contain}
+
+@media print{
+  @page{
+    margin:0;
+    size:A4;
+  }
+  body{
+    background:white;
+    margin:0;
+    padding:0;
+  }
+  .hdr,.prog,.p4-bar,.toast,.pin-ov,.modalConfirm{display:none!important}
+  #p4{display:block!important;padding:0}
+  .screen:not(#p4){display:none!important}
+
+  /* pdf-page sin min-height para evitar página en blanco */
+  .pdf-page{
+    box-shadow:none!important;
+    margin:0!important;
+    width:100%!important;
+    min-height:unset!important;
+    padding-top:32mm!important;
+    padding-bottom:28mm!important;
+    box-sizing:border-box!important;
+  }
+
+  /* HEADER fijo en CADA página */
+  .pdf-hdr{
+    position:fixed!important;
+    top:0!important;left:0!important;right:0!important;
+    display:flex!important;
+    justify-content:space-between!important;
+    align-items:center!important;
+    padding:6px 15mm!important;
+    background:white!important;
+    border-bottom:2px solid #B8860B!important;
+    z-index:9999!important;
+    height:30mm!important;
+    box-sizing:border-box!important;
+  }
+  .pdf-linea-dorada{display:none!important}
+
+  /* FOOTER fijo en CADA página — fondo crema */
+  .pdf-ftr{
+    position:fixed!important;
+    bottom:0!important;
+    left:0!important;right:0!important;
+    top:auto!important;
+    background:#f5f0e8!important;
+    border-top:2px solid #B8860B!important;
+    padding:8px 15mm!important;
+    display:flex!important;
+    justify-content:space-between!important;
+    align-items:center!important;
+    z-index:9999!important;
+    height:26mm!important;
+    box-sizing:border-box!important;
+    margin:0!important;
+    width:100%!important;
+  }
+  .pdf-ftr-txt{
+    color:#444!important;
+    font-size:8px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:3px!important;
+  }
+  .pdf-ftr-redes{
+    height:28px!important;
+    display:block!important;
+    filter:none!important;
+    opacity:1!important;
+  }
+
+  .pdf-hdr-print,.pdf-ftr-print{display:none!important}
+
+  /* Evitar cortes y respetar espacio footer */
+  .dato{page-break-inside:avoid}
+  .pdf-total{page-break-inside:avoid}
+  .pdf-cond{page-break-inside:avoid}
+  .foto-wrap{page-break-inside:avoid}
+  tr{page-break-inside:avoid}
+  thead{display:table-header-group}
+}
+
+.pin-ov{position:fixed;inset:0;background:var(--crema);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.pin-box{display:flex;flex-direction:column;align-items:center;gap:12px;padding:40px;background:white;border-radius:16px;box-shadow:var(--sombra-h);max-width:340px;width:90%}
+.pin-logo{width:160px;height:auto;object-fit:contain}
+.pin-tit{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--negro);text-align:center}
+.pin-sub{font-size:13px;color:var(--gris);text-align:center}
+.pin-inp{width:100%;padding:12px;border:2px solid #ccc;border-radius:8px;font-size:24px;text-align:center;letter-spacing:8px;outline:none;font-family:monospace;background:white;display:block}
+.pin-inp:focus{border-color:var(--dorado)}
+.pin-err{color:#c0392b;font-size:12px;display:none;text-align:center}
+.btn-full{width:100%}
+
+
+.hist-item{display:flex;justify-content:space-between;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--borde);gap:12px}
+.h-n{font-size:13px;font-weight:700;color:var(--negro);margin-bottom:2px}
+.h-nom{font-size:13px;color:var(--negro);margin-bottom:2px}
+.h-m{font-size:11px;color:var(--gris)}
+.h-p{font-size:15px;font-weight:700;color:var(--negro);text-align:right;margin-bottom:4px}
+.hCnt{font-size:13px;color:var(--gris)}
+
+</style>
+</head>
+<body>
+
+<div class="pin-ov" id="pinOv">
+  <div class="pin-box">
+    <img src="https://res.cloudinary.com/dmhtup9bs/image/upload/v1781026751/RAICES_centro_de_convenciones_LOGO_OFF_ghqsar.png" class="pin-logo">
+    <h2 class="pin-tit">Sistema de Cotizaciones</h2>
+    <p class="pin-sub">Ingresa tu PIN para continuar</p>
+    <input type="password" class="pin-inp" id="pinInp" maxlength="4" placeholder="••••" oninput="chkPin()">
+    <p class="pin-err" id="pinErr">PIN incorrecto. Intenta de nuevo.</p>
+    <button class="btn btn-p btn-full" onclick="chkPin()">Ingresar</button>
+  </div>
+</div>
+
+<header class="hdr">
+  <img src="https://res.cloudinary.com/dmhtup9bs/image/upload/v1781026751/RAICES_centro_de_convenciones_LOGO_OFF_ghqsar.png">
+  <div class="hdr-t"><h1>Centro de Convenciones Raíces</h1><p>Sistema de Cotizaciones</p></div>
+  <div class="hdr-acc">
+    <button class="btn btn-s" style="font-size:11px;padding:7px 12px" onclick="abrirCal()">Ver fechas</button>
+    <button class="btn btn-s" style="font-size:11px;padding:7px 12px" onclick="irHist()">Cotizaciones</button>
+    <button class="btn btn-s" style="font-size:11px;padding:7px 12px" onclick="window.open('https://drive.google.com/drive/u/1/folders/1svCNhdT_NTFNGBYeyikL-EKUnaZNTNZ9','_blank')">📂 Ver cotizaciones en Drive</button>
+    <button class="btn btn-s" style="font-size:11px;padding:7px 12px" onclick="window.open('https://docs.google.com/spreadsheets/d/18m4di5aXBIISw_D9LQfhXSb6NQ4tTPz4lcTaHOD7whE/edit?gid=966338056#gid=966338056','_blank')">📊 Ver cotizaciones en Excel</button>
+    <button class="btn btn-s" style="font-size:11px;padding:7px 12px" onclick="nuevaCot()">+ Nueva</button>
+  </div>
+</header>
+
+<div class="prog" id="prog">
+  <div style="display:flex;align-items:center;gap:5px"><div class="pn a" id="n1">1</div><span class="pl a" id="l1">Datos</span></div>
+  <div class="pcon" id="c1"></div>
+  <div style="display:flex;align-items:center;gap:5px"><div class="pn" id="n2">2</div><span class="pl" id="l2">Paquete</span></div>
+  <div class="pcon" id="c2"></div>
+  <div style="display:flex;align-items:center;gap:5px"><div class="pn" id="n3">3</div><span class="pl" id="l3">Opcionales</span></div>
+  <div class="pcon" id="c3"></div>
+  <div style="display:flex;align-items:center;gap:5px"><div class="pn" id="n4">4</div><span class="pl" id="l4">Preview</span></div>
+  <div class="pcon" id="c4"></div>
+  <div style="display:flex;align-items:center;gap:5px"><div class="pn" id="n5">5</div><span class="pl" id="l5">Listo</span></div>
+</div>
+
+<div class="wrap">
+
+<!-- P1 -->
+<div class="screen on" id="p1">
+  <div class="card">
+    <h2 class="ctit">Nueva cotización</h2>
+    <p class="csub">Ingresa los datos del cliente para ver los precios por paquete.</p>
+    <div class="fgrid">
+      <div class="fg"><label>Nombre del cliente *</label><input id="cNom" placeholder="Ej: Maria Garcia"></div>
+      <div class="fg"><label>Teléfono / WhatsApp *</label><input id="cTel" placeholder="+51 987 654 321"></div>
+      <div class="fg"><label>Tipo de evento *</label>
+        <select id="cEvt" onchange="checkSecPersNinos()">
+          <option value="">Seleccionar evento...</option>
+          <option value="Bautizo">Bautizo</option>
+          <option value="Quinceañera">Quinceañera</option>
+          <option value="Matrimonio">Matrimonio</option>
+          <option value="Graduación Universitaria">Graduación Universitaria</option>
+          <option value="Baby Shower">Baby Shower</option>
+          <option value="Corporativo">Corporativo</option>
+          <option value="Graduación colegio inicial/primaria">Graduación colegio inicial/primaria</option>
+          <option value="Graduación colegio secundaria">Graduación colegio secundaria</option>
+          <option value="Fiesta Infantil">Fiesta Infantil</option>
+          <option value="Reunión familiar">Reunión familiar</option>
+          <option value="Cumpleaños">Cumpleaños</option>
+          <option value="Aniversario">Aniversario</option>
+        </select>
+      </div>
+      <div class="fg"><label>Personas *</label><input id="cPers" type="number" min="1" max="500" value="100" oninput="updDistribucion('total')"></div>
+      <!-- Campos adultos/niños — solo para Baby Shower, Fiesta Infantil, Graduación colegio inicial/primaria y Reunión familiar -->
+      <div id="secPersNinos" style="display:none;background:var(--crema);border:1.5px solid var(--dorado);border-radius:10px;padding:12px 14px;margin-top:8px">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:600;color:var(--negro);margin-bottom:10px;border-bottom:1px solid var(--dorado);padding-bottom:4px">Distribución de personas</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div style="flex:1;text-align:center">
+            <label style="font-size:10px;font-weight:700;color:var(--gris);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:6px">Adultos</label>
+            <input id="cPersAdultos" type="number" min="0" value="70" oninput="updDistribucion('dist')" style="width:100%;padding:10px 8px;border:1.5px solid var(--dorado);border-radius:8px;font-size:18px;font-weight:700;color:var(--negro);text-align:center;background:white;outline:none">
+          </div>
+          <div style="flex:1;text-align:center">
+            <label style="font-size:10px;font-weight:700;color:var(--gris);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:6px">Niños</label>
+            <input id="cPersNinos" type="number" min="0" value="30" oninput="updDistribucion('dist')" style="width:100%;padding:10px 8px;border:1.5px solid var(--dorado);border-radius:8px;font-size:18px;font-weight:700;color:var(--negro);text-align:center;background:white;outline:none">
+          </div>
+        </div>
+        <div id="secPersNinosMsg" style="font-size:10px;color:var(--gris);margin-top:6px;text-align:center"></div>
+      </div>
+      <div class="fg"><label>Fecha del evento *</label><input id="cFecha" type="date"></div>
+    </div>
+    <div class="acc" style="justify-content:flex-end">
+      <button class="btn btn-p" id="btnP2" onclick="goP2frm()">Ver precios →</button>
+    </div>
+  </div>
+</div>
+
+<!-- P2 -->
+<div class="screen" id="p2">
+  <div class="p3-topbar">
+    <button class="btn-back-pill" onclick="goP1()">&#8592; Volver</button>
+  </div>
+  <div style="text-align:center;margin-bottom:18px">
+    <div class="cli-badge"><span id="p2info"></span></div>
+    <h2 class="ctit" style="font-size:24px">Elige el paquete</h2>
+    <p style="font-size:12px;color:var(--gris)">Precios calculados para la cantidad indicada.</p>
+  </div>
+  <div class="paq-grid">
+    <div class="paq-card" id="cB" onclick="elegir('BASICO')">
+      <div class="paq-hdr b"><div class="paq-nom">Paquete Básico</div><div class="paq-prc" id="pB">S/ --</div><div class="paq-xp" id="xpB"></div></div>
+      <div class="paq-items">
+        <div class="paq-item si">✅ Alquiler del local (8 horas)</div>
+        <div class="paq-item si">✅ Decoración básica</div>
+        <div class="paq-item si">✅ Mesas y sillas Tiffany</div>
+        <div class="paq-item si">✅ Menajería (3 piezas)</div>
+        <div class="paq-item si">✅ Cristalería básica (3 piezas)</div>
+        <div class="paq-item si">✅ Bebidas básicas (gaseosa, agua, hielo y ron)</div>
+        <div class="paq-item no">— Menú y alimentación</div>
+        <div class="paq-item no">— Personal de servicio</div>
+        <div class="paq-item no">— Sonido</div>
+      </div>
+      <button class="btn-el b">Elegir Básico</button>
+    </div>
+    <div class="paq-card" id="cE" onclick="elegir('ESTANDAR')">
+      <div class="paq-hdr e"><div class="paq-nom">Paquete Estándar</div><div class="paq-prc" id="pE">S/ --</div><div class="paq-xp" id="xpE"></div></div>
+      <div class="paq-items">
+        <div class="paq-item si">✅ Todo lo básico</div>
+        <div class="paq-item si">✅ Menú principal completo</div>
+        <div class="paq-item si">✅ Personal completo</div>
+        <div class="paq-item si">✅ Bebidas (gaseosas + premium)</div>
+        <div class="paq-item si">✅ Sonido estándar</div>
+        <div class="paq-item si">✅ Decoración personalizada</div>
+        <div class="paq-item si">✅ Cristalería completa</div>
+        <div class="paq-item no">— Torta / hora loca / fotos</div>
+      </div>
+      <button class="btn-el e">Elegir Estándar</button>
+    </div>
+    <div class="paq-card" id="cP" onclick="elegir('PREMIUM')">
+      <div class="paq-hdr p"><div class="paq-nom">Paquete Premium</div><div class="paq-prc" id="pP">S/ --</div><div class="paq-xp" id="xpP"></div></div>
+      <div class="paq-items">
+        <div class="paq-item si">✅ Todo lo estándar</div>
+        <div class="paq-item si">✅ Decoración exclusiva</div>
+        <div class="paq-item si">✅ Flores naturales en mesas</div>
+        <div class="paq-item si">✅ Torta decorada</div>
+        <div class="paq-item si">✅ Bocaditos incluidos</div>
+        <div class="paq-item si">✅ Hora loca</div>
+        <div class="paq-item si">✅ Fotografía y filmación</div>
+        <div class="paq-item si">✅ Sonido premium</div>
+      </div>
+      <button class="btn-el p">Elegir Premium</button>
+    </div>
+  </div>
+</div>
+
+<!-- P3 -->
+<div class="screen" id="p3">
+  <!-- Boton cambiar paquete EXTERNO al card, arriba -->
+  <div class="p3-topbar">
+    <button class="btn-back-pill" onclick="goP2()">&#8592; Cambiar paquete</button>
+    <div>
+      <h2 class="ctit" id="p3tit" style="margin-bottom:0"></h2>
+      <p style="font-size:12px;color:var(--gris);margin-top:3px">Activa, desactiva o edita precio y cantidad de cada item.</p>
+    </div>
+  </div>
+  <div class="p3l">
+    <div>
+      <div class="card" style="padding-top:16px">
+        <div id="itemsCont"></div>
+      </div>
+      <div class="card">
+        <h2 class="ctit">Menú de alimentación</h2>
+        <p class="csub">Selecciona una opción por categoría.</p>
+        <div class="stit">Entrada</div><div class="menu-grid" id="mEnt"></div>
+        <div class="stit" style="margin-top:14px">Plato de fondo</div><div class="menu-grid" id="mFon"></div>
+        <div class="stit" style="margin-top:14px">Postre</div><div class="menu-grid" id="mPos"></div>
+        <div class="stit" style="margin-top:14px">Bebida caliente/fría</div><div class="menu-grid" id="mBeb"></div>
+        <!-- MENÚ NIÑOS — solo para Baby Shower, Fiesta Infantil, Graduación colegio inicial/primaria, Reunión familiar -->
+        <div id="secMenuNinos" style="display:none;margin-top:20px">
+          <h2 class="ctit" style="margin-top:0">Menú de alimentación para niños</h2>
+          <p class="csub">Solo disponible para este tipo de evento.</p>
+
+          <div class="stit">Bocaditos y piqueos</div><div class="menu-grid" id="mNinoFood"></div>
+          <div class="stit" style="margin-top:14px">Bebidas sin alcohol</div><div class="menu-grid" id="mNinoBeb"></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="cart">
+        <div class="cart-hdr">Resumen de cotización</div>
+        <div class="cart-body" id="cartBody"></div>
+        <div class="cart-ftr">
+          <div class="adlbox">
+            <div class="adl-lbl">% Adelanto para reservar</div>
+            <div class="adl-opts">
+              <div class="adl-opt" onclick="setAdl(30,this)">30%</div>
+              <div class="adl-opt" onclick="setAdl(40,this)">40%</div>
+              <div class="adl-opt on" onclick="setAdl(50,this)">50%</div>
+              <div class="adl-opt" onclick="setAdl(60,this)">60%</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;background:var(--crema-o);border:1px solid var(--gris-c);border-radius:8px;padding:9px 12px">
+            <span style="font-size:11px;font-weight:600;color:var(--gris)">Mostrar precio por persona</span>
+            <div id="swPp" onclick="togglePp()" title="Mostrar u ocultar el precio por persona en la cotización" style="width:44px;height:24px;border-radius:14px;background:var(--dorado);position:relative;cursor:pointer;transition:background .2s;flex-shrink:0">
+              <div style="position:absolute;top:3px;left:23px;width:18px;height:18px;border-radius:50%;background:white;transition:left .2s;box-shadow:0 1px 3px rgba(0,0,0,.3)"></div>
+            </div>
+          </div>
+          <div class="cart-tot">
+            <span class="cart-tot-lbl">Total</span>
+            <span class="cart-tot-mnt" id="cartTot">S/ 0</span>
+          </div>
+          <button class="btn btn-p btn-full" onclick="goP4()">Ver preview</button>
+      <!-- AJUSTE DE PRECIO -->
+      <div id="recuadroPreview" style="display:none;margin-top:14px;background:#f5f0e8;border:1.5px solid #B8860B;border-radius:10px;padding:14px 16px">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;color:#111;border-bottom:1.5px solid #B8860B;padding-bottom:6px;margin-bottom:12px">Ajuste de precio</div>
+        <!-- Total calculado -->
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:11px;color:#555;font-weight:600">Total calculado</span>
+          <span id="rp_total" style="font-size:13px;font-weight:700;color:#333"></span>
+        </div>
+        <!-- Personas — dinámico: "100 personas" o "70 adultos / 30 niños" -->
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+          <span style="font-size:11px;color:#555;font-weight:600">Personas</span>
+          <span id="rp_pers" style="font-size:13px;font-weight:700;color:#333;text-align:right"></span>
+        </div>
+        <!-- Precio calculado por persona — solo cuando NO hay distribución -->
+        <div id="rp_pp_calc_row" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;background:#fff8ec;border-radius:6px;padding:6px 9px">
+          <span style="font-size:11px;color:#555;font-weight:700">Precio calculado por persona</span>
+          <span id="rp_pp_calc" style="font-size:16px;font-weight:900;color:#B8860B"></span>
+        </div>
+        <!-- Aviso cuando el precio editado quedó desactualizado respecto al resumen actual -->
+        <div id="rp_warning" style="display:none;font-size:10.5px;font-weight:700;color:#b34700;background:#fff3e0;border:1px solid #f0c040;border-radius:6px;padding:6px 8px;margin-bottom:8px;text-align:center"></div>
+        <!-- Separador editable -->
+        <div style="border-top:1px solid #e0d5c5;padding-top:10px">
+          <!-- Precio adulto — siempre visible, label cambia -->
+          <div style="margin-bottom:10px">
+            <label id="rp_lbl_adulto" style="font-size:11px;font-weight:700;color:#111;display:block;margin-bottom:6px">Precio por persona</label>
+            <div style="display:flex;gap:8px;align-items:center">
+              <span style="font-size:14px;font-weight:700;color:#555">S/.</span>
+              <input type="number" id="rp_pp_input" min="0" step="1"
+                style="width:110px;padding:7px 8px;border:1.5px solid #B8860B;border-radius:8px;font-size:15px;font-weight:700;color:#B8860B;text-align:center;outline:none"
+                oninput="this._userEdited=true;">
+            </div>
+          </div>
+          <!-- Precio niño — solo cuando hay distribución -->
+          <div id="rp_nino_row" style="display:none;margin-bottom:10px">
+            <label style="font-size:11px;font-weight:700;color:#111;display:block;margin-bottom:6px">Precio por niño</label>
+            <div style="display:flex;gap:8px;align-items:center">
+              <span style="font-size:14px;font-weight:700;color:#555">S/.</span>
+              <input type="number" id="rp_pp_nino_input" min="0" step="1"
+                style="width:110px;padding:7px 8px;border:1.5px solid #B8860B;border-radius:8px;font-size:15px;font-weight:700;color:#B8860B;text-align:center;outline:none"
+                oninput="this._userEdited=true;">
+            </div>
+          </div>
+          <button onclick="ajustarPrecioPorPersona()" style="margin-top:10px;width:100%;padding:9px;background:var(--dorado);color:white;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.5px">Actualizar precio</button>
+          <div id="rp_msg" style="font-size:10px;color:#888;margin-top:6px;text-align:center"></div>
+        </div>
+      </div>
+        <!-- NOTAS Y OBSERVACIONES -->
+        <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--gris-c)">
+          <label for="obsP3" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--gris);display:block;margin-bottom:6px">Notas y observaciones</label>
+          <textarea id="obsP3" rows="3" style="padding:11px;border:1.5px solid var(--gris-c);border-radius:8px;font-family:Inter,sans-serif;font-size:13px;resize:vertical;width:100%;background:var(--crema)" placeholder="Requerimientos especiales, color de temática, etc." oninput="S.obs=this.value"></textarea>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- P4 PREVIEW -->
+<div class="screen" id="p4">
+  <div class="p4-bar" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:8px">
+      <button class="btn btn-s btn-back" onclick="goP3()">← Editar</button>
+      <div class="p4-tit"><span class="p4-tit-t">Vista gerente</span><span class="p4-tit-l"></span></div>
+      <button class="btn btn-d" onclick="genPDF()">📄 Generar PDF</button>
+  </div>
+  <!-- Elementos fijos para todas las páginas al imprimir -->
+<div class="pdf-hdr-print" id="pdfHdrPrint" style="display:none">
+  <div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:#111;letter-spacing:1px">CENTRO DE CONVENCIONES</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:#B8860B;letter-spacing:1px">"RAICES"</div>
+  </div>
+  <img src="https://res.cloudinary.com/dmhtup9bs/image/upload/v1781026751/RAICES_centro_de_convenciones_LOGO_OFF_ghqsar.png" style="height:50px">
+</div>
+<!-- marca fija removida -->
+<div class="pdf-ftr-print" id="pdfFtrPrint" style="display:none">
+  <div style="color:rgba(255,255,255,.75);font-size:8px;line-height:1.6">
+    <div>📍 Prolongación Calle Perú s/n (Altura Paradero Kayra) San Jerónimo, Cusco.</div>
+    <div>📱 +51 972 203031 &nbsp;|&nbsp; ✉️ raiceseventoscusco@gmail.com</div>
+  </div>
+  <img src="https://res.cloudinary.com/dmhtup9bs/image/upload/v1781243035/84bcfed6-8b25-4703-9be6-325127e3b89c.png" style="height:22px;object-fit:contain">
+</div>
+<div class="pdf-page" id="pdfPage">
+  <!-- marca de agua removida -->
+  <!-- HEADER -->
+  <div class="pdf-hdr">
+    <div class="pdf-hdr-txt">
+      <div class="pdf-hdr-t1">CENTRO DE CONVENCIONES</div>
+      <div class="pdf-hdr-t2">"RAICES"</div>
+    </div>
+    <img class="pdf-hdr-logo" src="https://res.cloudinary.com/dmhtup9bs/image/upload/v1781026751/RAICES_centro_de_convenciones_LOGO_OFF_ghqsar.png" alt="Raices">
+  </div>
+  <div class="pdf-linea-dorada"></div>
+  <!-- CUERPO -->
+  <div class="pdf-body">
+    <div class="pdf-cot-row">
+      <div class="pdf-cot-tit">COTIZACIÓN</div>
+      <div style="text-align:right"><div id="pvNum" class="pdf-num"></div><div id="pvFecCot" class="pdf-num-sub"></div></div>
+    </div>
+    <div class="pdf-datos">
+      <div class="pdf-dato"><label>CLIENTE</label><span id="pvCli"></span></div>
+      <div class="pdf-dato"><label>TELÉFONO</label><span id="pvTel"></span></div>
+      <div class="pdf-dato"><label>TIPO DE EVENTO</label><span id="pvEvt"></span></div>
+      <div class="pdf-dato"><label>FECHA DEL EVENTO</label><span id="pvFec"></span></div>
+      <div class="pdf-dato"><label>PERSONAS</label><span id="pvPer"></span></div>
+      <div class="pdf-dato"><label>VÁLIDA HASTA</label><span id="pvVal"></span></div>
+    </div>
+    <div id="pvBadge" class="pdf-badge-paq"></div>
+    <div class="pdf-sec-tit">Nuestras instalaciones</div>
+    <div class="pdf-fotos">
+      <div class="pdf-foto-wrap"><img class="pdf-foto" src="https://res.cloudinary.com/dmhtup9bs/image/upload/v1781406191/IMG_5899_h2yvfk.jpg" alt="Área verde"><div class="pdf-foto-lbl">Área verde</div></div>
+      <div class="pdf-foto-wrap"><img class="pdf-foto" src="https://res.cloudinary.com/dmhtup9bs/image/upload/v1781406191/IMG_5948_hgpqpw.jpg" alt="Área verde"><div class="pdf-foto-lbl">Área verde</div></div>
+      <div class="pdf-foto-wrap"><img class="pdf-foto" src="https://res.cloudinary.com/dmhtup9bs/image/upload/v1781406191/IMG_7532_afr0fv.jpg" alt="Salón principal"><div class="pdf-foto-lbl">Salón principal</div></div>
+      <div class="pdf-foto-wrap"><img class="pdf-foto" src="https://res.cloudinary.com/dmhtup9bs/image/upload/v1781406191/IMG_7536_wktk6t.jpg" alt="Salón principal"><div class="pdf-foto-lbl">Salón principal</div></div>
+      <div class="pdf-foto-wrap"><img class="pdf-foto" src="https://res.cloudinary.com/dmhtup9bs/image/upload/v1781406191/IMG_5928_yqxirv.jpg" alt="Decoración"><div class="pdf-foto-lbl">Decoración</div></div>
+      <div class="pdf-foto-wrap"><img class="pdf-foto" src="https://res.cloudinary.com/dmhtup9bs/image/upload/v1781406653/7f028f22-9b04-49ef-91fe-9de5768c4b77_ojictr.jpg" alt="Decoración"><div class="pdf-foto-lbl">Decoración</div></div>
+    </div>
+    <div class="pdf-sec-tit">Detalle de servicios</div>
+    <table class="pdf-tabla">
+      <thead><tr><th style="width:20%">Categoría</th><th>Descripción</th><th style="text-align:center">Cant.</th><th style="text-align:right">P. Unit.</th><th style="text-align:right">Total (S/.)</th></tr></thead>
+      <tbody id="pvItems"></tbody>
+    </table>
+    <div id="pvMenuSec" style="display:none">
+      <div class="pdf-sec-tit">Menú seleccionado</div>
+      <table class="pdf-tabla">
+        <thead><tr><th style="width:34%">Categoría</th><th>Plato seleccionado</th><th style="width:15%;text-align:center">Cant.</th></tr></thead>
+        <tbody id="pvMenu"></tbody>
+      </table>
+    </div>
+    <!-- MENÚ NIÑOS — solo para Baby Shower, Fiesta Infantil, Graduación colegio inicial/primaria y Reunión familiar -->
+    <div id="pvMenuNinos" style="display:none;margin-top:10px">
+      <div class="pdf-sec-tit">Menú de alimentación para niños</div>
+      <table class="pdf-tabla">
+        <thead><tr><th style="width:34%">Categoría</th><th>Selección</th><th style="width:15%;text-align:center">Cant.</th></tr></thead>
+        <tbody id="pvItemsNinos"></tbody>
+      </table>
+    </div>
+    <div class="pdf-total-box">
+      <div class="pdf-sec-tit" style="margin:0 0 10px 0">Total de la cotización</div>
+      <!-- Fila precio adulto — siempre visible -->
+      <div class="pdf-tot-row" id="pvRowPers" style="border-bottom:1px solid #e0d5c5;padding-bottom:7px;margin-bottom:7px">
+        <span class="pdf-tot-lbl2" id="pvLblPers">Precio por persona</span>
+        <span id="pvPorPers" class="pdf-tot-num" style="color:#B8860B;font-size:18px"></span>
+      </div>
+      <!-- Fila precio niño — solo cuando hay distribución -->
+      <div class="pdf-tot-row" id="pvNinoRow" style="display:none;border-bottom:1px solid #e0d5c5;padding-bottom:7px;margin-bottom:7px">
+        <span class="pdf-tot-lbl2">Precio por niño</span>
+        <span id="pvPorNino" class="pdf-tot-num" style="color:#B8860B;font-size:18px"></span>
+      </div>
+      <!-- Personas -->
+      <div class="pdf-tot-row" style="margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid #e0d5c5">
+        <span class="pdf-tot-lbl2" id="pvLblPersTotal">Personas</span>
+        <span class="pdf-tot-num" id="pvPersTotal"></span>
+      </div>
+      <div class="pdf-tot-row" style="margin-bottom:4px">
+        <span class="pdf-tot-lbl2">Monto total</span>
+        <span class="pdf-tot-num pdf-tot-monto" id="pvTot"></span>
+      </div>
+      <div class="pdf-tot-row">
+        <span class="pdf-tot-lbl2" style="color:#888">Adelanto (<span id="pvAdPct"></span>%)</span>
+        <span class="pdf-tot-num"><strong id="pvAd"></strong></span>
+      </div>
+    </div>
+    <div id="pvObsSec" style="display:none;margin-top:10px;padding:10px 14px;background:#faf8f5;border-radius:6px;border-left:3px solid #B8860B">
+      <div class="pdf-cond-tit">Notas y observaciones</div>
+      <div id="pvObs" style="font-size:10px;color:#555;line-height:1.6;white-space:pre-wrap"></div>
+    </div>
+    <div class="pdf-cond">
+      <div class="pdf-cond-tit">Condiciones generales</div>
+      <ul>
+        <li>Cotización válida por 15 días calendario desde la fecha de emisión.</li>
+        <li>Para reservar se requiere el <span id="pvCondAd"></span>% del total como adelanto.</li>
+        <li>Hora adicional de atención: S/ 220.00 — Tiempo estándar: 8 horas.</li>
+      </ul>
+    </div>
+  </div>
+  <!-- FOOTER -->
+  <div class="pdf-ftr">
+    <div class="pdf-ftr-txt">
+      <span>📍 Prolongación Calle Perú s/n (Altura Paradero Kayra) San Jerónimo, Cusco.</span>
+      <span style="margin-left:16px">📱 +51 972 203031 &nbsp;|&nbsp; ✉️ raiceseventoscusco@gmail.com</span>
+    </div>
+    <img class="pdf-ftr-redes" src="https://res.cloudinary.com/dmhtup9bs/image/upload/v1781243035/84bcfed6-8b25-4703-9be6-325127e3b89c.png" alt="Redes">
+  </div>
+</div>
+
+</div>
+<!-- P5 -->
+<div class="screen" id="p5">
+  <div class="p3-topbar">
+    <button class="btn-back-pill" onclick="goP4()">&#8592; Volver a la vista previa</button>
+  </div>
+  <div style="text-align:center;padding:60px 20px;background:white;border-radius:12px;box-shadow:0 2px 20px rgba(0,0,0,.08);margin-top:20px">
+    <div style="width:80px;height:80px;border-radius:50%;background:#2d6a4f;display:flex;align-items:center;justify-content:center;font-size:36px;color:white;margin:0 auto 24px;box-shadow:0 0 0 12px rgba(45,106,79,.15)">✓</div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;margin-bottom:8px;color:#0f0e0d">¡Cotización registrada!</h2>
+    <p id="p5Sub" style="font-size:14px;color:#6b6560;margin-bottom:12px">Guardando en el sistema…</p>
+    <div id="envEstado" style="display:none;margin:0 auto 20px;max-width:420px;padding:10px 14px;border-radius:8px;font-size:12px;font-weight:600;line-height:1.5"></div>
+    <div style="background:#f0ebe1;border-radius:10px;padding:20px 28px;display:inline-block;text-align:left;min-width:280px;margin-bottom:28px">
+      <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;border-bottom:1px solid #e8e4de"><span style="color:#6b6560">N° Cotización</span><strong id="cfNum" style="color:#0f0e0d"></strong></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;border-bottom:1px solid #e8e4de"><span style="color:#6b6560">Cliente</span><strong id="cfCli" style="color:#0f0e0d"></strong></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;border-bottom:1px solid #e8e4de"><span style="color:#6b6560">Evento</span><strong id="cfEvt" style="color:#0f0e0d"></strong></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;border-bottom:1px solid #e8e4de"><span style="color:#6b6560">Paquete</span><strong id="cfPaq" style="color:#0f0e0d"></strong></div>
+      <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px"><span style="color:#6b6560">Total</span><strong id="cfTot" style="color:#0f0e0d"></strong></div>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button id="btnPDF" onclick="descargarPDFCliente()" style="padding:12px 24px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:#b8860b;color:white">📄 Descargar PDF</button>
+      <button id="btnGer" onclick="guardarVistaGerente()" style="padding:12px 24px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid #b8860b;background:#f5f0e8;color:#b8860b">💾 Guardar vista gerente</button>
+      <button onclick="irHist()" style="padding:12px 24px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid #e8e4de;background:#f0ebe1;color:#0f0e0d">📋 Cotizaciones</button>
+      <button onclick="window.open('https://drive.google.com/drive/u/1/folders/1svCNhdT_NTFNGBYeyikL-EKUnaZNTNZ9','_blank')" style="padding:12px 24px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid #e8e4de;background:#f0ebe1;color:#0f0e0d">📂 Ver cotizaciones en Drive</button>
+      <button onclick="window.open('https://docs.google.com/spreadsheets/d/18m4di5aXBIISw_D9LQfhXSb6NQ4tTPz4lcTaHOD7whE/edit?gid=966338056#gid=966338056','_blank')" style="padding:12px 24px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1.5px solid #e8e4de;background:#f0ebe1;color:#0f0e0d">📊 Ver cotizaciones en Excel</button>
+      <button onclick="nuevaCot()" style="padding:12px 24px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:#0f0e0d;color:white">+ Nueva</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- HISTORIAL -->
+<div class="screen" id="pH">
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+      <div><h2 class="ctit">Cotizaciones generadas</h2><p class="csub" id="hCnt" style="margin-bottom:0"></p></div>
+      <div style="display:flex;gap:10px">
+        <button class="btn btn-p" onclick="nuevaCot()">+ Nueva</button>
+      </div>
+    </div>
+    <div id="hLis"></div>
+  </div>
+</div>
+
+
+</div><!-- /wrap -->
+<div id="modalConfirm" style="display:none;position:fixed;inset:0;background:rgba(15,14,13,.7);z-index:999;align-items:center;justify-content:center">
+  <div style="background:white;border-radius:14px;padding:36px 32px;max-width:340px;width:90%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.25)">
+    <div style="font-size:36px;margin-bottom:12px">📄</div>
+    <h3 style="font-family:'Cormorant Garamond',serif;font-size:22px;margin-bottom:8px">¿Generar cotización?</h3>
+    <p style="font-size:13px;color:var(--gris);margin-bottom:16px">Se registrará en el sistema y el PDF se subirá a Google Drive para descargarlo.</p>
+    <p id="modalAviso" style="display:none;font-size:12px;font-weight:600;color:#b34700;background:#fff3e0;border:1px solid #f0c040;border-radius:8px;padding:8px 10px;margin-bottom:16px;line-height:1.4"></p>
+    <div style="display:flex;gap:10px;justify-content:center">
+      <button class="btn btn-s" onclick="cerrarModal()" style="min-width:100px">Cancelar</button>
+      <button class="btn btn-p" onclick="confirmarPDF()" style="min-width:130px;background:var(--verde)">✓ Sí, generar</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const PIN='1234';
+let cots=JSON.parse(localStorage.getItem('r_cots')||'[]');
+let S={nom:'',tel:'',evt:'',pers:100,fecha:'',obs:'',paq:'',items:[],mEnt:'',mFon:'',mPos:[],mBeb:[],mNinoFood:[],mNinoBeb:[],total:0,num:'',adl:50,persAdultos:0,persNinos:0,alquilerOriginal:2500,mostrarPp:true};
+
+// PIN
+function chkPin(){
+  const v=document.getElementById('pinInp').value;
+  if(v===PIN){document.getElementById('pinOv').style.display='none';}
+  else if(v.length===4){document.getElementById('pinErr').style.display='block';document.getElementById('pinInp').value='';}
+}
+document.getElementById('pinInp').addEventListener('keydown',e=>{if(e.key==='Enter')chkPin();});
+
+// NAVEGACION
+function setProg(p){
+  for(let i=1;i<=5;i++){
+    document.getElementById('n'+i).className='pn'+(i<p?' c':i===p?' a':'');
+    document.getElementById('l'+i).className='pl'+(i===p?' a':'');
+    if(i<5) document.getElementById('c'+i).className='pcon'+(i<p?' c':'');
+  }
+}
+function show(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goP1(){show('p1');setProg(1);}
+// Quita el ajuste de precio aplicado antes (gastos administrativos sumados / alquiler rebajado)
+// para que el total vuelva al costo real cuando el resumen cambia después de ajustar.
+function revertirAjustePrecio(){
+  if(S._revirtiendo||!S.items) return;
+  var alqIdx=S.items.findIndex(function(i){return i.desc==='Alquiler Centro de Convenciones Raíces';});
+  var gIdx=S.items.findIndex(function(i){return i.isGastoAdmin;});
+  var hay=false;
+  if(gIdx>-1&&(S.items[gIdx].activo||(S.items[gIdx].puActual||0)>0)){
+    S.items[gIdx].activo=false;S.items[gIdx].puActual=0;S.items[gIdx].pu=0;hay=true;
+  }
+  if(alqIdx>-1&&S.alquilerOriginal!=null&&S.items[alqIdx].puActual!==S.alquilerOriginal){
+    S.items[alqIdx].puActual=S.alquilerOriginal;hay=true;
+  }
+  if(hay){
+    S._revirtiendo=true;
+    try{ renderItems(); updCart(); }finally{ S._revirtiendo=false; }
+  }
+}
+function updRecuadroPreview(){
+  var rec=document.getElementById('recuadroPreview');
+  if(!rec) return;
+  if(!S.pers||S.total===0){rec.style.display='none';return;}
+  rec.style.display='block';
+
+  var rpTotal=document.getElementById('rp_total');
+  var rpPers=document.getElementById('rp_pers');
+  var rpCalc=document.getElementById('rp_pp_calc');
+  var rpCalcRow=document.getElementById('rp_pp_calc_row');
+  var rpInp=document.getElementById('rp_pp_input');
+  var rpLblAdulto=document.getElementById('rp_lbl_adulto');
+  var rpNinoRow=document.getElementById('rp_nino_row');
+  var rpNinoInp=document.getElementById('rp_pp_nino_input');
+  var rpWarning=document.getElementById('rp_warning');
+
+  if(rpTotal) rpTotal.textContent=fs(S.total);
+
+  var dist=calcPreciosDistribucion();
+  if(dist){
+    if(rpPers) rpPers.innerHTML=
+      '<span style="display:block">Adultos: <strong>'+dist.persA+'</strong></span>'+
+      '<span style="display:block">Niños: <strong>'+dist.persN+'</strong></span>';
+    if(rpCalcRow) rpCalcRow.style.display='none';
+    // Igual que en el modo "solo personas": si ya se ajustó (y nada cambió desde entonces),
+    // el "calc." mostrado junto a la etiqueta es el MISMO número que el usuario fijó.
+    var _calcAdultoShow=(rpInp&&rpInp._ajustado&&rpInp.value)?parseFloat(rpInp.value):dist.ppAdulto;
+    var _calcNinoShow=(rpNinoInp&&rpNinoInp._ajustado&&rpNinoInp.value)?parseFloat(rpNinoInp.value):dist.ppNino;
+    if(rpLblAdulto) rpLblAdulto.innerHTML='Precio por adulto <span style="font-size:13px;font-weight:800;color:#B8860B">(calc. S/ '+_calcAdultoShow.toLocaleString('es-PE')+')</span>';
+    if(rpNinoRow) rpNinoRow.style.display='block';
+    // Actualizar label precio niño con el calculado
+    var _rpLblNino=document.querySelector('#rp_nino_row label');
+    if(_rpLblNino) _rpLblNino.innerHTML='Precio por niño <span style="font-size:13px;font-weight:800;color:#B8860B">(calc. S/ '+_calcNinoShow.toLocaleString('es-PE')+')</span>';
+    // Solo precargar el input la PRIMERA vez (cuando aún no tiene valor); si el usuario ya
+    // editó o ya se aplicó un ajuste antes, no se sobreescribe — así se puede comparar contra
+    // el calculado actual y avisar si quedó desactualizado.
+    if(rpInp&&!rpInp._userEdited&&!rpInp._ajustado){ rpInp.value=dist.ppAdulto; S._calcSnapshotAdulto=dist.ppAdulto; }
+    if(rpNinoInp&&!rpNinoInp._userEdited&&!rpNinoInp._ajustado){ rpNinoInp.value=dist.ppNino; S._calcSnapshotNino=dist.ppNino; }
+    // El warning aparece, y el campo se vacía, si el CALCULADO cambió respecto a la foto
+    // tomada en el último ajuste (algo del resumen — items u opcionales — cambió después
+    // de ajustar). Vaciar el campo obliga a decidir el nuevo precio en vez de dejar un
+    // número que ya no corresponde a la realidad del resumen actual.
+    var desactualizado=(S._calcSnapshotAdulto!=null&&S._calcSnapshotAdulto!==dist.ppAdulto)||(S._calcSnapshotNino!=null&&S._calcSnapshotNino!==dist.ppNino);
+    if(rpWarning){
+      if(desactualizado){
+        revertirAjustePrecio();
+        rpWarning.style.display='block';
+        rpWarning.textContent='⚠️ El resumen cambió y se quitó el ajuste anterior. Escribe el nuevo precio y presiona Actualizar.';
+        if(rpInp){rpInp.value='';rpInp._userEdited=false;rpInp._ajustado=false;}
+        if(rpNinoInp){rpNinoInp.value='';rpNinoInp._userEdited=false;rpNinoInp._ajustado=false;}
+        S._calcSnapshotAdulto=null; S._calcSnapshotNino=null;
+        if(rpLblAdulto) rpLblAdulto.innerHTML='Precio por adulto <span style="font-size:13px;font-weight:800;color:#B8860B">(calc. S/ '+dist.ppAdulto.toLocaleString('es-PE')+')</span>';
+        if(_rpLblNino) _rpLblNino.innerHTML='Precio por niño <span style="font-size:13px;font-weight:800;color:#B8860B">(calc. S/ '+dist.ppNino.toLocaleString('es-PE')+')</span>';
+      } else {
+        rpWarning.style.display='none';
+      }
+    }
+  } else {
+    var ppCalc=S.pers>0?Math.round(calcCostoRealLimpio()/S.pers):0;
+    if(rpPers) rpPers.textContent=S.pers+' personas';
+    if(rpCalcRow) rpCalcRow.style.display='flex';
+    // Si ya se ajustó el precio (y nada cambió desde entonces), "calculado" muestra el
+    // MISMO número que el usuario fijó en el editable — así ambos siempre coinciden tras
+    // presionar Actualizar. Si todavía no se ajustó nada, muestra el costo real puro,
+    // para que el usuario sepa de qué punto de partida está calculando su margen.
+    if(rpCalc) rpCalc.textContent='S/ '+(rpInp&&rpInp._ajustado&&rpInp.value?parseFloat(rpInp.value).toLocaleString('es-PE'):ppCalc.toLocaleString('es-PE'));
+    if(rpLblAdulto) rpLblAdulto.textContent='Precio por persona';
+    if(rpNinoRow) rpNinoRow.style.display='none';
+    if(rpInp&&!rpInp._userEdited&&!rpInp._ajustado){ rpInp.value=ppCalc; S._calcSnapshotAdulto=ppCalc; }
+    var desactualizado2=(S._calcSnapshotAdulto!=null&&S._calcSnapshotAdulto!==ppCalc);
+    if(rpWarning){
+      if(desactualizado2){
+        revertirAjustePrecio();
+        rpWarning.style.display='block';
+        rpWarning.textContent='⚠️ El resumen cambió y se quitó el ajuste anterior. Escribe el nuevo precio y presiona Actualizar.';
+        if(rpInp){rpInp.value='';rpInp._userEdited=false;rpInp._ajustado=false;}
+        S._calcSnapshotAdulto=null;
+        if(rpCalc) rpCalc.textContent='S/ '+ppCalc.toLocaleString('es-PE');
+      } else {
+        rpWarning.style.display='none';
+      }
+    }
+  }
+}
+function ajustarPrecioPorPersona(){
+  var inp=document.getElementById('rp_pp_input');
+  var inpNino=document.getElementById('rp_pp_nino_input');
+  if(!inp||!S.pers) { return; }
+  var msg=document.getElementById('rp_msg');
+
+  // Guardar alquiler original la primera vez
+  var alquilerIdx=S.items.findIndex(function(i){return i.desc==='Alquiler Centro de Convenciones Raíces';});
+  var gastoIdx=S.items.findIndex(function(i){return i.isGastoAdmin;});
+  if(alquilerIdx>-1&&(S.alquilerOriginal===undefined||S.alquilerOriginal===null)){
+    S.alquilerOriginal=S.items[alquilerIdx].pu; // precio base del paquete
+  }
+
+  // RESETEAR siempre antes de calcular — volver al estado limpio
+  if(gastoIdx>-1){S.items[gastoIdx].activo=false;S.items[gastoIdx].puActual=0;S.items[gastoIdx].pu=0;}
+  if(alquilerIdx>-1&&S.alquilerOriginal!==null){
+    S.items[alquilerIdx].puActual=S.alquilerOriginal;
+  }
+  // Recalcular S.total desde el estado limpio
+  updCart();
+  var totalBase=S.total;
+
+  if(S.persAdultos>0&&S.persNinos>0&&inpNino){
+    var ppAdulto=parseFloat(inp.value);
+    var ppNino=parseFloat(inpNino.value);
+    if(isNaN(ppAdulto)||ppAdulto<=0||isNaN(ppNino)||ppNino<=0){
+      if(msg) msg.textContent='';
+      updRecuadroPreview(); return;
+    }
+    var totalNuevo=Math.round(ppAdulto*S.persAdultos)+Math.round(ppNino*S.persNinos);
+    var diff=totalNuevo-totalBase;
+    if(diff===0){
+      if(msg) msg.textContent='✓ Total exacto.';
+    } else if(diff>0){
+      if(gastoIdx>-1){S.items[gastoIdx].activo=true;S.items[gastoIdx].puActual=diff;S.items[gastoIdx].pu=diff;}
+      if(msg) msg.textContent='+S/ '+diff.toLocaleString('es-PE')+' en gastos admin.';
+    } else {
+      var bajar=Math.abs(diff);
+      if(alquilerIdx>-1){
+        var nuevoAlq=Math.max(0,(S.alquilerOriginal||0)-bajar);
+        S.items[alquilerIdx].puActual=nuevoAlq;
+        var faltante=bajar-(S.alquilerOriginal||0);
+        if(faltante>0){
+          if(msg) msg.textContent='Alquiler → S/ 0 (no se pudo bajar S/ '+faltante.toLocaleString('es-PE')+' más; el precio ingresado es muy bajo para el paquete actual).';
+        } else {
+          if(msg) msg.textContent='Alquiler → S/ '+nuevoAlq.toLocaleString('es-PE');
+        }
+      }
+    }
+  } else {
+    // Modo solo personas
+    var ppNuevo=parseFloat(inp.value);
+    if(isNaN(ppNuevo)||ppNuevo<=0){
+      if(msg) msg.textContent=''; updRecuadroPreview(); return;
+    }
+    var totalNuevo2=Math.round(ppNuevo*S.pers);
+    var diff2=totalNuevo2-totalBase;
+    if(diff2===0){
+      if(msg) msg.textContent='✓ Total exacto.';
+    } else if(diff2>0){
+      if(gastoIdx>-1){S.items[gastoIdx].activo=true;S.items[gastoIdx].puActual=diff2;S.items[gastoIdx].pu=diff2;}
+      if(msg) msg.textContent='+S/ '+diff2.toLocaleString('es-PE')+' en gastos admin.';
+    } else {
+      var bajar2=Math.abs(diff2);
+      if(alquilerIdx>-1){
+        var nuevoAlq2=Math.max(0,(S.alquilerOriginal||0)-bajar2);
+        S.items[alquilerIdx].puActual=nuevoAlq2;
+        var faltante2=bajar2-(S.alquilerOriginal||0);
+        if(faltante2>0){
+          if(msg) msg.textContent='Alquiler → S/ 0 (no se pudo bajar S/ '+faltante2.toLocaleString('es-PE')+' más; el precio ingresado es muy bajo para el paquete actual).';
+        } else {
+          if(msg) msg.textContent='Alquiler → S/ '+nuevoAlq2.toLocaleString('es-PE');
+        }
+      }
+    }
+  }
+  if(typeof renderItems==='function') renderItems();
+  updCart();
+  var _rpInpFinal=document.getElementById('rp_pp_input');
+  var _rpNinoInpFinal=document.getElementById('rp_pp_nino_input');
+  // A partir de aquí el campo queda "congelado" en lo que el usuario decidió — ya no se
+  // sobreescribe automáticamente con el calculado en vivo (eso es trabajo del warning).
+  if(_rpInpFinal) _rpInpFinal._ajustado=true;
+  if(_rpNinoInpFinal) _rpNinoInpFinal._ajustado=true;
+  // Guardar foto del "calculado" justo en este momento (post-ajuste). El warning de
+  // "actualiza el precio" solo debe aparecer si el calculado CAMBIA respecto a esta foto
+  // (es decir, si algo del resumen se modifica después de este ajuste), no por la diferencia
+  // natural entre el calculado (costo real limpio) y el editado (precio que el usuario fijó).
+  var _snapDist=calcPreciosDistribucion();
+  if(_snapDist){
+    S._calcSnapshotAdulto=_snapDist.ppAdulto;
+    S._calcSnapshotNino=_snapDist.ppNino;
+  } else {
+    S._calcSnapshotAdulto=S.pers>0?Math.round(calcCostoRealLimpio()/S.pers):0;
+    S._calcSnapshotNino=null;
+  }
+  updRecuadroPreview();
+}
+
+
+function updDistribucion(source){
+  // Resetear precio editado al cambiar distribución
+  var _ri3=document.getElementById('rp_pp_input');
+  var _rn3=document.getElementById('rp_pp_nino_input');
+  if(_ri3) {_ri3._userEdited=false; _ri3._sysSet=false; _ri3._ajustado=false;}
+  if(_rn3) {_rn3._userEdited=false; _rn3._sysSet=false; _rn3._ajustado=false;}
+  S._calcSnapshotAdulto=null; S._calcSnapshotNino=null;
+  var total=parseInt(document.getElementById('cPers')?.value||0)||0;
+  var adultos=parseInt(document.getElementById('cPersAdultos')?.value||0)||0;
+  var ninos=parseInt(document.getElementById('cPersNinos')?.value||0)||0;
+  if(source==='total'){
+    // Recalcular adultos/niños con ratio 70/30
+    adultos=Math.round(total*0.7);
+    ninos=total-adultos;
+    var inpA=document.getElementById('cPersAdultos');
+    var inpN=document.getElementById('cPersNinos');
+    if(inpA) inpA.value=adultos;
+    if(inpN) inpN.value=ninos;
+  } else {
+    // Recalcular total desde adultos+niños
+    total=adultos+ninos;
+    var inpP=document.getElementById('cPers');
+    if(inpP) inpP.value=total;
+  }
+  S.persAdultos=adultos;
+  S.persNinos=ninos;
+  S.pers=total||S.pers;
+  var msg=document.getElementById('secPersNinosMsg');
+  if(msg&&total>0) msg.textContent=adultos+' adultos + '+ninos+' niños = '+total+' personas';
+  if(typeof renderMenuNinos==='function') renderMenuNinos();
+  updCart();
+}
+
+
+function checkSecPersNinos(){
+  var evt=document.getElementById('cEvt')?.value||S.evt||'';
+  var esNinos=EVENTOS_NINOS.indexOf(evt)>-1;
+  var sec=document.getElementById('secPersNinos');
+  if(sec) sec.style.display=esNinos?'block':'none';
+  if(typeof updRecuadroPreview==='function') updRecuadroPreview();
+}
+function checkMenuNinos(){
+  var evt=S.evt||'';
+  var esNinos=['Baby Shower','Fiesta Infantil','Graduación colegio inicial/primaria','Reunión familiar'].indexOf(evt)>-1;
+  var sec=document.getElementById('secMenuNinos');
+  if(sec) sec.style.display=esNinos?'block':'none';
+  if(esNinos) renderMenuNinos();
+}
+// updPersNinos reemplazado por updDistribucion
+
+function renderMenuNinos(){
+  if(typeof MENU==='undefined'||!MENU.NinoFood) return;
+  var cats=[{k:'NinoFood',id:'mNinoFood',multi:true},{k:'NinoBeb',id:'mNinoBeb',multi:true}];
+  if(!Array.isArray(S.mNinoFood)) S.mNinoFood=[];
+  if(!Array.isArray(S.mNinoBeb)) S.mNinoBeb=[];
+  cats.forEach(function(cat){
+    var k=cat.k, multi=cat.multi;
+    var menu=MENU[k];
+    var c=document.getElementById(cat.id);
+    if(!c||!menu) return;
+    c.innerHTML='';
+    menu.items.forEach(function(op,opIdx){
+      var prcKey='mprc_'+k+'_'+opIdx;
+      var cantKey='mcant_'+k+'_'+opIdx;
+      var defPrc=menu.precios?menu.precios[opIdx]:menu.pu;
+      if(S[prcKey]===undefined) S[prcKey]=defPrc;
+      if(S[cantKey]===undefined||S[cantKey]===0){var _pn=parseInt(document.getElementById('cPersNinos')?.value||0)||S.persNinos||0;S[cantKey]=_pn;}
+      var activo=(S['m'+k]||[]).indexOf(op)>-1;
+      var tot=Math.round(S[prcKey]*S[cantKey]);
+      var row=document.createElement('div');
+      row.className='irow'+(activo?' inc':'');
+      var chk=document.createElement('div');
+      chk.className='ichk'+(activo?' on':'');
+      chk.textContent=activo?'✓':'';
+      var toggleFn=(function(o,kk){
+        return function(e){
+          e.stopPropagation();
+          var arr=S['m'+kk]||[];
+          var i=arr.indexOf(o);
+          if(i>-1) arr.splice(i,1); else arr.push(o);
+          S['m'+kk]=arr;
+          renderMenuNinos(); updCart();
+        };
+      })(op,k);
+      chk.onclick=toggleFn;
+      var info=document.createElement('div');
+      info.className='iinfo'; info.style.flex='1';
+      info.innerHTML='<div class="inom">'+op+'</div>';
+      info.onclick=toggleFn;
+      var cantInp=document.createElement('input');
+      cantInp.type='number'; cantInp.className='iqty-input';
+      cantInp.value=S[cantKey]; cantInp.min='0';
+      cantInp.onclick=function(e){e.stopPropagation();};
+      cantInp.onchange=(function(ck){return function(){S[ck]=parseInt(this.value)||0;renderMenuNinos();updCart();};})(cantKey);
+      var lbl=document.createElement('span');
+      lbl.textContent='S/.'; lbl.style.cssText='font-size:10px;color:var(--gris);font-weight:600;margin:0 2px';
+      var prInp=document.createElement('input');
+      prInp.type='number'; prInp.className='iprice-input';
+      prInp.value=S[prcKey]; prInp.min='0';
+      prInp.onclick=function(e){e.stopPropagation();};
+      prInp.onchange=(function(pk){return function(){S[pk]=parseFloat(this.value)||0;renderMenuNinos();updCart();};})(prcKey);
+      var totDiv=document.createElement('div');
+      totDiv.className='itot'; totDiv.textContent='S/ '+tot.toLocaleString('es-PE');
+      row.appendChild(chk); row.appendChild(info); row.appendChild(cantInp);
+      row.appendChild(lbl); row.appendChild(prInp); row.appendChild(totDiv);
+      c.appendChild(row);
+    });
+  });
+}
+function goP2frm(){
+  const nom=document.getElementById('cNom').value.trim();
+  const tel=document.getElementById('cTel').value.trim();
+  const evt=document.getElementById('cEvt').value;
+  const pers=parseInt(document.getElementById('cPers').value);
+  const fec=document.getElementById('cFecha').value;
+  if(!nom||!tel||!evt||!fec){toast('\u26a0\ufe0f Completa todos los campos obligatorios');return;}
+  if(!(pers>=1)||pers>500){toast('\u26a0\ufe0f Las personas deben ser entre 1 y 500');return;}
+  var _aA=parseInt(document.getElementById('cPersAdultos')?.value)||0,_aN=parseInt(document.getElementById('cPersNinos')?.value)||0;
+  if(document.getElementById('cPersAdultos')&&document.getElementById('cPersAdultos').offsetParent!==null&&(_aA<0||_aN<0||_aA+_aN!==pers)){toast('\u26a0\ufe0f Adultos + niños debe coincidir con el total');return;}
+  var _hoy=new Date();_hoy.setHours(0,0,0,0);
+  if(new Date(fec+'T12:00:00')<_hoy){toast('\u26a0\ufe0f La fecha del evento ya pasó');return;}
+  S.nom=nom;S.tel=tel;S.evt=evt;S.pers=pers;S.fecha=fec;
+  S.alquilerOriginal=null;
+  // Resetear precio editado al cambiar evento
+  var _ri2=document.getElementById('rp_pp_input');
+  var _rn2=document.getElementById('rp_pp_nino_input');
+  if(_ri2) {_ri2._userEdited=false; _ri2._sysSet=false; _ri2._ajustado=false; _ri2.value='';}
+  if(_rn2) {_rn2._userEdited=false; _rn2._sysSet=false; _rn2._ajustado=false; _rn2.value='';}
+  S._calcSnapshotAdulto=null; S._calcSnapshotNino=null;
+  // Leer distribución si aplica
+  var _inpA=document.getElementById('cPersAdultos');
+  var _inpN=document.getElementById('cPersNinos');
+  var _secPN=document.getElementById('secPersNinos');
+  var _esDistrib=EVENTOS_NINOS.indexOf(evt)>-1; // según el evento elegido ahora, no según lo que quedó en pantalla
+  S.persAdultos=_esDistrib&&_inpA?parseInt(_inpA.value)||0:0;
+  S.persNinos=_esDistrib&&_inpN?parseInt(_inpN.value)||0:0;
+  // Si el evento ya no es de niños, el menú de niños no debe seguir cobrándose
+  if(!_esDistrib){ S.mNinoFood=[]; S.mNinoBeb=[]; }
+  // Si cambió la cantidad de personas (o la distribución), las cantidades del menú se recalculan
+  var _sigP=S.pers+'|'+S.persAdultos+'|'+S.persNinos;
+  if(S._sigPers!==_sigP){
+    Object.keys(S).forEach(function(k){ if(k.indexOf('mcant_')===0) delete S[k]; });
+    S._sigPers=_sigP;
+  }
+  checkSecPersNinos();
+  // Las observaciones se gestionan desde el campo único del paso 3 (obsP3 -> S.obs)
+  const evtK=evt.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const pb=calcPrecio('BASICO',evtK,pers);
+  const pe=calcPrecio('ESTANDAR',evtK,pers);
+  const pp=calcPrecio('PREMIUM',evtK,pers);
+  var _xpTxt=' por persona';
+  if(_esDistrib && S.persAdultos>0 && S.persNinos>0){
+    _xpTxt=' (S/ '+S.persAdultos+' adultos · '+S.persNinos+' niños)';
+  }
+  document.getElementById('pB').textContent=fs(pb);
+  document.getElementById('xpB').textContent=_esDistrib&&S.persAdultos>0&&S.persNinos>0?(fs(Math.round(pb/pers))+' prom/persona'):(fs(pb/pers)+' por persona');
+  document.getElementById('pE').textContent=fs(pe);
+  document.getElementById('xpE').textContent=_esDistrib&&S.persAdultos>0&&S.persNinos>0?(fs(Math.round(pe/pers))+' prom/persona'):(fs(pe/pers)+' por persona');
+  document.getElementById('pP').textContent=fs(pp);
+  document.getElementById('xpP').textContent=_esDistrib&&S.persAdultos>0&&S.persNinos>0?(fs(Math.round(pp/pers))+' prom/persona'):(fs(pp/pers)+' por persona');
+  const fd=new Date(fec+'T12:00:00');
+  const p2info=document.getElementById('p2info');
+  var _persTxt=(_esDistrib&&S.persAdultos>0&&S.persNinos>0)?(S.persAdultos+' adultos + '+S.persNinos+' niños'):(pers+' personas');
+  if(p2info) p2info.innerHTML='<strong>'+nom+'</strong> — '+evt+' — <strong>'+_persTxt+'</strong> — '+fd.toLocaleDateString('es-PE',{day:'numeric',month:'long'});
+  show('p2');setProg(2);
+}
+function goP2(){show('p2');setProg(2);}
+function goP3(){show('p3');checkSecPersNinos();checkMenuNinos();renderMenuNinos();setProg(3);}
+var API_URL='https://script.google.com/macros/s/AKfycbzKke9wZQg9d_4XBOxeeKedFKxO-J_d9GgOnwcu86hjVXkU4XYTg7fteje7jqwjFWe9/exec';
+var URL_SIGUIENTE=API_URL+'?accion=siguiente';
+var URL_HISTORIAL=API_URL+'?accion=historial';
+function pedirNumeroServidor(){
+  return fetch(URL_SIGUIENTE,{method:'GET'})
+    .then(function(r){return r.json();})
+    .then(function(j){return (j&&j.numero)?j.numero:null;})
+    .catch(function(){return null;});
+}
+function goP4(){
+  // Si esta cotización ya se registró y la admin volvió a editar, lo que se genere ahora es OTRA cotización con número nuevo
+  if(S.registrada){ S.num=''; S.registrada=false; }
+  buildPreview();show('p4');setProg(4);
+  if(!S.num){
+    pedirNumeroServidor().then(function(n){
+      if(n&&!S.num&&!S.registrada){
+        S.num=n;
+        var el=document.getElementById('pvNum'); if(el) el.textContent=n;
+      }
+    });
+  }
+}
+
+// PRECIOS
+function calcPrecio(paq,evt,pers){
+  // Precio exacto: suma real de items para ese evento/paquete/personas
+  // Guardamos S.pers temporalmente para que getItems use el valor correcto
+  const prevPers = S.pers;
+  S.pers = pers;
+  const raw = getItems(evt, paq);
+  S.pers = prevPers;
+  const idxReemplazados=new Set();
+  raw.forEach((it,idx)=>{
+    if(!it.reemplaza) return;
+    for(let j=idx-1;j>=0;j--){
+      if(raw[j].desc===it.reemplaza && !idxReemplazados.has(j)){ idxReemplazados.add(j); break; }
+    }
+  });
+  return raw
+    .filter((i,idx) => !i.opc && !idxReemplazados.has(idx))
+    .reduce((s,i) => s + Math.round(i.pu * i.cant), 0);
+}
+function fs(n){return'S/ '+Math.round(n).toLocaleString('es-PE');}
+function genNum(){const d=new Date();return'COT-'+d.getFullYear()+'-L'+d.getTime().toString(36).toUpperCase().slice(-6);}
+
+// P1 -> P2
+// (el manejador del botón btnP2 está definido en el atributo onclick="goP2frm()" del HTML)
+
+// P2 -> P3
+function elegir(paq){
+  S.paq=paq;
+  document.querySelectorAll('.paq-card').forEach(c=>c.classList.remove('sel'));
+  document.getElementById({BASICO:'cB',ESTANDAR:'cE',PREMIUM:'cP'}[paq]).classList.add('sel');
+  buildP3(paq);show('p3');checkSecPersNinos();checkMenuNinos();renderMenuNinos();setProg(3);
+}
+
+// DEFINICION DE ITEMS
+// sin_qty: no muestra campo cantidad | dias: muestra "dias" en lugar de cantidad numerica
+function getItems(evt,paq){
+  evt=evt.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const p=S.pers,m=Math.ceil(p/10);
+  const corp=evt==='Corporativo';
+  const jdg=['Quinceanera','Matrimonio','Graduacion colegio inicial/primaria','Graduacion colegio secundaria'].includes(evt);
+  const bEsp=['Quinceanera','Graduacion colegio inicial/primaria','Graduacion colegio secundaria'].includes(evt);
+  const baby=evt==='Baby Shower'||evt==='Fiesta Infantil'||evt==='Reunion familiar';
+  const fiesta=evt==='Fiesta Infantil';
+  const mat=evt==='Matrimonio';
+  const nMozos=Math.max(2,Math.ceil(p/50)*2);
+  const nLimpieza=Math.max(2,Math.ceil(p/50)*2);
+  const menuXp={Bautizo:30,Quinceanera:25,Matrimonio:30,'Graduacion Universitaria':30,'Baby Shower':30,Corporativo:35,'Graduacion colegio inicial/primaria':30,'Graduacion colegio secundaria':30,'Fiesta Infantil':20,'Reunion familiar':30,Cumpleanos:30,Aniversario:30}[evt]||30;
+  let it=[];
+
+  // ── BASICO ──
+  // LOCAL
+  it.push({sec:'LOCAL',desc:'Alquiler Centro de Convenciones Raíces',pu:2500,cant:1,paq:'BASICO',opc:false,tipo:'dias',locked:true,unidad:'días'});
+  it.push({sec:'LOCAL',desc:'Gastos administrativos',pu:0,cant:1,paq:'BASICO',opc:true,activo:false,sin_qty:true,unidad:'',isGastoAdmin:true});
+
+  // DECORACION SALON — precio fijo, sin cantidad
+  it.push({sec:'DECORACION SALON',desc:'Decoración Salón Principal — básica',pu:1000,cant:1,paq:'BASICO',opc:false,sin_qty:true});
+  // MOBILIARIO — con cantidad
+  it.push({sec:'MOBILIARIO',desc:'Mesas decoradas de 10 personas',pu:20,cant:m,paq:'BASICO',opc:false,unidad:'und.'});
+  it.push({sec:'MOBILIARIO',desc:'Sillas Tiffany',pu:3,cant:p,paq:'BASICO',opc:false,unidad:'und.'});
+  it.push({sec:'MOBILIARIO',desc:'Mesas protocolares',pu:20,cant:2,paq:'BASICO',opc:false,unidad:'und.'});
+  it.push({sec:'MOBILIARIO',desc:'Sillas protocolares',pu:3,cant:p,paq:'BASICO',opc:false,unidad:'und.'});
+  if(corp) it.push({sec:'MOBILIARIO',desc:'Centro de mesa simple',pu:15,cant:m,paq:'BASICO',opc:false,sin_qty:true});
+  // MENAJERIA — con cantidad (por persona)
+  it.push({sec:'MENAJERIA',desc:'Platos de sitio',pu:1,cant:p,paq:'BASICO',opc:false,unidad:'und.'});
+  it.push({sec:'MENAJERIA',desc:'Platos de fondo',pu:1,cant:p,paq:'BASICO',opc:false,unidad:'und.'});
+  it.push({sec:'MENAJERIA',desc:'Cuchillo y tenedor (juego)',pu:1,cant:p,paq:'BASICO',opc:false,unidad:'und.'});
+  it.push({sec:'MENAJERIA',desc:'Servilletas de tela',pu:1,cant:p,paq:'BASICO',opc:false,tipo:'srv_tela',unidad:'und.'});
+  // CRISTALERIA — con cantidad (por persona)
+  it.push({sec:'CRISTALERIA',desc:'Copas de champagne',pu:1,cant:p,paq:'BASICO',opc:false,unidad:'und.'});
+  it.push({sec:'CRISTALERIA',desc:'Vasos de whisky',pu:1,cant:p,paq:'BASICO',opc:false,unidad:'und.'});
+  it.push({sec:'CRISTALERIA',desc:'Vasos de cerveza',pu:1,cant:p,paq:'BASICO',opc:false,unidad:'und.'});
+  if(corp) it.push({sec:'CRISTALERIA',desc:'Vasos de agua',pu:1,cant:p,paq:'BASICO',opc:false,unidad:'und.'});
+  // BEBIDAS — con cantidad (por mesa)
+  it.push({sec:'BEBIDAS',desc:'Coca Cola 2.5L',pu:10,cant:m,paq:'BASICO',opc:false,unidad:'und.'});
+  it.push({sec:'BEBIDAS',desc:'Agua mineral sin gas',pu:4,cant:m,paq:'BASICO',opc:false,unidad:'und.'});
+  it.push({sec:'BEBIDAS',desc:'Hielo (bolsas)',pu:8,cant:6,paq:'BASICO',opc:false,unidad:'und.'});
+  it.push({sec:'BEBIDAS',desc:'Ron Flor de Caña 4 años',pu:37,cant:m,paq:'BASICO',opc:false,unidad:'und.'});
+  // PERSONAL DE SERVICIO BASICO — opcionales
+  it.push({sec:'PERSONAL DE SERVICIO',desc:'Mozos',pu:80,cant:nMozos,paq:'BASICO',opc:true,unidad:'pers.'});
+  it.push({sec:'PERSONAL DE SERVICIO',desc:'Personal de seguridad',pu:100,cant:1,paq:'BASICO',opc:true,unidad:'pers.'});
+  it.push({sec:'PERSONAL DE SERVICIO',desc:'Personal de limpieza',pu:80,cant:nLimpieza,paq:'BASICO',opc:true,unidad:'pers.'});
+  // OTROS SERVICIOS BASICO — precio fijo, sin cantidad
+  it.push({sec:'OTROS SERVICIOS',desc:'Equipo de sonido básico',pu:1500,cant:1,paq:'BASICO',opc:true,sin_qty:true});
+
+  if(paq==='BASICO') return it;
+
+  // ── ESTANDAR ──
+  // DECORACION SALON — precio fijo, sin cantidad
+  it.push({sec:'DECORACION SALON',desc:'Decoración Salón Principal — personalizada',pu:2000,cant:1,paq:'ESTANDAR',opc:false,sin_qty:true,reemplaza:'Decoración Salón Principal — básica'});
+  it.push({sec:'DECORACION SALON',desc:'Decoración sección de fotos',pu:800,cant:1,paq:'ESTANDAR',opc:false,sin_qty:true});
+  // MOBILIARIO — con cantidad
+  it.push({sec:'MOBILIARIO',desc:'Centro de mesa — flores artificiales',pu:15,cant:m,paq:'ESTANDAR',opc:false,unidad:'und.'});
+  // CRISTALERIA — con cantidad
+  it.push({sec:'CRISTALERIA',desc:'Copas de vino',pu:1,cant:p,paq:'ESTANDAR',opc:false,unidad:'und.'});
+  if(!corp) it.push({sec:'CRISTALERIA',desc:'Vasos de agua',pu:1,cant:p,paq:'ESTANDAR',opc:false,unidad:'und.'});
+  it.push({sec:'CRISTALERIA',desc:'Copas de cóctel',pu:1,cant:p,paq:'ESTANDAR',opc:false,unidad:'und.'});
+  it.push({sec:'CRISTALERIA',desc:'Hielera por mesa con pinza',pu:4,cant:m,paq:'ESTANDAR',opc:false,unidad:'und.'});
+  it.push({sec:'CRISTALERIA',desc:'Jarras por mesa',pu:4,cant:m,paq:'ESTANDAR',opc:false,unidad:'und.'});
+  // PERSONAL DE SERVICIO — mozos/seguridad/limpieza con cantidad, barman/maestro sin cantidad
+  it.push({sec:'PERSONAL DE SERVICIO',desc:'Mozos',pu:80,cant:nMozos,paq:'ESTANDAR',opc:false,unidad:'pers.',reemplaza:'Mozos'});
+  it.push({sec:'PERSONAL DE SERVICIO',desc:'Personal de seguridad',pu:100,cant:1,paq:'ESTANDAR',opc:false,unidad:'pers.',reemplaza:'Personal de seguridad'});
+  it.push({sec:'PERSONAL DE SERVICIO',desc:'Personal de limpieza',pu:80,cant:nLimpieza,paq:'ESTANDAR',opc:false,unidad:'pers.',reemplaza:'Personal de limpieza'});
+  it.push({sec:'PERSONAL DE SERVICIO',desc:'Barman',pu:150,cant:1,paq:'ESTANDAR',opc:false,sin_qty:true});
+  it.push({sec:'PERSONAL DE SERVICIO',desc:corp?'Maestro de ceremonias / moderador':'Maestro de ceremonias',pu:300,cant:1,paq:'ESTANDAR',opc:false,sin_qty:true});
+  // ALIMENTACION EXTRAS (torta y bocaditos — el menú real se gestiona abajo en la sección de menú)
+  // BEBIDAS
+  if(!corp){
+    it.push({sec:'BEBIDAS',desc:'Coca Cola 2.5L',pu:10,cant:m,paq:'ESTANDAR',opc:false,unidad:'und.',reemplaza:'Coca Cola 2.5L'});
+    it.push({sec:'BEBIDAS',desc:'Agua mineral sin gas',pu:4,cant:m,paq:'ESTANDAR',opc:false,unidad:'und.',reemplaza:'Agua mineral sin gas'});
+    it.push({sec:'BEBIDAS',desc:'Hielo (bolsas)',pu:8,cant:6,paq:'ESTANDAR',opc:false,unidad:'und.',reemplaza:'Hielo (bolsas)'});
+    it.push({sec:'BEBIDAS',desc:'Champagne Tabernero',pu:15,cant:4,paq:'ESTANDAR',opc:false,unidad:'und.',reemplaza:'Champagne Tabernero'});
+    it.push({sec:'BEBIDAS',desc:'Ron Flor de Caña 4 años',pu:37,cant:m,paq:'ESTANDAR',opc:false,unidad:'und.',reemplaza:'Ron Flor de Caña 4 años'});
+  }else{
+    it.push({sec:'BEBIDAS',desc:'Vino Gran Borgoña',pu:15,cant:3,paq:'ESTANDAR',opc:false,unidad:'und.'});
+      it.push({sec:'BEBIDAS',desc:'Coca Cola 2.5L',pu:9,cant:m,paq:'ESTANDAR',opc:false,unidad:'und.',reemplaza:'Coca Cola 2.5L'});
+    it.push({sec:'BEBIDAS',desc:'Agua mineral sin gas',pu:3.5,cant:m,paq:'ESTANDAR',opc:false,unidad:'und.',reemplaza:'Agua mineral sin gas'});
+    it.push({sec:'BEBIDAS',desc:'Hielo (bolsas)',pu:8,cant:6,paq:'ESTANDAR',opc:false,unidad:'und.',reemplaza:'Hielo (bolsas)'});
+    it.push({sec:'BEBIDAS',desc:'Champagne Tabernero',pu:15,cant:4,paq:'ESTANDAR',opc:false,unidad:'und.',reemplaza:'Champagne Tabernero'});
+    it.push({sec:'BEBIDAS',desc:'Ron Flor de Caña 4 años',pu:37,cant:m,paq:'ESTANDAR',opc:false,unidad:'und.',reemplaza:'Ron Flor de Caña 4 años'});
+  }
+  if(bEsp){
+          it.push({sec:'BEBIDAS',desc:'Ginger bebida con gas',pu:15,cant:m,paq:'ESTANDAR',opc:false,unidad:'und.'});
+  }
+  if(baby||fiesta){
+    it.push({sec:'BEBIDAS',desc:'Ginger bebida con gas',pu:15,cant:m,paq:'ESTANDAR',opc:false,unidad:'und.'});
+  }
+  if(corp){
+    it.push({sec:'EXTRAS DEL PAQUETE',desc:'Bocaditos de bienvenida',pu:150,cant:1,paq:'ESTANDAR',opc:false,sin_qty:true});
+    it.push({sec:'EXTRAS DEL PAQUETE',desc:'Cóctel de cierre',pu:150,cant:1,paq:'ESTANDAR',opc:false,sin_qty:true});
+    it.push({sec:'OTROS SERVICIOS',desc:'Proyector + pantalla',pu:1000,cant:1,paq:'ESTANDAR',opc:false,sin_qty:true});
+  }
+  // DECORACION CEREMONIA BODA CIVIL — solo para matrimonio
+  if(mat){
+    it.push({sec:'DECORACION CEREMONIA BODA CIVIL',desc:'Carpa con telas decorada',pu:700,cant:1,paq:'ESTANDAR',opc:false,sin_qty:true});
+    it.push({sec:'DECORACION CEREMONIA BODA CIVIL',desc:'Arcos con flores',pu:80,cant:3,paq:'ESTANDAR',opc:false,unidad:'und.'});
+    it.push({sec:'DECORACION CEREMONIA BODA CIVIL',desc:'Sillas invitados ceremonia área verde',pu:3,cant:70,paq:'ESTANDAR',opc:false,unidad:'und.'});
+    it.push({sec:'DECORACION CEREMONIA BODA CIVIL',desc:'Sillas testigos',pu:10,cant:4,paq:'ESTANDAR',opc:false,unidad:'und.'});
+    it.push({sec:'DECORACION CEREMONIA BODA CIVIL',desc:'Sillas novios',pu:25,cant:2,paq:'ESTANDAR',opc:false,unidad:'und.'});
+    it.push({sec:'DECORACION CEREMONIA BODA CIVIL',desc:'Mesa de apoyo común',pu:10,cant:1,paq:'ESTANDAR',opc:false,sin_qty:true});
+    it.push({sec:'DECORACION CEREMONIA BODA CIVIL',desc:'Mesa de apoyo civil (con mantelería)',pu:25,cant:1,paq:'ESTANDAR',opc:false,sin_qty:true});
+  }
+  // OTROS SERVICIOS — todos precio fijo, sin cantidad
+  it.push({sec:'OTROS SERVICIOS',desc:'Equipo de sonido estándar',pu:3800,cant:1,paq:'ESTANDAR',opc:false,sin_qty:true});
+  // OPCIONALES ESTANDAR
+  if(!corp){
+    if(paq!=='PREMIUM') it.push({sec:'EXTRAS DEL PAQUETE',desc:'Torta decorada',pu:1000,cant:1,paq:'ESTANDAR',opc:true,sin_qty:true});
+    if(paq!=='PREMIUM') it.push({sec:'EXTRAS DEL PAQUETE',desc:'Bocaditos salados y dulces',pu:150,cant:2,paq:'ESTANDAR',opc:true,unidad:'bdjas.'});
+  }
+  if(paq!=='PREMIUM') it.push({sec:'OTROS SERVICIOS',desc:'Fotografía y filmación',pu:1000,cant:1,paq:'ESTANDAR',opc:true,sin_qty:true});
+  if(paq!=='PREMIUM') it.push({sec:'OTROS SERVICIOS',desc:'Hora loca',pu:500,cant:1,paq:'ESTANDAR',opc:true,sin_qty:true});
+  if(jdg && paq!=='PREMIUM') it.push({sec:'PERSONAL DE SERVICIO',desc:'Jóvenes de guardia',pu:600,cant:1,paq:'ESTANDAR',opc:true,sin_qty:true});
+
+  if(paq==='ESTANDAR') return it;
+
+  // ── PREMIUM ──
+  // DECORACION SALON — precio fijo
+  it.push({sec:'DECORACION SALON',desc:'Decoración exclusiva',pu:3000,cant:1,paq:'PREMIUM',opc:false,sin_qty:true,reemplaza:'Decoración Salón Principal — personalizada'});
+  // MOBILIARIO — con cantidad
+  it.push({sec:'MOBILIARIO',desc:'Centro de mesa — flores naturales',pu:25,cant:m,paq:'PREMIUM',opc:false,unidad:'und.',reemplaza:'Centro de mesa — flores artificiales'});
+  // ALIMENTACION — torta sin cantidad, bocaditos con bandejas
+  it.push({sec:'EXTRAS DEL PAQUETE',desc:'Torta decorada',pu:1500,cant:1,paq:'PREMIUM',opc:false,sin_qty:true});
+  it.push({sec:'EXTRAS DEL PAQUETE',desc:'Bocaditos salados y dulces',pu:150,cant:2,paq:'PREMIUM',opc:false,unidad:'bdjas.'});
+  // OTROS SERVICIOS — todos precio fijo
+  it.push({sec:'OTROS SERVICIOS',desc:'Equipo de sonido premium',pu:6500,cant:1,paq:'PREMIUM',opc:false,sin_qty:true,reemplaza:'Equipo de sonido estándar'});
+  it.push({sec:'OTROS SERVICIOS',desc:'Hora loca',pu:800,cant:1,paq:'PREMIUM',opc:false,sin_qty:true});
+  it.push({sec:'OTROS SERVICIOS',desc:'Fotografía y filmación',pu:2000,cant:1,paq:'PREMIUM',opc:false,sin_qty:true});
+  if(jdg) it.push({sec:'PERSONAL DE SERVICIO',desc:'Jóvenes de guardia',pu:900,cant:1,paq:'PREMIUM',opc:false,sin_qty:true});
+  // OPCIONALES PREMIUM — todos precio fijo
+  it.push({sec:'OTROS SERVICIOS',desc:'Fotos 360',pu:500,cant:1,paq:'PREMIUM',opc:true,sin_qty:true});
+  it.push({sec:'OTROS SERVICIOS',desc:'Chisperos',pu:300,cant:1,paq:'PREMIUM',opc:true,sin_qty:true});
+  it.push({sec:'OTROS SERVICIOS',desc:'Dron (fotografía aérea)',pu:0,cant:1,paq:'PREMIUM',opc:true,sin_qty:true,nota:'Cotizar aparte'});
+  it.push({sec:'OTROS SERVICIOS',desc:'Grupo musical en vivo',pu:4000,cant:1,paq:'PREMIUM',opc:true,sin_qty:true});
+  return it;
+}
+
+
+function buildP3(paq){
+  // Resetear alquiler original al cambiar paquete
+  S.alquilerOriginal=null;
+  // Resetear edición manual de precios al cambiar paquete/evento
+  var _ri=document.getElementById('rp_pp_input');
+  var _rn=document.getElementById('rp_pp_nino_input');
+  if(_ri) {_ri._userEdited=false; _ri._sysSet=false; _ri._ajustado=false; _ri.value='';}
+  if(_rn) {_rn._userEdited=false; _rn._sysSet=false; _rn._ajustado=false; _rn.value='';}
+  S._calcSnapshotAdulto=null; S._calcSnapshotNino=null;
+  var _prevOpc={};
+  if(S.items&&S._itemsKey===S.evt+'|'+paq){S.items.forEach(function(i){if(i.opc&&!i.locked)_prevOpc[i.sec+'|'+i.desc]=!!i.activo;});}
+  S._itemsKey=S.evt+'|'+paq;
+  const raw=getItems(S.evt,paq);
+  // Marcar como reemplazados los items por ÍNDICE (no por nombre), para evitar dos problemas:
+  // 1) Colisión de nombres: algunos items usan el mismo `desc` en distinto paquete (ej. "Mozos"
+  //    opcional en Básico vs "Mozos" incluido en Estándar) — comparar por nombre marcaría
+  //    erróneamente al item de Estándar como "reemplazado a sí mismo".
+  // 2) Cadenas de reemplazo de más de un nivel (Premium reemplaza a Estándar que reemplaza a
+  //    Básico) — un item reemplazado debe poder, a su vez, reemplazar a otro anterior.
+  const idxReemplazados=new Set();
+  raw.forEach((it,idx)=>{
+    if(!it.reemplaza) return;
+    // Buscar, entre los items ANTERIORES a este, el más reciente con ese mismo desc que aún no esté marcado
+    for(let j=idx-1;j>=0;j--){
+      if(raw[j].desc===it.reemplaza && !idxReemplazados.has(j)){
+        idxReemplazados.add(j);
+        break;
+      }
+    }
+  });
+  S.items=raw.map((it,idx)=>({
+    ...it,id:idx,
+    esReemplazado:idxReemplazados.has(idx),
+    activo:!idxReemplazados.has(idx) && (!it.opc||(it.tipo==='srv_papel')),
+    puActual:it.pu,cantActual:it.cant,
+  }));
+  S.items.forEach(function(i){var k=i.sec+'|'+i.desc;if(i.opc&&!i.esReemplazado&&k in _prevOpc)i.activo=_prevOpc[k];});
+  // Guardar precio original del alquiler para restaurar en ajuste por persona
+  var _alqItem=S.items.find(function(i){return i.desc==='Alquiler Centro de Convenciones Raíces';});
+  if(_alqItem) S.alquilerOriginal=_alqItem.puActual;
+  const nm={BASICO:'Basico',ESTANDAR:'Estandar',PREMIUM:'Premium'};
+  document.getElementById('p3tit').textContent='Personalizando paquete '+nm[paq];
+  renderItems();renderMenu();updCart();
+}
+
+function renderItems(){
+  const cont=document.getElementById('itemsCont');
+  cont.innerHTML='';
+  if(!S.items||!S.items.length) return;
+
+  // Todos los obligatorios activos (no reemplazados) en una sola lista
+  const obligatorios = S.items.filter(i=>!i.opc && !i.esReemplazado && !i.isGastoAdmin);
+  // Opcionales al final
+  const opcionales = S.items.filter(i=>i.opc && !i.esReemplazado && !i.isGastoAdmin);
+
+  // Ordenar obligatorios: por sección (orden fijo), y alfabético dentro de cada sección
+  const ordenSec = ['LOCAL','DECORACION SALON','DECORACION CEREMONIA BODA CIVIL','MOBILIARIO','MENAJERIA','CRISTALERIA','BEBIDAS','PERSONAL DE SERVICIO','EXTRAS DEL PAQUETE','OTROS SERVICIOS'];
+  obligatorios.sort((a,b)=>{
+    const oa = ordenSec.indexOf(a.sec); const ob = ordenSec.indexOf(b.sec);
+    if(oa !== ob) return (oa===-1?99:oa)-(ob===-1?99:ob);
+    return a.desc.localeCompare(b.desc,'es');
+  });
+  // Opcionales: por sección (orden fijo), y alfabético dentro de cada sección
+  opcionales.sort((a,b)=>{
+    const oa = ordenSec.indexOf(a.sec); const ob = ordenSec.indexOf(b.sec);
+    if(oa !== ob) return (oa===-1?99:oa)-(ob===-1?99:ob);
+    return a.desc.localeCompare(b.desc,'es');
+  });
+
+  const renderItem = (it) => {
+    const idx = it.id;
+    const unidad = it.sin_qty ? '' : (it.unidad || (it.tipo==='dias'?'día(s)':''));
+    const badge = it.opc
+      ? '<span class="ibadge bo">OPCIONAL</span>'
+      : '<span class="ibadge bi">INCLUIDO</span>';
+    const row = document.createElement('div');
+    row.className = 'irow ' + (it.opc?'opc':'inc');
+    row.id = 'r'+idx;
+    row.innerHTML = `
+      <div class="ichk ${it.activo?'on':''}" onclick="togItem(${idx})" id="chk${idx}">${it.activo?'✓':''}</div>
+      <div class="iinfo"><div class="inom">${it.desc}${badge}</div></div>
+      ${!it.sin_qty?`
+        <span style="font-size:9px;color:var(--gris);min-width:30px;text-align:right">${unidad}</span>
+        <input type="number" class="iqty-input" value="${it.cantActual}" min="1" onchange="chgQty(${idx},this.value)" title="Cantidad">
+      `:''}
+      <span style="font-size:10px;color:var(--gris);font-weight:600;margin:0 2px">S/.</span>
+      <input type="number" class="iprice-input" value="${it.puActual}" min="0" onchange="chgPrc(${idx},this.value)" title="Precio unitario">
+      <div class="itot" id="tot${idx}">S/ ${Math.round(it.puActual*it.cantActual).toLocaleString('es-PE')}</div>`;
+    cont.appendChild(row);
+  };
+
+  // Renderizar obligatorios agrupados por sección (sin separador de paquete)
+  let secActual = '';
+  obligatorios.forEach(it => {
+    if(it.sec !== secActual){
+      secActual = it.sec;
+      const sh = document.createElement('div');
+      sh.className = 'stit'; sh.textContent = it.sec;
+      cont.appendChild(sh);
+    }
+    renderItem(it);
+  });
+
+  // Renderizar opcionales
+  if(opcionales.length){
+    const hdrOpc = document.createElement('div');
+    hdrOpc.style.cssText = 'margin:14px 0 7px;padding:5px 11px;border-radius:5px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:#f57f17;color:white';
+    hdrOpc.textContent = 'OPCIONALES';
+    cont.appendChild(hdrOpc);
+    let secOpc = '';
+    opcionales.forEach(it => {
+      if(it.sec !== secOpc){
+        secOpc = it.sec;
+        const sh = document.createElement('div');
+        sh.className = 'stit'; sh.textContent = it.sec;
+        cont.appendChild(sh);
+      }
+      renderItem(it);
+    });
+  }
+}
+function togItem(idx){
+  const it=S.items[idx];
+  if(it.locked && it.activo) return; // no se puede deseleccionar
+  // servilletas: independientes, se pueden marcar ambas
+  it.activo=!it.activo;
+  const c=document.getElementById('chk'+idx);
+  c.className='ichk'+(it.activo?' on':'');c.innerHTML=it.activo?'&#10003;':'';
+  updCart();
+}
+function chgQty(idx,v){var q=parseInt(v);if(!(q>=1)){q=1;toast('⚠️ La cantidad mínima es 1');}S.items[idx].cantActual=q;var _qi=document.querySelector('#itemsCont .iqty-input[onchange*="chgQty('+idx+',"]');if(_qi)_qi.value=q;updTot(idx);updCart();}
+function chgPrc(idx,v){
+  var _pv=parseFloat(v);if(!(_pv>=0)){_pv=0;toast('⚠️ El precio no puede ser negativo');}S.items[idx].puActual=_pv;
+  // Si el usuario edita manualmente el precio del Alquiler en la tabla, ese nuevo valor
+  // es una decisión real suya (no un ajuste temporal del botón "Actualizar precio"),
+  // así que debe convertirse en el nuevo "original" para que el recuadro de ajuste de
+  // precio (y el cálculo de adulto/niño) reflejen el cambio de inmediato.
+  if(S.items[idx].desc==='Alquiler Centro de Convenciones Raíces'){
+    S.alquilerOriginal=S.items[idx].puActual;
+    // Limpiar el ajuste manual de precio por persona, ya que el costo base cambió:
+    // el precio que el usuario había fijado antes ya no es válido para el nuevo costo.
+    var _rpInpChg=document.getElementById('rp_pp_input');
+    var _rpNinoInpChg=document.getElementById('rp_pp_nino_input');
+    if(_rpInpChg){_rpInpChg._userEdited=false;_rpInpChg._sysSet=false;_rpInpChg._ajustado=false;_rpInpChg.value='';}
+    if(_rpNinoInpChg){_rpNinoInpChg._userEdited=false;_rpNinoInpChg._sysSet=false;_rpNinoInpChg._ajustado=false;_rpNinoInpChg.value='';}
+    S._calcSnapshotAdulto=null; S._calcSnapshotNino=null;
+  }
+  updTot(idx);updCart();
+}
+function updTot(idx){
+  const it=S.items[idx];
+  const el=document.getElementById('tot'+idx);
+  if(el) el.textContent='S/ '+Math.round(it.puActual*it.cantActual).toLocaleString('es-PE');
+}
+function setAdl(p,el){
+  S.adl=p;
+  document.querySelectorAll('.adl-opt').forEach(e=>e.classList.remove('on'));
+  el.classList.add('on');updCart();
+}
+function togglePp(){
+  S.mostrarPp=(S.mostrarPp!==false)?false:true;
+  var sw=document.getElementById('swPp');
+  if(sw) sw.style.background=S.mostrarPp?'var(--dorado)':'var(--gris-c)';
+  if(sw&&sw.firstElementChild) sw.firstElementChild.style.left=S.mostrarPp?'23px':'3px';
+  var pvRow=document.getElementById('pvRowPers');
+  if(pvRow) pvRow.style.display=S.mostrarPp?'flex':'none';
+  var pvNino=document.getElementById('pvNinoRow');
+  var dist=calcPreciosDistribucion();
+  if(pvNino) pvNino.style.display=(S.mostrarPp&&dist)?'flex':'none';
+  if(typeof updRecuadroPreview==='function') updRecuadroPreview();
+}
+// Calcula el costo real de la cotización tal cual está el resumen ahora (items activos,
+// menú seleccionado), IGNORANDO cualquier ajuste manual previo de "Actualizar precio"
+// (gastos administrativos sumados o alquiler rebajado). Sirve como el "precio calculado"
+// de verdad, que siempre refleja el estado actual del resumen sin contaminarse de ediciones
+// anteriores del precio por persona.
+function calcCostoRealLimpio(){
+  var alquilerIdx=S.items.findIndex(function(i){return i.desc==='Alquiler Centro de Convenciones Raíces';});
+  var alquilerOriginal=(alquilerIdx>-1)?(S.alquilerOriginal!=null?S.alquilerOriginal:S.items[alquilerIdx].pu):0;
+  var base=S.items.filter(function(i){return i.activo&&!i.esReemplazado&&!i.isGastoAdmin;})
+    .reduce(function(s,i){
+      var pu=(i.desc==='Alquiler Centro de Convenciones Raíces')?alquilerOriginal:i.puActual;
+      return s+Math.round(pu*i.cantActual);
+    },0);
+  var menuTotal=0;
+  ['Ent','Fon'].forEach(function(k){
+    if(S['m'+k]){
+      var idx=MENU[k].items.indexOf(S['m'+k]);
+      var prc=S['mprc_'+k+'_'+idx]||menuPuDef(k,idx);
+      var cnt=S['mcant_'+k+'_'+idx]||(S.persAdultos>0?S.persAdultos:S.pers);
+      menuTotal+=Math.round(prc*cnt);
+    }
+  });
+  ['Pos','Beb'].forEach(function(k){
+    (S['m'+k]||[]).forEach(function(op){
+      var idx=MENU[k].items.indexOf(op);
+      var prc=S['mprc_'+k+'_'+idx]||menuPuDef(k,idx);
+      var cnt=S['mcant_'+k+'_'+idx]||(S.persAdultos>0?S.persAdultos:S.pers);
+      menuTotal+=Math.round(prc*cnt);
+    });
+  });
+  ['NinoFood','NinoBeb'].forEach(function(k){
+    (S['m'+k]||[]).forEach(function(op){
+      var idx=MENU[k].items.indexOf(op);
+      if(idx>-1){
+        var prc=S['mprc_'+k+'_'+idx]||menuPuDef(k,idx);
+        var cnt=S['mcant_'+k+'_'+idx]||(S.persNinos||0);
+        menuTotal+=Math.round(prc*cnt);
+      }
+    });
+  });
+  return base+menuTotal;
+}
+function updCart(){
+  const act=S.items.filter(i=>i.activo && !i.esReemplazado);
+  var menuTotal=0;
+  ['Ent','Fon'].forEach(function(k){
+    if(S['m'+k]){
+      var idx=MENU[k].items.indexOf(S['m'+k]);
+      var prc=S['mprc_'+k+'_'+idx]||menuPuDef(k,idx);
+      var cnt=S['mcant_'+k+'_'+idx]||(S.persAdultos>0?S.persAdultos:S.pers);
+      menuTotal+=Math.round(prc*cnt);
+    }
+  });
+  ['Pos','Beb'].forEach(function(k){
+    (S['m'+k]||[]).forEach(function(op){
+      var idx=MENU[k].items.indexOf(op);
+      var prc=S['mprc_'+k+'_'+idx]||menuPuDef(k,idx);
+      var cnt=S['mcant_'+k+'_'+idx]||(S.persAdultos>0?S.persAdultos:S.pers);
+      menuTotal+=Math.round(prc*cnt);
+    });
+  });
+  // Menú niños (Baby Shower, Fiesta Infantil, Graduación colegio inicial/primaria, Reunión familiar)
+  ['NinoFood','NinoBeb'].forEach(function(k){
+    (S['m'+k]||[]).forEach(function(op){
+      var idx=MENU[k].items.indexOf(op);
+      if(idx>-1){
+        var prc=S['mprc_'+k+'_'+idx]||menuPuDef(k,idx);
+        var cnt=S['mcant_'+k+'_'+idx]||(S.persNinos||0);
+        menuTotal+=Math.round(prc*cnt);
+      }
+    });
+  });
+  S.total=act.reduce((s,i)=>s+Math.round(i.puActual*i.cantActual),0)+menuTotal;
+  const body=document.getElementById('cartBody');body.innerHTML='';
+  act.forEach(i=>{
+    const d=document.createElement('div');d.className='cart-item';
+    d.innerHTML=`<span class="cart-nom">${i.desc}</span><span class="cart-prc">${fs(Math.round(i.puActual*i.cantActual))}</span>`;
+    body.appendChild(d);
+  });
+  // Menú de adultos en carrito
+  var _menuLabels={Ent:'Entrada',Fon:'Fondo',Pos:'Postre',Beb:'Beb. caliente'};
+  ['Ent','Fon'].forEach(function(k){
+    if(S['m'+k]){
+      var idx=MENU[k].items.indexOf(S['m'+k]);
+      var prc=S['mprc_'+k+'_'+idx]||menuPuDef(k,idx);
+      var cnt=S['mcant_'+k+'_'+idx]||(S.persAdultos>0?S.persAdultos:S.pers);
+      var tot=Math.round(prc*cnt);
+      var d2=document.createElement('div');d2.className='cart-item';
+      d2.innerHTML='<span class="cart-nom" style="color:#2e7d32">'+_menuLabels[k]+': '+S['m'+k]+'</span><span class="cart-prc">'+fs(tot)+'</span>';
+      body.appendChild(d2);
+    }
+  });
+  ['Pos','Beb'].forEach(function(k){
+    (S['m'+k]||[]).forEach(function(op){
+      var idx=MENU[k].items.indexOf(op);
+      var prc=S['mprc_'+k+'_'+idx]||menuPuDef(k,idx);
+      var cnt=S['mcant_'+k+'_'+idx]||(S.persAdultos>0?S.persAdultos:S.pers);
+      var tot=Math.round(prc*cnt);
+      var d2=document.createElement('div');d2.className='cart-item';
+      d2.innerHTML='<span class="cart-nom" style="color:#2e7d32">'+_menuLabels[k]+': '+op+'</span><span class="cart-prc">'+fs(tot)+'</span>';
+      body.appendChild(d2);
+    });
+  });
+  // Menú niños en carrito
+  var _menuNLabels={NinoFood:'Niños-Bocadito',NinoBeb:'Niños-Bebida'};
+  ['NinoFood','NinoBeb'].forEach(function(k){
+    (S['m'+k]||[]).forEach(function(op){
+      var idx=MENU[k].items.indexOf(op);
+      if(idx>-1){
+        var prc=S['mprc_'+k+'_'+idx]||menuPuDef(k,idx);
+        var cnt=S['mcant_'+k+'_'+idx]||(S.persNinos||0);
+        var tot=Math.round(prc*cnt);
+        var d2=document.createElement('div');d2.className='cart-item';
+        d2.innerHTML='<span class="cart-nom" style="color:#6a1b9a">'+_menuNLabels[k]+': '+op+'</span><span class="cart-prc">'+fs(tot)+'</span>';
+        body.appendChild(d2);
+      }
+    });
+  });
+  // Gastos administrativos al final del carrito
+  var _ga=S.items.find(function(i){return i.isGastoAdmin&&i.activo&&(i.puActual||0)>0;});
+  var _gaDiv=document.getElementById('cartGastos');
+  if(_gaDiv) _gaDiv.remove();
+  if(_ga&&(body||document.getElementById('cartBody'))){
+    var _gaEl=document.createElement('div');
+    _gaEl.id='cartGastos';
+    _gaEl.style.cssText='display:flex;justify-content:space-between;align-items:center;padding:8px 10px;border-radius:8px;background:#fff8e6;border:1px solid #f0c040;margin-top:6px';
+    _gaEl.innerHTML='<span style="font-size:11px;font-weight:600;color:#a07800">Gastos administrativos</span><span style="font-size:12px;font-weight:700;color:#a07800">'+fs(Math.round(_ga.puActual))+'</span>';
+    var _cartBody=body||document.getElementById('cartBody');
+    if(_cartBody) _cartBody.appendChild(_gaEl);
+  }
+  document.getElementById('cartTot').textContent=fs(S.total);
+
+  actualizarResumen();
+  if(typeof updRecuadroPreview==="function") updRecuadroPreview();
+}
+
+// MENU_NINOS_OLD eliminado
+
+// EVENTOS_NINOS eliminado
+var MENU={
+  Ent:{items:['Causa de pollo','Rocoto relleno','Papa a la ocopa','Papa rellena','Brochetas de pollo','Botellitas broster'],pu:8,label:'Entrada',unidad:'pers.'},
+  Fon:{items:['Panceta de cerdo + tamal + moraya','Chiriuchu Raíces','Cuy al horno con pastel tallarín + papa','Lechón al horno + papas y camote','Asado de ternera + puré de papas','Trucha brosther + papas doradas'],pu:30,label:'Plato de fondo',unidad:'pers.'},
+  Pos:{items:['Mousse de fresa','Cheesecake de maracuyá','Carlota de vainilla','Tiramisú','Torta helada','Torta 3 leches'],pu:8,label:'Postre',unidad:'pers.'},
+  Beb:{items:['Muña','Anís','Manzanilla','Pisco Sour de cortesía','Limonada natural','Limonada brasileña','Piña colada','Limonada frutos rojos','Limonada de frutos','Jugos naturales variados'],pu:3,label:'Bebida caliente/fría',unidad:'pers.',precios:[3,3,3,3,3,5,5,5,5,4]},
+  NinoFood:{items:['Pizzetas','Botellitas broster','Brochetas de pollo con verduras','Alitas a la BBQ','Conitos de pollo broster'],
+    pu:10,label:'Menú niños',unidad:'niños',precios:[10,8,8,12,10]},
+  NinoBeb:{items:['Jugo de fruta natural','Limonada','Agua con gas','Gaseosa personal','Coctel de frutas sin alcohol'],
+    pu:4,label:'Bebidas sin alcohol',unidad:'niños',precios:[4,3,3,4,5]}
+}
+function menuPuDef(k,i){var m=MENU[k];return (m.precios&&m.precios[i]!=null)?m.precios[i]:m.pu;}
+function escH(v){return String(v==null?'':v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function renderMenu(){
+  var cats=[
+    {k:'Ent',id:'mEnt',multi:false},
+    {k:'Fon',id:'mFon',multi:false},
+    {k:'Pos',id:'mPos',multi:true},
+    {k:'Beb',id:'mBeb',multi:true}
+  ];
+  if(!Array.isArray(S.mPos)) S.mPos=S.mPos?[S.mPos]:[];
+  if(!Array.isArray(S.mBeb)) S.mBeb=S.mBeb?[S.mBeb]:[];
+
+  cats.forEach(function(cat){
+    var k=cat.k, multi=cat.multi;
+    var menu=MENU[k];
+    var c=document.getElementById(cat.id);
+    if(!c||!menu) return;
+    c.innerHTML='';
+    menu.items.forEach(function(op,opIdx){
+      var prcKey='mprc_'+k+'_'+opIdx;
+      var cantKey='mcant_'+k+'_'+opIdx;
+      if(S[prcKey]===undefined) S[prcKey]=menu.pu;
+      if(S[cantKey]===undefined||S[cantKey]===0){
+        var _secPNrm=document.getElementById('secPersNinos');
+        var _secVisiblerm=_secPNrm&&_secPNrm.style.display!=='none';
+        S[cantKey]=(_secVisiblerm&&S.persAdultos>0)?S.persAdultos:S.pers;
+      }
+      var activo=multi?(S['m'+k]||[]).indexOf(op)>-1:(S['m'+k]===op);
+      var tot=Math.round(S[prcKey]*S[cantKey]);
+
+      var row=document.createElement('div');
+      row.className='irow'+(activo?' inc':'');
+
+      // Checkbox
+      var chk=document.createElement('div');
+      chk.className='ichk'+(activo?' on':'');
+      chk.textContent=activo?'✓':'';
+      var toggleFn=(function(o,kk,isMulti){
+        return function(e){
+          if(e) e.stopPropagation();
+          if(isMulti){
+            var arr=S['m'+kk]||[];
+            var i=arr.indexOf(o);
+            if(i>-1) arr.splice(i,1); else arr.push(o);
+            S['m'+kk]=arr;
+          } else {
+            S['m'+kk]=(S['m'+kk]===o?'':o);
+          }
+          renderMenu();updCart();
+        };
+      })(op,k,multi);
+      chk.onclick=toggleFn;
+
+      // Nombre
+      var info=document.createElement('div');
+      info.className='iinfo';
+      info.style.flex='1';
+      info.innerHTML='<div class="inom">'+op+'</div>';
+      info.onclick=toggleFn;
+
+      // Input CANTIDAD editable
+      var cantInp=document.createElement('input');
+      cantInp.type='number';
+      cantInp.className='iqty-input';
+      cantInp.value=S[cantKey];
+      cantInp.min='1';
+      cantInp.title='Cantidad';
+      cantInp.onclick=function(e){e.stopPropagation();};
+      cantInp.onchange=(function(ck,pk,o,kk){
+        return function(){
+          S[ck]=parseInt(this.value)||1;
+          renderMenu();updCart();
+        };
+      })(cantKey,prcKey,op,k);
+
+      // Unidad label
+      var unidLbl=document.createElement('span');
+      unidLbl.textContent='pers.';
+      unidLbl.style.cssText='font-size:9px;color:var(--gris);min-width:28px';
+
+      // S/. label
+      var lbl=document.createElement('span');
+      lbl.textContent='S/.';
+      lbl.style.cssText='font-size:10px;color:var(--gris);font-weight:600;margin:0 2px';
+
+      // Input PRECIO editable
+      var prInp=document.createElement('input');
+      prInp.type='number';
+      prInp.className='iprice-input';
+      prInp.value=S[prcKey];
+      prInp.min='0';
+      prInp.title='Precio unitario';
+      prInp.onclick=function(e){e.stopPropagation();};
+      prInp.onchange=(function(pk,ck){
+        return function(){
+          S[pk]=parseFloat(this.value)||0;
+          renderMenu();updCart();
+        };
+      })(prcKey,cantKey);
+
+      // Total
+      var totDiv=document.createElement('div');
+      totDiv.className='itot';
+      totDiv.textContent='S/ '+tot.toLocaleString('es-PE');
+
+      row.appendChild(chk);
+      row.appendChild(info);
+      row.appendChild(cantInp);
+      row.appendChild(unidLbl);
+      row.appendChild(lbl);
+      row.appendChild(prInp);
+      row.appendChild(totDiv);
+      c.appendChild(row);
+    });
+  });
+}
+
+
+// ══ Cálculo de precios adulto/niño ══
+function calcPreciosDistribucion(){
+  var secPN=document.getElementById('secPersNinos');
+  var secVisible=secPN&&secPN.style.display!=='none';
+  var persA=secVisible?S.persAdultos||0:0;
+  var persN=secVisible?S.persNinos||0:0;
+  if(!secVisible||!persA||!persN) return null;
+
+  // Menú niños
+  var totalMenuNinos=0;
+  ['NinoFood','NinoBeb'].forEach(function(k){
+    if(typeof MENU==='undefined'||!MENU[k]) return;
+    (S['m'+k]||[]).forEach(function(op){
+      var idx=MENU[k].items.indexOf(op);
+      if(idx>-1){
+        var prc=S['mprc_'+k+'_'+idx]||menuPuDef(k,idx);
+        var cnt=S['mcant_'+k+'_'+idx]||persN;
+        totalMenuNinos+=Math.round(prc*cnt);
+      }
+    });
+  });
+
+  // Menú adultos (Ent, Fon, Pos, Beb)
+  var totalMenuAdultos=0;
+  ['Ent','Fon','Pos','Beb'].forEach(function(k){
+    if(typeof MENU==='undefined'||!MENU[k]) return;
+    var val=S['m'+k];
+    if(!val) return;
+    var ops=Array.isArray(val)?val:[val];
+    ops.forEach(function(op){
+      var idx=MENU[k].items?MENU[k].items.indexOf(op):-1;
+      if(idx>-1){
+        var prc=S['mprc_'+k+'_'+idx]||menuPuDef(k,idx);
+        var cnt=S['mcant_'+k+'_'+idx]||persA;
+        totalMenuAdultos+=Math.round(prc*cnt);
+      }
+    });
+  });
+
+  // Costo base = todo lo que no es menú (igual para todos)
+  // Se usa el costo REAL limpio (sin gastos admin ni alquiler rebajado de un ajuste previo),
+  // para que "el calculado" siempre refleje el estado actual del resumen de la cotización.
+  var totalPers=persA+persN;
+  var costoRealLimpio=calcCostoRealLimpio();
+  var costoBase=costoRealLimpio-totalMenuAdultos-totalMenuNinos;
+  var costoBasePP=totalPers>0?costoBase/totalPers:0;
+
+  var ppAdulto=Math.round(costoBasePP+(persA>0?totalMenuAdultos/persA:0));
+  var ppNino=Math.round(costoBasePP+(persN>0?totalMenuNinos/persN:0));
+
+  return {persA:persA,persN:persN,totalMenuAdultos:totalMenuAdultos,
+          totalMenuNinos:totalMenuNinos,costoBase:costoBase,
+          ppAdulto:ppAdulto,ppNino:ppNino,totalCalculado:costoRealLimpio};
+}
+// Orden de secciones y nombres amigables (compartido entre preview y PDFs)
+const SEC_ORDER=['LOCAL','DECORACION SALON','DECORACION CEREMONIA BODA CIVIL','MOBILIARIO','MENAJERIA','CRISTALERIA','BEBIDAS','PERSONAL DE SERVICIO','EXTRAS DEL PAQUETE','OTROS SERVICIOS'];
+const SEC_NOMBRES={'LOCAL':'Local','DECORACION SALON':'Decoración del salón','DECORACION CEREMONIA BODA CIVIL':'Decoración ceremonia','MOBILIARIO':'Mobiliario','MENAJERIA':'Menajería','CRISTALERIA':'Cristalería','BEBIDAS':'Bebidas','PERSONAL DE SERVICIO':'Personal de servicio','EXTRAS DEL PAQUETE':'Extras del paquete','OTROS SERVICIOS':'Otros servicios'};
+function buildPreview(){
+  const num=S.num||'N° por asignar';
+  const fE=new Date(S.fecha+'T12:00:00');
+  const fH=new Date();
+  const fV=new Date(fH);fV.setDate(fV.getDate()+15);
+  const fmt=d=>d.toLocaleDateString('es-PE',{timeZone:'America/Lima',day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('pvNum').textContent=num;
+  const _fc=document.getElementById('pvFecCot');if(_fc) _fc.textContent=new Date().toLocaleDateString('es-PE',{timeZone:'America/Lima',day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('pvCli').textContent=S.nom;
+  document.getElementById('pvTel').textContent=S.tel;
+  document.getElementById('pvEvt').textContent=S.evt;
+  document.getElementById('pvFec').textContent=fmt(fE);
+  document.getElementById('pvPer').textContent=textoPersonas();
+  document.getElementById('pvVal').textContent=fmt(fV);
+  const pi={BASICO:{l:'PAQUETE BASICO',c:'b'},ESTANDAR:{l:'PAQUETE ESTANDAR',c:'e'},PREMIUM:{l:'PAQUETE PREMIUM',c:'p'}};
+  const pib=pi[S.paq];
+  const badge=document.getElementById('pvBadge');
+  badge.textContent=pib.l;badge.className='pdf-badge-paq';
+  // Items activos en tabla - agrupados por categoría
+  const tbody=document.getElementById('pvItems');tbody.innerHTML='';
+  const activos=S.items.filter(i=>i.activo && !i.esReemplazado);
+  // Agrupar por sección (orden fijo) y alfabético dentro de cada sección
+  const grupos={};
+  activos.forEach(i=>{
+    const sec=i.sec||'OTROS';
+    if(!grupos[sec]) grupos[sec]=[];
+    grupos[sec].push(i);
+  });
+  SEC_ORDER.forEach(sec=>{
+    if(!grupos[sec]||!grupos[sec].length) return;
+    const ordenados=grupos[sec].slice().sort((a,b)=>a.desc.localeCompare(b.desc,'es'));
+    ordenados.forEach((i,idx)=>{
+      const t=Math.round(i.puActual*i.cantActual);
+      const pu=Math.round(i.puActual);
+      const cant=i.cantActual||1;
+      const cantStr=cant>1?cant:'';
+      const puStr=cant>1?`S/ ${pu.toLocaleString('es-PE')}`:'';
+      const tr=document.createElement('tr');
+      const tds=`<td style="text-align:left">${i.desc}</td><td style="text-align:center;color:#555">${cantStr}</td><td style="text-align:right;color:#555">${puStr}</td><td style="text-align:right;font-weight:600">S/ ${t.toLocaleString('es-PE')}</td>`;
+      if(idx===0){
+        tr.innerHTML=`<td style="font-weight:700;color:#555;font-size:9px;text-transform:uppercase;letter-spacing:.5px;vertical-align:top;background:#faf8f5;border-right:1px solid #eee" rowspan="${ordenados.length}">${SEC_NOMBRES[sec]||sec}</td>`+tds;
+      } else {
+        tr.innerHTML=tds;
+      }
+      tbody.appendChild(tr);
+    });
+  });
+  // Menu
+  const tbM=document.getElementById('pvMenu');tbM.innerHTML='';
+  // Menú adultos — solo Categoría y Plato (sin dinero)
+  [['Ent','Entrada',S.mEnt],['Fon','Fondo',S.mFon],['Pos','Postre',S.mPos],['Beb','Bebida caliente/fría',S.mBeb]].forEach(([k,cat,val])=>{
+    if(val&&(Array.isArray(val)?val.length>0:typeof val==='string'&&val.trim()!='')){
+      const tr=document.createElement('tr');
+      const display=Array.isArray(val)?val.join(', '):val;
+      const firstVal=Array.isArray(val)?val[0]:val;
+      const idxQ=(typeof MENU!=='undefined'&&MENU[k])?MENU[k].items.indexOf(firstVal):-1;
+      const cntQ=(idxQ>-1?S['mcant_'+k+'_'+idxQ]:null)||S.pers;
+      tr.innerHTML=`<td style="font-weight:600">${cat}</td><td>${display}</td><td style="text-align:center;color:#B8860B;font-weight:600">${cntQ}</td>`;
+      tbM.appendChild(tr);
+    }
+  });
+  
+  document.getElementById('pvMenuSec').style.display=tbM.children.length?'block':'none';
+  // Menú niños en P4
+  var tbMN=document.getElementById('pvItemsNinos');
+  var secMN=document.getElementById('pvMenuNinos');
+  if(tbMN) tbMN.innerHTML='';
+  var _secPNbp=document.getElementById('secPersNinos');
+  var _secVisiblebp=_secPNbp&&_secPNbp.style.display!=='none';
+  var tieneNinos=_secVisiblebp&&S.persAdultos>0&&S.persNinos>0;
+  if(tieneNinos&&tbMN&&typeof MENU!=='undefined'){
+    var ninosCats=[{k:'NinoFood',lbl:'Bocaditos y piqueos'},{k:'NinoBeb',lbl:'Bebidas sin alcohol'}];
+    ninosCats.forEach(function(nc){
+      if(!MENU[nc.k]) return;
+      var sel=S['m'+nc.k]||[];
+      if(!sel.length) return;
+      var idxQN=MENU[nc.k].items.indexOf(sel[0]);
+      var cntQN=(idxQN>-1?S['mcant_'+nc.k+'_'+idxQN]:null)||S.persNinos;
+      var tr=document.createElement('tr');
+      tr.innerHTML='<td style="font-weight:600;color:#444;font-size:10px;text-transform:uppercase;letter-spacing:.5px;vertical-align:top">'+nc.lbl+'</td><td style="font-size:11px;color:#222;vertical-align:top">'+sel.join(', ')+'</td><td style="text-align:center;color:#B8860B;font-weight:600;vertical-align:top">'+cntQN+'</td>';
+      tbMN.appendChild(tr);
+    });
+  }
+  if(secMN) secMN.style.display=(tieneNinos&&tbMN&&tbMN.children.length)?'block':'none';
+  document.getElementById('pvTot').textContent=fs(S.total);
+  var _pvPT=document.getElementById('pvPersTotal'); if(_pvPT) _pvPT.textContent=S.pers+' personas';
+  document.getElementById('pvAd').textContent=fs(S.total*S.adl/100);
+  document.getElementById('pvAdPct').textContent=S.adl;
+      var _pp2=document.getElementById('pvPorPers');
+  var _pvPT2=document.getElementById('pvPersTotal');
+  var _pvNinoRow=document.getElementById('pvNinoRow');
+  var _pvPorNino=document.getElementById('pvPorNino');
+  var _pvLblPers=document.getElementById('pvLblPers');
+  var _pvLblPersTotal=document.getElementById('pvLblPersTotal');
+  var _rpNinoRow=document.getElementById('rp_nino_row');
+  var _rpNinoInp=document.getElementById('rp_pp_nino_input');
+  var distBP=calcPreciosDistribucion();
+  if(distBP){
+    var _rpInpBP=document.getElementById('rp_pp_input');
+    var _rpNinoBP=document.getElementById('rp_pp_nino_input');
+    var _ppAshow=(_rpInpBP&&_rpInpBP._userEdited&&parseFloat(_rpInpBP.value)>0)?parseFloat(_rpInpBP.value):distBP.ppAdulto;
+    var _ppNshow=(_rpNinoBP&&_rpNinoBP._userEdited&&parseFloat(_rpNinoBP.value)>0)?parseFloat(_rpNinoBP.value):distBP.ppNino;
+    if(_pp2) _pp2.textContent='S/ '+_ppAshow.toLocaleString('es-PE');
+    if(_pvPorNino) _pvPorNino.textContent='S/ '+_ppNshow.toLocaleString('es-PE');
+    if(_pvNinoRow) _pvNinoRow.style.display='flex';
+    if(_pvLblPers) _pvLblPers.textContent='Precio por adulto';
+    if(_pvLblPersTotal) _pvLblPersTotal.textContent=distBP.persA+' adultos · '+distBP.persN+' niños';
+    if(_pvPT2) _pvPT2.textContent='';
+    if(_rpNinoRow) _rpNinoRow.style.display='block';
+    if(_rpNinoInp&&!_rpNinoInp._userEdited) _rpNinoInp.value=distBP.ppNino;
+  } else {
+    var _rpInpBP2=document.getElementById('rp_pp_input');
+    var _ppSolo=(_rpInpBP2&&_rpInpBP2._userEdited&&parseFloat(_rpInpBP2.value)>0)?parseFloat(_rpInpBP2.value):Math.round(S.total/S.pers);
+    if(_pp2&&S.pers>0) _pp2.textContent='S/ '+_ppSolo.toLocaleString('es-PE');
+    if(_pvNinoRow) _pvNinoRow.style.display='none';
+    if(_pvLblPers) _pvLblPers.textContent='Precio por persona';
+    if(_pvLblPersTotal) _pvLblPersTotal.textContent='Personas';
+    if(_pvPT2) _pvPT2.textContent=S.pers+' personas';
+    if(_rpNinoRow) _rpNinoRow.style.display='none';
+  }
+  // Observaciones en el preview
+  var _pvObs=document.getElementById('pvObs');
+  var _pvObsSec=document.getElementById('pvObsSec');
+  if(_pvObs) _pvObs.textContent=S.obs||'';
+  if(_pvObsSec) _pvObsSec.style.display=S.obs?'block':'none';
+  // Visibilidad precio por persona (toggle)
+  var _pvRowPersF=document.getElementById('pvRowPers');
+  if(_pvRowPersF) _pvRowPersF.style.display=S.mostrarPp!==false?'flex':'none';
+  var _pvNinoRowF=document.getElementById('pvNinoRow');
+  if(_pvNinoRowF) _pvNinoRowF.style.display=(S.mostrarPp!==false&&distBP)?'flex':'none';
+  if(typeof updRecuadroPreview==="function") updRecuadroPreview();}
+
+function genPDF(){
+  // Mostrar modal de confirmación
+  const modal = document.getElementById('modalConfirm');
+  const av = document.getElementById('modalAviso');
+  if(av){
+    if(S.ultimoNum){
+      av.textContent='Ya generaste la cotización '+S.ultimoNum+' para este cliente. Esto creará una NUEVA cotización con otro número; la anterior no se borra.';
+      av.style.display='block';
+    } else { av.style.display='none'; }
+  }
+  modal.style.display = 'flex';
+}
+
+// Fuente única del precio por persona / adulto / niño que se muestra al cliente.
+// Usa la misma regla que buildPreview: si el usuario editó el precio, se respeta; si no, el calculado.
+var EVENTOS_NINOS=['Baby Shower','Fiesta Infantil','Graduación colegio inicial/primaria','Reunión familiar'];
+// Texto de personas: "70 adultos + 30 niños (100 personas)" si hay distribución, o "100 personas"
+function textoPersonas(){
+  if(EVENTOS_NINOS.indexOf(S.evt)>-1&&S.persAdultos>0&&S.persNinos>0){
+    return S.persAdultos+' adultos + '+S.persNinos+' niños ('+S.pers+' personas)';
+  }
+  return S.pers+' personas';
+}
+// Unidad para el PDF: si es 1 día, "día" en singular
+function unidadPDF(it){
+  var u=it.unidad||(it.tipo==='dias'?'día(s)':'');
+  if((u==='días'||u==='día(s)')&&it.cantActual===1) u='día';
+  return u;
+}
+function precioPersonaFinal(){
+  var dist=calcPreciosDistribucion();
+  var inp=document.getElementById('rp_pp_input');
+  var inpN=document.getElementById('rp_pp_nino_input');
+  var vA=(inp&&inp._userEdited&&parseFloat(inp.value)>0)?parseFloat(inp.value):null;
+  var vN=(inpN&&inpN._userEdited&&parseFloat(inpN.value)>0)?parseFloat(inpN.value):null;
+  if(dist){
+    return {dist:true,ppA:vA!=null?vA:dist.ppAdulto,ppN:vN!=null?vN:dist.ppNino};
+  }
+  return {dist:false,pp:vA!=null?vA:(S.pers>0?Math.round(S.total/S.pers):0)};
+}
+function imprimirPDF(opts){
+  if(!S.num){ alert('Primero genera una cotización'); return; }
+  opts=opts||{};
+  var conPrecios=!!opts.conPrecios;
+  var LOGO='https://res.cloudinary.com/dmhtup9bs/image/upload/v1781026751/RAICES_centro_de_convenciones_LOGO_OFF_ghqsar.png';
+  var REDES='https://res.cloudinary.com/dmhtup9bs/image/upload/v1781243035/84bcfed6-8b25-4703-9be6-325127e3b89c.png';
+  var CSS=`*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Helvetica Neue',Arial,sans-serif;font-size:11px;color:#111;background:white}@page{margin:0;size:A4}@media print{body{margin:0}.pag{page-break-after:always}.pag:last-child{page-break-after:auto}}.pag{position:relative;width:210mm;height:297mm;position:relative;overflow:hidden;display:flex;flex-direction:column;background:white}.hdr{display:flex;justify-content:space-between;align-items:center;padding:10px 18mm 9px;border-bottom:2.5px solid #B8860B;flex-shrink:0}.hdr-t1{font-family:Georgia,serif;font-size:20px;font-weight:700;color:#111;letter-spacing:1px;line-height:1.2}.hdr-t2{font-family:Georgia,serif;font-size:20px;font-weight:700;color:#B8860B;line-height:1.2}.hdr-logo{height:72px;object-fit:contain}.ftr{display:flex;justify-content:space-between;align-items:center;padding:8px 18mm;border-top:2.5px solid #B8860B;background:#f5f0e8;flex-shrink:0;margin-top:auto}.ftr-txt{font-size:9px;color:#444;line-height:2}.ftr-img{height:28px;object-fit:contain}.cont{flex:1;padding:8px 18mm;overflow:hidden}.cot-tit{font-family:Georgia,serif;font-size:34px;font-weight:700;color:#B8860B;letter-spacing:3px}.cot-num{font-size:12px;font-weight:700;color:#111;text-align:right}.cot-fecha{font-size:10px;color:#888;margin-top:2px;text-align:right}.datos{display:grid;grid-template-columns:1fr 1fr;border:1px solid #ddd;border-radius:5px;overflow:hidden;margin:8px 0 6px}.dato{padding:6px 14px;border-bottom:1px solid #eee}.dato:nth-last-child(-n+2){border-bottom:none}.dato:nth-child(odd){border-right:1px solid #eee;background:#faf8f5}.dato label{font-size:8px;text-transform:uppercase;letter-spacing:1px;color:#888;font-weight:700;display:block;margin-bottom:2px}.dato span{font-size:12px;font-weight:600}.badge{display:inline-block;padding:4px 16px;border-radius:12px;font-size:11px;font-weight:700;border:2px solid #111;margin:6px 0 8px}.sec{font-family:Georgia,serif;font-size:14px;font-weight:700;border-bottom:1.5px solid #B8860B;padding-bottom:3px;margin:8px 0 6px}.fotos{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:6px 0}.foto-w{display:flex;flex-direction:column;gap:3px}.foto{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:4px}.foto-lbl{font-size:8px;text-align:center;color:#222;font-weight:700;text-transform:uppercase;letter-spacing:.5px}table{width:100%;border-collapse:collapse;font-size:10.5px}thead tr{background:#111;color:white}thead th{padding:6px 10px;text-align:left;font-size:9.5px;font-weight:600}thead th:last-child{text-align:right}tbody tr:nth-child(even){background:#f7f5f2}tbody td{padding:7px 10px;border-bottom:1px solid #eee;line-height:1.5}tbody td:last-child{text-align:right;font-weight:600}.tot-box{background:#f5f0e8;border-radius:6px;padding:14px 16px;border:1.5px solid #B8860B;margin:10px 0 6px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:4px}.tot-pp-lbl{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:#888;font-weight:700;text-align:center;margin-bottom:4px}.tot-pp-num{font-family:Georgia,serif;font-size:36px;font-weight:700;color:#B8860B;text-align:center;line-height:1;margin-bottom:10px}.tot-sep{border-top:1px solid #e0d8cc;padding-top:10px;display:flex;justify-content:space-between;align-items:center}.tot-lbl{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:#444;font-weight:700}.tot-monto{font-family:Georgia,serif;font-size:26px;font-weight:700;color:#111}.tot-sub{font-size:10px;color:#666;margin-top:3px}.cond{padding:9px 14px;background:#faf8f5;border-radius:5px;border-left:3px solid #B8860B;margin:6px 0}.cond-tit{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:#888;font-weight:700;margin-bottom:5px}.cond li{font-size:9px;color:#555;padding:2px 0 2px 12px;position:relative;list-style:none}.cond li::before{content:"—";position:absolute;left:0;color:#B8860B}
+.watermark{position:absolute;top:55%;left:50%;transform:translate(-50%,-50%);opacity:0.08;z-index:0;pointer-events:none}
+.watermark img{width:480px;height:auto}`;
+  var fE=new Date((S.fecha||'2026-01-01')+'T12:00:00');
+  var fH=new Date();
+  var fV=new Date(fH); fV.setDate(fV.getDate()+15);
+  var fmtLima=function(d){return d.toLocaleDateString('es-PE',{timeZone:'America/Lima',day:'numeric',month:'long',year:'numeric'});};
+  var fechaEvt=S.fecha?fmtLima(fE):'Sin fecha';
+  var fechaCot=fmtLima(fH);
+  var fechaVal=fmtLima(fV);
+  var porPers=S.pers?Math.round(S.total/S.pers):0;
+  var adlMonto=Math.round(S.total*(S.adl||50)/100);
+  var adlPct=S.adl||50;
+  var items=S.items.filter(function(i){
+    if(!i.activo||i.esReemplazado) return false;
+    if(conPrecios) return true;
+    return !i.isGastoAdmin&&i.desc!=='Gastos administrativos';
+  });
+  function mkWM(){return '<div class="watermark"><img src="https://res.cloudinary.com/dmhtup9bs/image/upload/v1781026751/RAICES_centro_de_convenciones_LOGO_OFF_ghqsar.png" alt="Raíces"></div>';}
+function mkHdr(){return '<div class="hdr"><div><div class="hdr-t1">CENTRO DE CONVENCIONES</div><div class="hdr-t2">"RAICES"</div></div><img class="hdr-logo" src="'+LOGO+'"></div>';}
+  function mkFtr(){return '<div class="ftr"><div class="ftr-txt"><div>📍 Prolongación Calle Perú s/n (Altura Paradero Kayra) San Jerónimo, Cusco.</div><div>📱 +51 972 203031 &nbsp;|&nbsp; ✉️ raiceseventoscusco@gmail.com</div></div><img class="ftr-img" src="'+REDES+'"></div>';}
+  var FOTOS=[{url:'https://res.cloudinary.com/dmhtup9bs/image/upload/v1781406191/IMG_5899_h2yvfk.jpg',lbl:'Área verde'},{url:'https://res.cloudinary.com/dmhtup9bs/image/upload/v1781406191/IMG_5948_hgpqpw.jpg',lbl:'Área verde'},{url:'https://res.cloudinary.com/dmhtup9bs/image/upload/v1781406191/IMG_7532_afr0fv.jpg',lbl:'Salón principal'},{url:'https://res.cloudinary.com/dmhtup9bs/image/upload/v1781406191/IMG_7536_wktk6t.jpg',lbl:'Salón principal'},{url:'https://res.cloudinary.com/dmhtup9bs/image/upload/v1781406191/IMG_5928_yqxirv.jpg',lbl:'Decoración'},{url:'https://res.cloudinary.com/dmhtup9bs/image/upload/v1781406653/7f028f22-9b04-49ef-91fe-9de5768c4b77_ojictr.jpg',lbl:'Decoración'}];
+  var fotosHtml='<div class="fotos">';
+  FOTOS.forEach(function(f){fotosHtml+='<div class="foto-w"><img class="foto" src="'+f.url+'"><div class="foto-lbl">'+f.lbl+'</div></div>';});
+  fotosHtml+='</div>';
+  var pag1='<div class="pag">'+mkWM()+mkHdr()+'<div class="cont"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px"><div class="cot-tit">COTIZACIÓN</div><div><div class="cot-num">'+S.num+'</div><div class="cot-fecha">'+fechaCot+'</div></div></div><div class="datos"><div class="dato"><label>Cliente</label><span>'+escH(S.nom)+'</span></div><div class="dato"><label>Teléfono</label><span>'+escH(S.tel)+'</span></div><div class="dato"><label>Tipo de evento</label><span>'+escH(S.evt)+'</span></div><div class="dato"><label>Fecha del evento</label><span>'+fechaEvt+'</span></div><div class="dato"><label>Personas</label><span>'+textoPersonas()+'</span></div><div class="dato"><label>Válida hasta</label><span>'+fechaVal+'</span></div></div><div class="badge">PAQUETE '+escH(S.paq)+'</div><div class="sec">Nuestras instalaciones</div>'+fotosHtml+'</div>'+mkFtr()+'</div>';
+  // Agrupar items por sección para el PDF
+  var secOrder=['LOCAL','DECORACION SALON','DECORACION CEREMONIA BODA CIVIL','MOBILIARIO','MENAJERIA','CRISTALERIA','BEBIDAS','PERSONAL DE SERVICIO','EXTRAS DEL PAQUETE','OTROS SERVICIOS'];
+  var secNombres={'LOCAL':'Local','DECORACION SALON':'Decoración del salón','DECORACION CEREMONIA BODA CIVIL':'Decoración ceremonia','MOBILIARIO':'Mobiliario','MENAJERIA':'Menajería','CRISTALERIA':'Cristalería','BEBIDAS':'Bebidas','PERSONAL DE SERVICIO':'Personal de servicio','EXTRAS DEL PAQUETE':'Extras del paquete','OTROS SERVICIOS':'Otros servicios'};
+  var grupos={};
+  items.forEach(function(it){
+    var sec=it.sec||'OTROS';
+    if(!grupos[sec]) grupos[sec]=[];
+    grupos[sec].push(it);
+  });
+  var allRows=[];
+  var allRowsPeso=[]; // peso real en líneas de contenido por fila (encabezado de sección + 1 línea por item)
+  secOrder.forEach(function(sec){
+    if(grupos[sec]&&grupos[sec].length){
+      var ordenados=grupos[sec].slice().sort(function(a,b){return a.desc.localeCompare(b.desc,'es');});
+      if(conPrecios){
+        var rowsGer='';
+        ordenados.forEach(function(it,k){
+          var unid=unidadPDF(it);
+          var t=Math.round(it.puActual*it.cantActual);
+          var hayCant=unid||it.cantActual>1;
+          var cantStr=unid?it.cantActual+' '+unid:(hayCant?it.cantActual:'');
+          var puStr=hayCant?'S/ '+Math.round(it.puActual).toLocaleString('es-PE'):'';
+          var catTd=(k===0)
+            ?'<td style="font-weight:700;color:#555;font-size:9px;text-transform:uppercase;letter-spacing:.5px;vertical-align:top;background:#faf8f5" rowspan="'+ordenados.length+'">'+secNombres[sec]+'</td>'
+            :'';
+          rowsGer+='<tr>'+catTd+
+            '<td style="text-align:left">'+it.desc+'</td>'+
+            '<td style="text-align:center;color:#555;white-space:nowrap">'+cantStr+'</td>'+
+            '<td style="text-align:right;color:#555;white-space:nowrap">'+puStr+'</td>'+
+            '<td style="text-align:right;font-weight:600;white-space:nowrap">S/ '+t.toLocaleString('es-PE')+'</td>'+
+          '</tr>';
+        });
+        allRows.push(rowsGer);
+      } else {
+        var celdas=ordenados.map(function(it){
+          var unid=unidadPDF(it);
+          var cntTxt=it.sin_qty?'':(unid?it.cantActual+' '+unid:it.cantActual);
+          return '<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin:2px 0">'+
+            '<span style="font-size:9px;font-weight:700;color:#B8860B;white-space:nowrap;margin-left:14px">'+cntTxt+'</span>'+
+            '<span style="font-size:10px;color:#222;font-weight:500;line-height:1.4;text-align:right">'+it.desc+'</span>'+
+          '</div>';
+        });
+        allRows.push('<tr><td style="font-weight:700;color:#555;font-size:9px;text-transform:uppercase;letter-spacing:.5px;padding-top:8px;width:38%;vertical-align:top">'+secNombres[sec]+'</td><td style="vertical-align:top;padding-top:8px">'+celdas.join('')+'</td></tr>');
+      }
+      // peso: cada item dentro de la sección ocupa una línea visual, se usa el número de
+      // items en esa sección como altura real de la fila
+      allRowsPeso.push(grupos[sec].length);
+    }
+  });
+  var menuRows='';
+  var menuCats=[['Ent','Entrada',8],['Fon','Fondo',30],['Pos','Postre',8],['Beb','Bebida caliente/fría',3]];
+  menuCats.forEach(function(mc){
+    var k=mc[0],cat=mc[1],pu=mc[2];
+    var val=S['m'+k];
+    if(!val||(Array.isArray(val)&&!val.length)) return;
+    var platos=Array.isArray(val)?val.join(', '):val;
+    var idx2=MENU[k].items.indexOf(Array.isArray(val)?val[0]:val);
+    var prc=S['mprc_'+k+'_'+idx2]||pu;
+    var cnt=S['mcant_'+k+'_'+idx2]||(S.persAdultos>0?S.persAdultos:S.pers);
+    var totMenu=Math.round(prc*cnt);
+    menuRows+='<tr><td style="font-weight:600;color:#444;font-size:9px;text-transform:uppercase;letter-spacing:.5px;width:34%;vertical-align:top;padding-right:10px">'+cat+'</td><td style="font-size:10px;color:#222;vertical-align:top">'+platos+'</td><td style="font-size:10px;color:#B8860B;font-weight:700;text-align:center;vertical-align:top;width:15%">'+cnt+'</td></tr>';
+  });
+    var menuNinosRows='';
+  if(S.persAdultos>0&&S.persNinos>0&&typeof MENU!=='undefined'){
+    var ninosCatsPDF=[{k:'NinoFood',lbl:'Bocaditos y piqueos'},{k:'NinoBeb',lbl:'Bebidas sin alcohol'}];
+    ninosCatsPDF.forEach(function(nc){
+      if(!MENU[nc.k]) return;
+      var sel=S['m'+nc.k]||[];
+      if(!sel.length) return;
+      var idxN2=MENU[nc.k].items.indexOf(sel[0]);
+      var cntN2=S['mcant_'+nc.k+'_'+idxN2]||S.persNinos;
+      menuNinosRows+='<tr><td style="font-weight:600;color:#444;font-size:9px;text-transform:uppercase;letter-spacing:.5px;width:34%;vertical-align:top">'+nc.lbl+'</td><td style="font-size:10px;color:#222;vertical-align:top">'+sel.join(', ')+'</td><td style="font-size:10px;color:#B8860B;font-weight:700;text-align:center;vertical-align:top;width:15%">'+cntN2+'</td></tr>';
+    });
+  }
+  var _pp=porPers.toLocaleString('es-PE');
+  var _adl=fs(adlMonto);
+  var _tot=fs(S.total);
+  var _persLine=S.pers+' personas';
+  var _ppLine='S/ '+_pp+' por persona';
+  // Calcular distribución directamente desde S (no DOM)
+  var _evtNinos=['Baby Shower','Fiesta Infantil','Graduación colegio inicial/primaria','Reunión familiar'];
+  var _esDistPDF=_evtNinos.indexOf(S.evt)>-1&&S.persAdultos>0&&S.persNinos>0;
+  if(_esDistPDF){
+    // Calcular totales menú niños
+    var _totalMN=0;
+    ['NinoFood','NinoBeb'].forEach(function(k){
+      if(typeof MENU==='undefined'||!MENU[k]) return;
+      (S['m'+k]||[]).forEach(function(op){
+        var idx5=MENU[k].items.indexOf(op);
+        if(idx5>-1){
+          var prc5=S['mprc_'+k+'_'+idx5]||menuPuDef(k,idx5);
+          var cnt5=S['mcant_'+k+'_'+idx5]||S.persNinos;
+          _totalMN+=Math.round(prc5*cnt5);
+        }
+      });
+    });
+    var _totalMA=0;
+    ['Ent','Fon','Pos','Beb'].forEach(function(k){
+      if(typeof MENU==='undefined'||!MENU[k]) return;
+      var val=S['m'+k]; if(!val) return;
+      var ops=Array.isArray(val)?val:[val];
+      ops.forEach(function(op){
+        var idx6=MENU[k].items?MENU[k].items.indexOf(op):-1;
+        if(idx6>-1){
+          var prc6=S['mprc_'+k+'_'+idx6]||menuPuDef(k,idx6);
+          var cnt6=S['mcant_'+k+'_'+idx6]||S.persAdultos;
+          _totalMA+=Math.round(prc6*cnt6);
+        }
+      });
+    });
+    var _costoBase=S.total-_totalMA-_totalMN;
+    var _cpbp=S.pers>0?_costoBase/S.pers:0;
+    var _ppA=Math.round(_cpbp+(S.persAdultos>0?_totalMA/S.persAdultos:0));
+    var _ppN=Math.round(_cpbp+(S.persNinos>0?_totalMN/S.persNinos:0));
+    _persLine=S.persAdultos+' adultos · '+S.persNinos+' niños';
+    _ppLine='S/ '+_ppA.toLocaleString('es-PE')+' adulto · S/ '+_ppN.toLocaleString('es-PE')+' niño';
+  }
+
+  // Unificar con la vista previa: usar los mismos precios por persona / adulto / niño
+  var _pf=precioPersonaFinal();
+  if(_esDistPDF&&_pf.dist){
+    _ppA=_pf.ppA; _ppN=_pf.ppN;
+    _ppLine='S/ '+_ppA.toLocaleString('es-PE')+' adulto · S/ '+_ppN.toLocaleString('es-PE')+' niño';
+  } else if(!_esDistPDF&&!_pf.dist){
+    _pp=_pf.pp.toLocaleString('es-PE');
+    _ppLine='S/ '+_pp+' por persona';
+  }
+  var _lbl='font-size:9px;font-weight:600;color:#444;text-transform:uppercase;letter-spacing:.5px';
+  var _num='font-family:Georgia,serif;font-size:15px;font-weight:700;color:#222;min-width:100px;text-align:right;display:inline-block';
+  var _row='display:flex;justify-content:space-between;align-items:center';
+  var _ppRows='';
+  if(S.mostrarPp!==false){
+    _ppRows='<div style="'+_row+';border-bottom:1px solid #e0d5c5;padding-bottom:7px;margin-bottom:7px">'+
+      '<span style="'+_lbl+'">'+((_esDistPDF)?'Precio por persona adulto':'Precio por persona')+'</span>'+
+      '<span style="font-family:Georgia,serif;font-size:18px;font-weight:700;color:#B8860B;min-width:100px;text-align:right;display:inline-block">'+(_esDistPDF?'S/ '+_ppA.toLocaleString('es-PE'):'S/ '+_pp)+'</span>'+
+    '</div>'+
+    (_esDistPDF?'<div style="'+_row+';border-bottom:1px solid #e0d5c5;padding-bottom:7px;margin-bottom:7px"><span style="'+_lbl+'">Precio por persona niño</span><span style="font-family:Georgia,serif;font-size:18px;font-weight:700;color:#B8860B;min-width:100px;text-align:right;display:inline-block">S/ '+_ppN.toLocaleString('es-PE')+'</span></div>':'');
+  }
+  var totalHTML=
+    '<div style="background:#f5f0e8;border-radius:8px;padding:14px 18px;border:1.5px solid #B8860B;margin:10px 0 6px;max-width:400px;position:relative;z-index:1">'+
+      '<div style="font-family:Georgia,serif;font-size:14px;font-weight:600;color:#111;border-bottom:1.5px solid #B8860B;padding-bottom:4px;margin-bottom:10px">Total de la cotizaci\u00f3n</div>'+
+      _ppRows+
+      '<div style="'+_row+';margin-bottom:4px">'+
+        '<span style="'+_lbl+'">Monto total <span style=\'font-size:8px;color:#888\'>('+_persLine+')</span></span>'+
+        '<span style="'+_num+';font-size:13px;white-space:nowrap">'+_tot+'</span>'+
+      '</div>'+
+      '<div style="'+_row+'">'+
+        '<span style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.5px">Adelanto ('+adlPct+'%)</span>'+
+        '<span style="'+_num+'">'+_adl+'</span>'+
+      '</div>'+
+    '</div>'
+  var condHTML='<div class="cond"><div class="cond-tit">Condiciones generales</div><ul><li>Cotización válida por 15 días calendario desde la fecha de emisión.</li><li>Para reservar se requiere el '+adlPct+'% del total como adelanto.</li><li>Hora adicional de atención: S/ 220.00 — Tiempo estándar: 8 horas.</li></ul></div>';
+  var obsHTML=S.obs?'<div class="cond"><div class="cond-tit">Notas y observaciones</div><div style="font-size:10px;color:#555;line-height:1.6;white-space:pre-wrap">'+S.obs+'</div></div>':'';
+  var totalCondHTML=totalHTML+obsHTML+condHTML;
+  var mkTblAdultos = menuRows ? '<div class="sec" style="margin-top:8px">Menú seleccionado</div><table style="width:100%;border-collapse:collapse"><thead><tr><th style="width:34%;font-size:9px;background:#333;color:white;padding:5px 8px">Categoría</th><th style="font-size:9px;background:#333;color:white;padding:5px 8px">Plato seleccionado</th><th style="width:15%;font-size:9px;background:#333;color:white;padding:5px 8px;text-align:center">Cant.</th></tr></thead><tbody>'+menuRows+'</tbody></table>' : '';
+  var mkTblNinos = menuNinosRows ? '<div class="sec" style="margin-top:8px">Menú de alimentación para niños</div><table style="width:100%;border-collapse:collapse"><thead><tr><th style="width:34%;font-size:9px;background:#333;color:white;padding:5px 8px">Categoría</th><th style="font-size:9px;background:#333;color:white;padding:5px 8px">Selección</th><th style="width:15%;font-size:9px;background:#333;color:white;padding:5px 8px;text-align:center">Cant.</th></tr></thead><tbody>'+menuNinosRows+'</tbody></table>' : '';
+
+  // ============================================================
+  // PAGINADO POR MEDICIÓN REAL EN VIVO (no por estimación de líneas).
+  // Se renderiza cada "pieza" de contenido en un laboratorio oculto,
+  // idéntico en CSS/ancho a una página real, y se mide su alto exacto
+  // en píxeles con getBoundingClientRect(). Así el corte de página
+  // siempre es exacto, sin importar largo de textos ni cantidad de items.
+  // ============================================================
+
+  // 1) Armar lista de "piezas" individuales (unidad mínima que nunca se parte a la mitad)
+  var detalleHeader=conPrecios?
+    '<div class="sec">Detalle de servicios</div><table><thead><tr><th style="width:16%">Categoría</th><th>Productos seleccionados</th><th style="text-align:center;width:9%">Cant.</th><th style="text-align:right;width:13%">P. Unit.</th><th style="text-align:right;width:14%">Total (S/.)</th></tr></thead><tbody>'
+    :
+    '<div class="sec">Detalle de servicios</div><table><thead><tr><th style="width:38%">Categoría</th><th><div style="display:flex;justify-content:space-between;align-items:center;width:100%"><span style="margin-left:14px">Cant.</span><span>Productos seleccionados</span></div></th></tr></thead><tbody>';
+  var piezas=[]; // {tipo:'detalle_header'|'detalle_fila'|'detalle_cierre'|'menu_bloque'|'menu_ninos_bloque'|'total_cond', html:'...'}
+  if(allRows.length>0){
+    piezas.push({tipo:'detalle_header',html:detalleHeader});
+    allRows.forEach(function(rowHtml){ piezas.push({tipo:'detalle_fila',html:rowHtml}); });
+    piezas.push({tipo:'detalle_cierre',html:'</tbody></table>'});
+  }
+  if(menuRows){
+    piezas.push({tipo:'menu_bloque',html:mkTblAdultos});
+  }
+  if(menuNinosRows){
+    piezas.push({tipo:'menu_ninos_bloque',html:mkTblNinos});
+  }
+  piezas.push({tipo:'total_cond',html:totalCondHTML});
+
+  // 2) Laboratorio (iframe completamente aislado): un <div> normal dentro de la página de la
+  //    app puede heredar sutilezas de renderizado del documento padre (font hinting, zoom,
+  //    contexto de composición) que NO existen en la ventana real donde se imprime el PDF.
+  //    Un iframe con su propio documento HTML aparte elimina esa fuente de error por completo,
+  //    igualando exactamente las condiciones de medición a las de la ventana final real.
+  var labIframe=document.createElement('iframe');
+  labIframe.style.position='fixed';
+  labIframe.style.left='-9999px';
+  labIframe.style.top='0';
+  labIframe.style.width='900px';
+  labIframe.style.height='1200px';
+  labIframe.style.visibility='hidden';
+  document.body.appendChild(labIframe);
+  var labDoc=labIframe.contentDocument;
+  labDoc.open();
+  labDoc.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><style>'+CSS+'</style></head><body></body></html>');
+  labDoc.close();
+
+  // Medir ALTURA_DISPONIBLE real: una página .pag completa con header/footer reales dentro del iframe
+  var medPag=labDoc.createElement('div');
+  medPag.className='pag';
+  medPag.innerHTML=mkHdr()+'<div class="cont" id="medCont"></div>'+mkFtr();
+  labDoc.body.appendChild(medPag);
+  // Forzar el alto real de las imágenes del header/footer ANTES de medir, en vez de depender
+  // de si la imagen ya cargó o falló (mientras está "cargando", el navegador puede reportar
+  // un alto provisional menor al definido por CSS, lo que subestimaría ALTURA_DISPONIBLE).
+  var imgHdrLogo=medPag.querySelector('.hdr-logo');
+  if(imgHdrLogo){ imgHdrLogo.style.height='72px'; imgHdrLogo.style.minHeight='72px'; }
+  var imgFtrRedes=medPag.querySelector('.ftr-img');
+  if(imgFtrRedes){ imgFtrRedes.style.height='28px'; imgFtrRedes.style.minHeight='28px'; }
+  // Colchón de seguridad de 3px: absorbe imprecisiones de subpíxel residuales.
+  var ALTURA_DISPONIBLE=medPag.querySelector('#medCont').getBoundingClientRect().height-30;
+  labDoc.body.removeChild(medPag);
+
+  // 3) Contenedor libre dentro del MISMO iframe aislado, con el mismo ancho/padding que .cont
+  //    real, para medir el alto real de CONTENIDO ENSAMBLADO (no piezas aisladas, para no
+  //    perder precisión por colapso de márgenes CSS entre bloques).
+  var labB=labDoc.createElement('div');
+  labB.style.width='210mm';
+  labB.style.padding='8px 18mm';
+  labB.style.boxSizing='border-box';
+  labDoc.body.appendChild(labB);
+  var medLibre=labDoc.createElement('div');
+  labB.appendChild(medLibre);
+  function medirAltoEnsamblado(html){
+    medLibre.innerHTML=html;
+    void medLibre.offsetHeight; // fuerza reflow síncrono antes de leer el alto real
+    return medLibre.getBoundingClientRect().height;
+  }
+  // Alto del header de tabla "Detalle de servicios" vacío (sin filas), para reabrir tabla en página nueva
+  var ALTO_HEADER_TABLA_SOLO=0;
+  if(allRows.length>0){
+    ALTO_HEADER_TABLA_SOLO=medirAltoEnsamblado(detalleHeader+'</tbody></table>');
+  }
+
+  // 4) Empaquetado: se construye el HTML de la página actual de forma acumulativa real,
+  //    y en cada paso se mide el HTML COMPLETO acumulado (cerrando la tabla si está abierta)
+  //    contra el espacio disponible. Esto elimina cualquier imprecisión por colapso de márgenes,
+  //    porque siempre se mide el contenido real tal cual se vería ensamblado en esa página.
+  var paginas=[];
+  var contActual=''; var dentroDeTablaAbierta=false;
+  function altoSiSeAgrega(htmlExtra, cerrarTablaParaMedir){
+    var prueba=contActual+htmlExtra+(cerrarTablaParaMedir?'</tbody></table>':'');
+    return medirAltoEnsamblado(prueba);
+  }
+  function nuevaPagina(){
+    if(contActual!==''){
+      paginas.push('<div class="pag">'+mkWM()+mkHdr()+'<div class="cont">'+contActual+'</div>'+mkFtr()+'</div>');
+    }
+    contActual=''; dentroDeTablaAbierta=false;
+  }
+  for(var pi=0;pi<piezas.length;pi++){
+    var pz=piezas[pi];
+    var tipo=pz.tipo;
+    if(tipo==='detalle_header'){
+      // El header nunca debe quedar solo: se evalúa junto con su primera fila (si existe)
+      var primeraFilaHtml=(pi+1<piezas.length && piezas[pi+1].tipo==='detalle_fila')?piezas[pi+1].html:'';
+      var alturaConHeaderYPrimera=altoSiSeAgrega(pz.html+primeraFilaHtml,true);
+      if(contActual!=='' && alturaConHeaderYPrimera>ALTURA_DISPONIBLE){ nuevaPagina(); }
+      contActual+=pz.html;
+      dentroDeTablaAbierta=true;
+      continue;
+    }
+    if(tipo==='detalle_fila'){
+      if(pi>0 && piezas[pi-1].tipo==='detalle_header'){
+        // primera fila tras el header: ya se evaluó el corte arriba, solo se agrega
+        contActual+=pz.html;
+        continue;
+      }
+      var alturaConFila=altoSiSeAgrega(pz.html,true);
+      if(alturaConFila>ALTURA_DISPONIBLE){
+        // cerrar tabla de esta página, abrir página nueva con header de tabla otra vez
+        contActual+='</tbody></table>';
+        nuevaPagina();
+        contActual=detalleHeader;
+        dentroDeTablaAbierta=true;
+      }
+      contActual+=pz.html;
+      continue;
+    }
+    if(tipo==='detalle_cierre'){
+      contActual+=pz.html;
+      dentroDeTablaAbierta=false;
+      continue;
+    }
+    // Bloques atómicos: menu_bloque, menu_ninos_bloque, total_cond — nunca se parten a la mitad
+    var alturaConBloque=altoSiSeAgrega(pz.html,false);
+    if(contActual!=='' && alturaConBloque>ALTURA_DISPONIBLE){
+      nuevaPagina();
+    }
+    contActual+=pz.html;
+  }
+  nuevaPagina();
+
+  // 5) Limpiar laboratorio
+  document.body.removeChild(labIframe);
+
+  var nombrePDF=conPrecios?('VistaGerente_'+S.num):('Cotizacion_'+S.num+'_'+S.nom.replace(/[^a-zA-Z0-9]/g,'_'));
+  var docHTML='<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><style>'+CSS+'</style></head><body>'+pag1+paginas.join('')+'</body></html>';
+  if(opts.returnHTML){ return docHTML; }
+  var fr=document.createElement('iframe');
+  fr.style.cssText='position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden';
+  document.body.appendChild(fr);
+  var fd=fr.contentWindow.document;
+  fd.open();fd.write(docHTML);fd.close();
+  fd.title=nombrePDF;
+  var prevTitle=document.title;document.title=nombrePDF;
+  var imgs=[].slice.call(fd.images||[]);
+  var listo=false;
+  function lanzar(){
+    if(listo) return; listo=true;
+    try{fr.contentWindow.focus();fr.contentWindow.print();}
+    catch(e){toast('No se pudo abrir la impresión. Usa Ctrl+P.');}
+    setTimeout(function(){document.title=prevTitle;if(fr.parentNode)fr.parentNode.removeChild(fr);},60000);
+  }
+  var pend=imgs.filter(function(im){return !im.complete;}).length;
+  if(!pend){setTimeout(lanzar,200);}
+  else{
+    imgs.forEach(function(im){if(!im.complete){im.onload=im.onerror=function(){if(--pend<=0)setTimeout(lanzar,200);};}});
+    setTimeout(lanzar,6000);
+  }
+}
+
+function optimizarImagenes(h){
+  return h.replace(/(https:\/\/res\.cloudinary\.com\/[^/]+\/image\/upload\/)/g,'$1w_700,q_65/');
+}
+
+function cerrarModal(){
+  document.getElementById('modalConfirm').style.display = 'none';
+}
+
+function genPDFBase64Global(html){
+  return new Promise(function(resolve,reject){
+    var c=document.createElement('div');
+    c.innerHTML=html;
+    c.style.cssText='position:absolute;left:0;top:0;width:210mm;z-index:-1;opacity:0;pointer-events:none;background:#fff';
+    document.body.appendChild(c);
+
+    var imgs=c.querySelectorAll('img');
+    var pendientes=0;
+    imgs.forEach(function(img){ if(!img.complete||img.naturalWidth===0) pendientes++; });
+    function esperarImgs(cb,timeout){
+      timeout=timeout||15000;
+      if(pendientes<=0){cb();return;}
+      var fin=false;
+      function ok(){if(!fin){pendientes--;if(pendientes<=0){fin=true;cb();}}}
+      imgs.forEach(function(img){
+        if(img.complete&&img.naturalWidth>0) return;
+        img.onload=ok;img.onerror=ok;
+      });
+      setTimeout(function(){if(!fin){fin=true;cb();}},timeout);
+    }
+    esperarImgs(function(){
+      html2pdf().set({
+        margin:[0,0,0,0],
+        image:{type:'jpeg',quality:0.80},
+        html2canvas:{scale:1.5,useCORS:true,allowTaint:false,logging:false,imageTimeout:15000},
+        jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},
+        pagebreak:{mode:['css'],after:'.pag'}
+      }).from(c).outputPdf('datauristring').then(function(uri){
+        var b64=String(uri).split(',')[1];
+        if(!b64) throw new Error('PDF vacío');
+        document.body.removeChild(c);
+        resolve(b64);
+      }).catch(function(err){
+        try{document.body.removeChild(c);}catch(e){}
+        reject(err);
+      });
+    },15000);
+  });
+}
+
+function dlB64Global(b64,name){
+  try{
+    var bin=atob(b64);var arr=new Uint8Array(bin.length);
+    for(var i=0;i<bin.length;i++) arr[i]=bin.charCodeAt(i);
+    var blob=new Blob([arr],{type:'application/pdf'});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a');a.href=url;a.download=name;
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }catch(e){console.error('Error descargando:',e);}
+}
+
+function descargarPDFCliente(){
+  if(!S.num){toast('Primero genera una cotizacion');return;}
+  imprimirPDF();
+}
+
+function guardarVistaGerente(){
+  if(!S.num){toast('Primero genera una cotizacion');return;}
+  imprimirPDF({conPrecios:true});
+}
+
+var _generandoCot=false;
+async function confirmarPDF(){
+  if(_generandoCot) return; // evita registrar dos veces por doble clic
+  _generandoCot=true;
+  try{ await _confirmarPDFInterno(); }
+  finally{ _generandoCot=false; }
+}
+async function _confirmarPDFInterno(){
+  cerrarModal();
+  try{
+    var rNum=await fetch(URL_SIGUIENTE,{method:'GET'});
+    var jNum=await rNum.json();
+    if(jNum&&jNum.numero) S.num=jNum.numero;
+  }catch(e){}
+  if(!S.num) S.num=genNum();
+
+  document.getElementById('cfNum').textContent=S.num;
+  document.getElementById('cfCli').textContent=S.nom;
+  document.getElementById('cfEvt').textContent=S.evt;
+  document.getElementById('cfPaq').textContent=S.paq;
+  document.getElementById('cfTot').textContent=fs(S.total);
+
+  var d=new Date();
+  var hLima=new Intl.DateTimeFormat('es-PE',{timeZone:'America/Lima',day:'2-digit',month:'2-digit',year:'numeric'}).format(d);
+  var hoLima=new Intl.DateTimeFormat('es-PE',{timeZone:'America/Lima',hour:'2-digit',minute:'2-digit',hour12:false}).format(d);
+  cots.unshift({num:S.num,cli:S.nom,evt:S.evt,pers:S.pers,paq:S.paq,total:S.total,
+    fecha:hLima,hora:hoLima,estado:'ENVIADA'});
+  localStorage.setItem('r_cots',JSON.stringify(cots));
+  S.registrada=true; S.ultimoNum=S.num;
+
+  show('p5');setProg(5);
+
+  var menuPos=Array.isArray(S.mPos)?S.mPos.join(', '):(S.mPos||'');
+  var menuBeb=Array.isArray(S.mBeb)?S.mBeb.join(', '):(S.mBeb||'');
+
+  var fmtHoraLima=new Intl.DateTimeFormat('es-PE',{timeZone:'America/Lima',hour:'2-digit',minute:'2-digit',hour12:false});
+  var fmtFechaLima2=new Intl.DateTimeFormat('es-PE',{timeZone:'America/Lima',day:'2-digit',month:'2-digit',year:'numeric'});
+  var fmtFechaLimaL=new Intl.DateTimeFormat('es-PE',{timeZone:'America/Lima',day:'numeric',month:'long',year:'numeric'});
+  var fmtISOLima=new Intl.DateTimeFormat('sv-SE',{timeZone:'America/Lima',year:'numeric',month:'2-digit',day:'2-digit'});
+  var horaCot=fmtHoraLima.format(d);
+  var fechaCotPeru=fmtFechaLima2.format(d);
+  var fechaEvt=S.fecha?new Date(S.fecha+'T12:00:00').toLocaleDateString('es-PE',{timeZone:'America/Lima',day:'numeric',month:'long',year:'numeric'}):'Sin fecha';
+  var fechaValidez=fmtFechaLimaL.format(new Date(d.getTime()+15*24*60*60*1000));
+  var fechaCot=fmtFechaLimaL.format(d);
+  var adelantoPct=S.adl||50;
+  var adelantoMonto=Math.round(S.total*adelantoPct/100);
+
+  var nomCli='Cotizacion_'+S.num+'_'+S.nom.replace(/[^a-zA-Z0-9]/g,'_')+'.pdf';
+  var nomGer='VistaGerente_'+S.num+'.pdf';
+
+  var _pfP=precioPersonaFinal();
+  var _ninosSel=function(k){return (_pfP.dist&&Array.isArray(S['m'+k]))?S['m'+k].join(', '):'';};
+  var payload={
+    numero:S.num,cliente:S.nom,telefono:S.tel,
+    evento:S.evt,personas:S.pers,fecha:S.fecha,
+    personasAdultos:_pfP.dist?S.persAdultos:0,personasNinos:_pfP.dist?S.persNinos:0,distribucion:_pfP.dist,
+    precioPorPersona:_pfP.dist?null:_pfP.pp,precioPorAdulto:_pfP.dist?_pfP.ppA:null,precioPorNino:_pfP.dist?_pfP.ppN:null,
+    paquete:S.paq,
+    items:S.items.filter(function(i){return i.activo&&!i.esReemplazado;}).map(function(i){
+      return {desc:i.desc,puActual:i.puActual,cantActual:i.cantActual,opc:i.opc||false};
+    }),
+    menu:{entrada:S.mEnt||'',fondo:S.mFon||'',postre:menuPos,bebida:menuBeb},
+    menuNinos:{bocaditos:_ninosSel('NinoFood'),bebidas:_ninosSel('NinoBeb')},
+    total:S.total,adelanto:adelantoPct,
+    observaciones:S.obs||'',
+    mostrarPrecioPorPersona:S.mostrarPp!==false,
+    fechaEventoStr:fechaEvt,fechaValidezStr:fechaValidez,
+    fechaCot:fechaCot,horaCot:horaCot,
+    fechaRegistro:fechaCotPeru,horaRegistro:horaCot,
+    adelantoFormateado:'S/ '+adelantoMonto.toLocaleString('es-PE'),
+    totalFormateado:'S/ '+S.total.toLocaleString('es-PE'),
+    nomCli:nomCli,nomGer:nomGer,
+    clientePDF:'',gerentePDF:''
+  };
+
+  // Generar ambos PDFs via about:blank (renderizado nativo del navegador)
+  var pdfFallo=false;
+  try{
+    var htmlCli=optimizarImagenes(imprimirPDF({returnHTML:true}));
+    var htmlGer=optimizarImagenes(imprimirPDF({conPrecios:true,returnHTML:true}));
+    var b64Cli=await genPDFBase64Global(htmlCli);
+    var b64Ger=await genPDFBase64Global(htmlGer);
+    payload.clientePDF=b64Cli||'';
+    payload.gerentePDF=b64Ger||'';
+  }catch(e){
+    console.error('Error generando PDFs:',e);
+    pdfFallo=true;
+    toast('Error generando PDFs. Revisa tu conexion a internet.');
+  }
+
+  window._ultimoPayload=payload;
+  window._pdfFallo=pdfFallo;
+  await enviarCotizacion();
+}
+
+// Envía la cotización al servidor y muestra el resultado REAL (éxito, aviso o error con reintento)
+async function enviarCotizacion(){
+  var st=document.getElementById('envEstado');
+  var sub=document.getElementById('p5Sub');
+  function estado(bg,color,texto,conReintento){
+    if(!st) return;
+    st.style.display='block';st.style.background=bg;st.style.color=color;st.style.border='1px solid '+color;
+    st.textContent=texto;
+    if(conReintento){
+      var br=document.createElement('button');
+      br.textContent='↻ Reintentar';
+      br.style.cssText='display:block;margin:8px auto 0;padding:7px 18px;border-radius:8px;border:none;background:'+color+';color:white;font-size:12px;font-weight:700;cursor:pointer';
+      br.onclick=enviarCotizacion;
+      st.appendChild(br);
+    }
+  }
+  if(sub) sub.textContent='Guardando en el sistema…';
+  estado('#f0ebe1','#6b6560','⏳ Enviando la cotización al sistema…',false);
+  var ctrl=new AbortController();
+  var timer=setTimeout(function(){ctrl.abort();},90000);
+  try{
+    var r=await fetch(API_URL,{
+      method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},
+      body:JSON.stringify(window._ultimoPayload),signal:ctrl.signal
+    });
+    clearTimeout(timer);
+    if(!r.ok) throw new Error('El servidor respondió '+r.status);
+    var _rj=await r.json();
+    if(!_rj||_rj.ok===false) throw new Error((_rj&&_rj.error)||'Respuesta inválida del servidor');
+    if(_rj.numero&&_rj.numero!==S.num){S.num=_rj.numero;var _cn=document.getElementById('cfNum');if(_cn)_cn.textContent=_rj.numero;}
+    if(window._pdfFallo){
+      if(sub) sub.textContent='Cotización registrada, pero sin PDFs.';
+      estado('#fff3e0','#b34700','⚠️ Se registró la cotización, pero los PDFs no se generaron y no se subieron a Drive. Usa “Descargar PDF” para obtenerlos.',false);
+    } else {
+      if(sub) sub.textContent='Generada y guardada exitosamente.';
+      estado('#e8f5e9','#2d6a4f','✓ Guardada en el sistema.',false);
+    }
+  }catch(e){
+    clearTimeout(timer);
+    console.warn('N8N:',e);
+    if(sub) sub.textContent='No se pudo guardar la cotización.';
+    estado('#fdecea','#c0392b','✕ No se guardó en el sistema ('+(e.name==='AbortError'?'tiempo de espera agotado':(e.message||'sin conexión'))+'). Revisa tu internet y presiona Reintentar.',true);
+  }
+}
+function goP5(){show('p5');setProg(5);}
+function irHist(){
+  const lista=document.getElementById('hLis');
+  const count=document.getElementById('hCnt');
+  document.getElementById('prog').style.display='none';
+  if(lista) lista.innerHTML='<div style="text-align:center;padding:40px;color:var(--gris)"><div style="font-size:24px">⏳</div><p>Cargando...</p></div>';
+  show('pH');
+  fetch(URL_HISTORIAL,{method:'GET'})
+  .then(function(r){return r.json();})
+  .then(function(res){
+    var rows=(res.cotizaciones||res.data||res||[]).slice().reverse();
+    if(count) count.textContent=rows.length+' cotización'+(rows.length!==1?'es':'');
+    if(!lista) return;
+    lista.innerHTML='';
+    if(!rows.length){
+      lista.innerHTML='<div style="text-align:center;padding:40px;color:var(--gris)"><div style="font-size:36px">📋</div><p>No hay cotizaciones registradas.</p></div>';
+      return;
+    }
+    rows.forEach(function(c){
+      var _mod=c['ÚLTIMA MODIFICACIÓN']||c['FECHA DE MODIFICACIÓN']||c['ÚLTIMA FECHA DE MODIFICACIÓN']||c.fechaMod||c.fechaModificacion||'';
+      var div=document.createElement('div');
+      div.className='hist-item';
+      div.innerHTML='<div>'+
+        '<div class="h-n">'+(c['N° COTIZACIÓN']||c.numero||'—')+'</div>'+
+        '<div class="h-nom">'+(c.CLIENTE||c.cliente||'—')+'</div>'+
+        '<div class="h-m">'+(c.EVENTO||c.evento||'—')+' · '+(c.PERSONAS||c.personas||'—')+' pers.</div>'+
+        (_mod?'<div class="h-m" style="color:var(--dorado)">🕒 Modificado: '+_mod+'</div>':'')+
+        '</div>'+
+        '<div style="text-align:right">'+
+        '<div class="h-p">'+fs(parseFloat(c['TOTAL']||c['PRECIO TOTAL']||c.total||0))+'</div>'+
+        '<span class="benv">'+(c.ESTADO||c.estado||'—')+'</span>'+
+        '</div>';
+      lista.appendChild(div);
+    });
+  })
+  .catch(function(e){
+    if(lista) lista.innerHTML='<div style="text-align:center;padding:40px;color:var(--gris)"><div style="font-size:36px">📋</div><p>Sin conexión con el servidor.</p></div>';
+    if(count) count.textContent='0 cotizaciones';
+  });
+}
+
+
+function nuevaCot(){
+  document.getElementById('prog').style.display='flex';
+  S={nom:'',tel:'',evt:'',pers:100,fecha:'',obs:'',paq:'',items:[],mEnt:'',mFon:'',mPos:[],mBeb:[],mNinoFood:[],mNinoBeb:[],total:0,num:'',adl:50,persAdultos:0,persNinos:0,alquilerOriginal:2500,mostrarPp:true};
+  ['cNom','cTel','obsP3'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('cEvt').value='';
+  document.getElementById('cPers').value=100;
+  document.getElementById('cFecha').value='';
+  show('p1');setProg(1);
+}
+function toast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');
+  setTimeout(()=>t.classList.remove('on'),3000);
+}
+
+// Mostrar header/footer al imprimir
+window.addEventListener('beforeprint', function(){
+  var ids=['pdfHdrPrint','pdfFtrPrint'];
+  ids.forEach(function(id){
+    var el=document.getElementById(id);
+    if(el) el.style.display='flex';
+  });
+});
+window.addEventListener('afterprint', function(){
+  var ids=['pdfHdrPrint','pdfFtrPrint'];
+  ids.forEach(function(id){
+    var el=document.getElementById(id);
+    if(el) el.style.display='none';
+  });
+});
+document.getElementById('cFecha').min=new Intl.DateTimeFormat('sv-SE',{timeZone:'America/Lima',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+
+// ══ MENÚ NIÑOS ══
+// updRecuadroPreview v2 eliminada
+
+// checkMenuNinos v2 removida
+
+// ══ CALENDARIO DISPONIBILIDAD ══
+var calFechasOcupadas=[];
+var calFechasRevision=[];
+var calMesActual=new Date();
+var calDatos=[];
+function abrirCal(){document.getElementById('modalCal').style.display='flex';document.getElementById('calDetalle').style.display='none';calCargarFechas();}
+function cerrarCal(){document.getElementById('modalCal').style.display='none';}
+function calBuscar(){var inp=document.getElementById('calBuscador').value;if(!inp)return;var d=new Date(inp+'T12:00:00');calMesActual=new Date(d.getFullYear(),d.getMonth(),1);calRender();setTimeout(function(){calMostrarDetalle(inp);},100);}
+function calCargarFechas(){
+  var load=document.getElementById('calLoad');
+  if(load) load.style.display='block';
+  fetch(URL_HISTORIAL,{method:'GET'})
+  .then(function(r){return r.json();})
+  .then(function(res){
+    var rows=(res.cotizaciones||res.data||res||[]).slice().reverse();
+    calDatos=rows; calFechasOcupadas=[]; calFechasRevision=[];
+    rows.forEach(function(c){
+      var fecha=c['FECHA DE EVENTO']||c['FECHA DEL EVENTO']||c.fecha||'';
+      var estado=(c.ESTADO||c.estado||'').toUpperCase();
+      if(!fecha) return;
+      var f=fecha.split('T')[0];
+      if(estado==='CONFIRMADA'||estado==='RESERVADA') calFechasOcupadas.push(f);
+      else calFechasRevision.push(f);
+    });
+    if(load) load.style.display='none';
+    calRender();
+  })
+  .catch(function(){if(load) load.style.display='none'; calRender();});
+}
+function calMes(dir){calMesActual=new Date(calMesActual.getFullYear(),calMesActual.getMonth()+dir,1);calRender();document.getElementById('calDetalle').style.display='none';}
+function calRender(){
+  var grid=document.getElementById('calGrid');
+  var tit=document.getElementById('calTit');
+  if(!grid||!tit) return;
+  var año=calMesActual.getFullYear(), mes=calMesActual.getMonth();
+  var meses=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  tit.textContent=meses[mes]+' '+año;
+  var dias=['D','L','M','M','J','V','S'], h='';
+  dias.forEach(function(d){h+='<div style="font-size:9px;font-weight:700;color:#888;padding:3px 0">'+d+'</div>';});
+  var primero=new Date(año,mes,1).getDay();
+  for(var i=0;i<primero;i++) h+='<div></div>';
+  var diasMes=new Date(año,mes+1,0).getDate(), hoy=new Date();
+  for(var d=1;d<=diasMes;d++){
+    var f=año+'-'+(mes+1<10?'0':'')+(mes+1)+'-'+(d<10?'0':'')+d;
+    var esHoy=hoy.getFullYear()===año&&hoy.getMonth()===mes&&hoy.getDate()===d;
+    var ocu=calFechasOcupadas.indexOf(f)>-1, rev=calFechasRevision.indexOf(f)>-1;
+    var bg=ocu?'#e74c3c':(rev?'#f39c12':'transparent');
+    var col=ocu||rev?'white':'#111';
+    var brd=esHoy?'2px solid var(--dorado)':'1px solid transparent';
+    h+='<div data-fecha="'+f+'" onclick="calMostrarDetalle(this.dataset.fecha)" style="padding:5px 2px;border-radius:4px;font-size:11px;background:'+bg+';color:'+col+';border:'+brd+';font-weight:'+(esHoy?'700':'400')+';cursor:'+(ocu||rev?'pointer':'default')+'">'+d+'</div>';
+  }
+  grid.innerHTML=h;
+}
+function calMostrarDetalle(fecha){
+  var det=document.getElementById('calDetalle');
+  var items=document.getElementById('calDetalleItems');
+  var titF=document.getElementById('calDetalleFecha');
+  if(!det||!items) return;
+  var cots=calDatos.filter(function(c){return (c['FECHA DE EVENTO']||c['FECHA DEL EVENTO']||c.fecha||'').split('T')[0]===fecha;});
+  if(!cots.length){det.style.display='none';return;}
+  var d=new Date(fecha+'T12:00:00');
+  titF.textContent=d.toLocaleDateString('es-PE',{weekday:'long',day:'numeric',month:'long',year:'numeric'}).toUpperCase();
+  var h='';
+  cots.forEach(function(c,idx){
+    if(idx>0) h+='<div style="border-top:1px solid #e0d8cc;margin:8px 0"></div>';
+    var est=(c.ESTADO||c.estado||'—').toUpperCase();
+    h+='<div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:11px;font-weight:700;color:var(--negro)">'+(c['N° COTIZACIÓN']||c.numero||'—')+'</span><span style="font-size:10px;font-weight:700;color:'+(est==='CONFIRMADA'||est==='RESERVADA'?'#e74c3c':'#f39c12')+'">'+est+'</span></div>'+
+    '<div style="font-size:12px;font-weight:600;color:var(--negro);margin-bottom:2px">'+(c.CLIENTE||c.cliente||'—')+'</div>'+
+    '<div style="font-size:10px;color:var(--gris);margin-bottom:2px">📱 '+(c.TELÉFONO||c.telefono||'—')+'</div>'+
+    '<div style="font-size:10px;color:var(--gris);margin-bottom:2px">🎉 '+(c.EVENTO||c.evento||'—')+' · Paquete '+(c.PAQUETE||c.paquete||'—')+'</div>'+
+    '<div style="font-size:12px;font-weight:700;color:var(--dorado);margin-top:4px">'+fs(parseFloat(c['TOTAL']||c['PRECIO TOTAL']||c.total||0))+'</div>';
+  });
+  items.innerHTML=h;
+  det.style.display='block';
+  det.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+
+function actualizarResumen(){
+  var ppEl=document.getElementById('ppEditable');
+  var persEl=document.getElementById('resPersPers');
+  var totEl=document.getElementById('resTotalGen');
+  var gastosDiv=document.getElementById('resGastosAdm');
+  var gastosTxt=document.getElementById('resGastosAdmTxt');
+  if(persEl) persEl.textContent=S.pers+' personas';
+  if(totEl) totEl.textContent=fs(S.total);
+  if(ppEl&&document.activeElement!==ppEl) ppEl.value=S.pers>0?Math.round(S.total/S.pers):'';
+  // Mostrar gastos administrativos si existen
+  var gastos=null;
+  S.items.forEach(function(it){if(it.desc==='Gastos administrativos'&&it.activo&&it.puActual>0) gastos=it;});
+  if(gastos&&gastosDiv&&gastosTxt){
+    gastosDiv.style.display='block';
+    gastosTxt.textContent='Gastos administrativos incluidos: '+fs(gastos.puActual);
+  } else if(gastosDiv){
+    gastosDiv.style.display='none';
+  }
+}
+
+</script>
+
+<!-- MODAL CALENDARIO -->
+<div id="modalCal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9000;align-items:center;justify-content:center;padding:16px">
+  <div style="background:white;border-radius:14px;padding:20px;width:360px;max-width:95vw;max-height:90vh;overflow-y:auto;box-shadow:0 8px 32px rgba(0,0,0,0.2)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <div style="font-size:15px;font-weight:700;color:var(--negro)">Disponibilidad de fechas</div>
+      <button onclick="cerrarCal()" style="background:none;border:none;font-size:22px;cursor:pointer;color:#888;line-height:1">✕</button>
+    </div>
+    <div style="margin-bottom:12px">
+      <label style="font-size:10px;font-weight:700;color:var(--gris);text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:4px">Buscar fecha</label>
+      <div style="display:flex;gap:8px">
+        <input type="date" id="calBuscador" style="flex:1;padding:7px 10px;border:1.5px solid var(--borde);border-radius:8px;font-size:13px;outline:none;font-family:inherit">
+        <button onclick="calBuscar()" style="padding:7px 14px;background:var(--dorado);color:white;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">Ir</button>
+      </div>
+    </div>
+    <div style="font-size:10px;display:flex;gap:12px;margin-bottom:10px;flex-wrap:wrap">
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:2px;background:#e74c3c;display:inline-block"></span>Ocupada</span>
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:2px;background:#f39c12;display:inline-block"></span>En revisión</span>
+      <span style="display:flex;align-items:center;gap:5px"><span style="width:11px;height:11px;border-radius:2px;background:#27ae60;display:inline-block"></span>Disponible</span>
+    </div>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <button onclick="calMes(-1)" style="background:none;border:1px solid var(--borde);border-radius:6px;padding:4px 14px;cursor:pointer;font-size:18px;color:var(--negro)">‹</button>
+      <span id="calTit" style="font-size:14px;font-weight:700;color:var(--negro)"></span>
+      <button onclick="calMes(1)" style="background:none;border:1px solid var(--borde);border-radius:6px;padding:4px 14px;cursor:pointer;font-size:18px;color:var(--negro)">›</button>
+    </div>
+    <div id="calGrid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center"></div>
+    <div id="calLoad" style="text-align:center;padding:8px;font-size:11px;color:var(--gris);display:none">Cargando...</div>
+    <div id="calDetalle" style="display:none;margin-top:14px;padding:12px 14px;background:var(--crema);border-radius:10px;border-left:3px solid var(--dorado)">
+      <div style="font-size:10px;font-weight:700;color:var(--gris);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px" id="calDetalleFecha"></div>
+      <div id="calDetalleItems"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

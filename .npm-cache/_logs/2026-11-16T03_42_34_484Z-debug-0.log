@@ -1,0 +1,211 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.3
+2 info using node@v22.20.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\Jose\Downloads\tesis2\.npmrc
+5 silly config load:file:C:\Users\Jose\.npmrc
+6 silly config load:file:C:\Users\Jose\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm install pdf-parse
+8 verbose argv "install" "pdf-parse" "--cache" ".npm-cache"
+9 verbose logfile logs-max:10 dir:C:\Users\Jose\Downloads\tesis2\.npm-cache\_logs\2026-11-16T03_42_34_484Z-
+10 verbose logfile C:\Users\Jose\Downloads\tesis2\.npm-cache\_logs\2026-11-16T03_42_34_484Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 silly idealTree buildDeps
+14 silly fetch manifest pdf-parse@*
+15 silly packumentCache full:https://registry.npmjs.org/pdf-parse cache-miss
+16 http fetch GET 200 https://registry.npmjs.org/pdf-parse 171ms (cache miss)
+17 silly packumentCache full:https://registry.npmjs.org/pdf-parse set size:undefined disposed:false
+18 silly placeDep ROOT pdf-parse@2.4.5 OK for:  want: *
+19 silly fetch manifest pdfjs-dist@5.4.296
+20 silly packumentCache full:https://registry.npmjs.org/pdfjs-dist cache-miss
+21 silly fetch manifest @napi-rs/canvas@0.1.80
+22 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas cache-miss
+23 http fetch GET 200 https://registry.npmjs.org/npm 238ms
+24 http fetch GET 200 https://registry.npmjs.org/pdfjs-dist 297ms (cache miss)
+25 silly packumentCache full:https://registry.npmjs.org/pdfjs-dist set size:undefined disposed:false
+26 http fetch GET 200 https://registry.npmjs.org/@napi-rs%2fcanvas 482ms (cache miss)
+27 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas set size:undefined disposed:false
+28 silly placeDep ROOT @napi-rs/canvas@0.1.80 OK for: pdf-parse@2.4.5 want: 0.1.80
+29 silly placeDep ROOT pdfjs-dist@5.4.296 OK for: pdf-parse@2.4.5 want: 5.4.296
+30 silly fetch manifest @napi-rs/canvas-darwin-x64@0.1.80
+31 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-darwin-x64 cache-miss
+32 silly fetch manifest @napi-rs/canvas-darwin-arm64@0.1.80
+33 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-darwin-arm64 cache-miss
+34 silly fetch manifest @napi-rs/canvas-android-arm64@0.1.80
+35 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-android-arm64 cache-miss
+36 silly fetch manifest @napi-rs/canvas-linux-x64-gnu@0.1.80
+37 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-linux-x64-gnu cache-miss
+38 silly fetch manifest @napi-rs/canvas-linux-x64-musl@0.1.80
+39 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-linux-x64-musl cache-miss
+40 silly fetch manifest @napi-rs/canvas-win32-x64-msvc@0.1.80
+41 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-win32-x64-msvc cache-miss
+42 silly fetch manifest @napi-rs/canvas-linux-arm64-gnu@0.1.80
+43 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-linux-arm64-gnu cache-miss
+44 silly fetch manifest @napi-rs/canvas-linux-arm64-musl@0.1.80
+45 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-linux-arm64-musl cache-miss
+46 silly fetch manifest @napi-rs/canvas-linux-riscv64-gnu@0.1.80
+47 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-linux-riscv64-gnu cache-miss
+48 silly fetch manifest @napi-rs/canvas-linux-arm-gnueabihf@0.1.80
+49 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-linux-arm-gnueabihf cache-miss
+50 http fetch GET 200 https://registry.npmjs.org/@napi-rs%2fcanvas-linux-x64-musl 150ms (cache miss)
+51 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-linux-x64-musl set size:undefined disposed:false
+52 http fetch GET 200 https://registry.npmjs.org/@napi-rs%2fcanvas-linux-arm64-gnu 152ms (cache miss)
+53 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-linux-arm64-gnu set size:undefined disposed:false
+54 http fetch GET 200 https://registry.npmjs.org/@napi-rs%2fcanvas-darwin-arm64 174ms (cache miss)
+55 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-darwin-arm64 set size:undefined disposed:false
+56 http fetch GET 200 https://registry.npmjs.org/@napi-rs%2fcanvas-linux-x64-gnu 310ms (cache miss)
+57 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-linux-x64-gnu set size:undefined disposed:false
+58 http fetch GET 200 https://registry.npmjs.org/@napi-rs%2fcanvas-linux-arm-gnueabihf 320ms (cache miss)
+59 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-linux-arm-gnueabihf set size:undefined disposed:false
+60 http fetch GET 200 https://registry.npmjs.org/@napi-rs%2fcanvas-win32-x64-msvc 406ms (cache miss)
+61 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-win32-x64-msvc set size:undefined disposed:false
+62 http fetch GET 200 https://registry.npmjs.org/@napi-rs%2fcanvas-linux-arm64-musl 427ms (cache miss)
+63 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-linux-arm64-musl set size:undefined disposed:false
+64 http fetch GET 200 https://registry.npmjs.org/@napi-rs%2fcanvas-darwin-x64 463ms (cache miss)
+65 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-darwin-x64 set size:undefined disposed:false
+66 http fetch GET 200 https://registry.npmjs.org/@napi-rs%2fcanvas-linux-riscv64-gnu 605ms (cache miss)
+67 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-linux-riscv64-gnu set size:undefined disposed:false
+68 http fetch GET 200 https://registry.npmjs.org/@napi-rs%2fcanvas-android-arm64 613ms (cache miss)
+69 silly packumentCache full:https://registry.npmjs.org/@napi-rs%2fcanvas-android-arm64 set size:undefined disposed:false
+70 silly placeDep ROOT @napi-rs/canvas-android-arm64@0.1.80 OK for: @napi-rs/canvas@0.1.80 want: 0.1.80
+71 silly placeDep ROOT @napi-rs/canvas-darwin-arm64@0.1.80 OK for: @napi-rs/canvas@0.1.80 want: 0.1.80
+72 silly placeDep ROOT @napi-rs/canvas-darwin-x64@0.1.80 OK for: @napi-rs/canvas@0.1.80 want: 0.1.80
+73 silly placeDep ROOT @napi-rs/canvas-linux-arm-gnueabihf@0.1.80 OK for: @napi-rs/canvas@0.1.80 want: 0.1.80
+74 silly placeDep ROOT @napi-rs/canvas-linux-arm64-gnu@0.1.80 OK for: @napi-rs/canvas@0.1.80 want: 0.1.80
+75 silly placeDep ROOT @napi-rs/canvas-linux-arm64-musl@0.1.80 OK for: @napi-rs/canvas@0.1.80 want: 0.1.80
+76 silly placeDep ROOT @napi-rs/canvas-linux-riscv64-gnu@0.1.80 OK for: @napi-rs/canvas@0.1.80 want: 0.1.80
+77 silly placeDep ROOT @napi-rs/canvas-linux-x64-gnu@0.1.80 OK for: @napi-rs/canvas@0.1.80 want: 0.1.80
+78 silly placeDep ROOT @napi-rs/canvas-linux-x64-musl@0.1.80 OK for: @napi-rs/canvas@0.1.80 want: 0.1.80
+79 silly placeDep ROOT @napi-rs/canvas-win32-x64-msvc@0.1.80 OK for: @napi-rs/canvas@0.1.80 want: 0.1.80
+80 silly reify mark retired [ 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\@noble\\ciphers' ]
+81 silly reify mark retired [ 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\@noble\\hashes' ]
+82 silly reify mark retired [ 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\@swc\\helpers' ]
+83 silly reify mark retired [ 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\base64-js' ]
+84 silly reify mark retired [ 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\brotli' ]
+85 silly reify mark retired [ 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\clone' ]
+86 silly reify mark retired [ 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\dfa' ]
+87 silly reify mark retired [ 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\fast-deep-equal' ]
+88 silly reify mark retired [ 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\fflate' ]
+89 silly reify mark retired [ 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\fontkit' ]
+90 silly reify mark retired [ 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\linebreak' ]
+91 silly reify mark retired [ 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\pako' ]
+92 silly reify mark retired [ 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\pdfkit' ]
+93 silly reify mark retired [ 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\png-js' ]
+94 silly reify mark retired [ 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\restructure' ]
+95 silly reify mark retired [ 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\tiny-inflate' ]
+96 silly reify mark retired [
+96 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\unicode-properties'
+96 silly reify ]
+97 silly reify mark retired [ 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\unicode-trie' ]
+98 silly reify moves {
+98 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\@noble\\ciphers': 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\@noble\\.ciphers-YpStU0PA',
+98 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\@noble\\hashes': 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\@noble\\.hashes-L4YF3mYn',
+98 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\@swc\\helpers': 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\@swc\\.helpers-M6LKRxqW',
+98 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\base64-js': 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\.base64-js-4TPQQGDl',
+98 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\brotli': 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\.brotli-S1QUz8sT',
+98 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\clone': 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\.clone-bTTYk6bd',
+98 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\dfa': 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\.dfa-4onYwkky',
+98 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\fast-deep-equal': 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\.fast-deep-equal-41VCRkXx',
+98 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\fflate': 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\.fflate-Erdg7MLQ',
+98 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\fontkit': 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\.fontkit-oANvTnOz',
+98 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\linebreak': 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\.linebreak-mKReFrR7',
+98 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\pako': 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\.pako-xmAqr7G7',
+98 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\pdfkit': 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\.pdfkit-Mg7q61iL',
+98 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\png-js': 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\.png-js-lk9OnccE',
+98 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\restructure': 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\.restructure-K4a0xKAZ',
+98 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\tiny-inflate': 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\.tiny-inflate-1e0C84AF',
+98 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\unicode-properties': 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\.unicode-properties-sFCcDS5x',
+98 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\unicode-trie': 'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\.unicode-trie-4iBYVrva'
+98 silly reify }
+99 verbose reify failed optional dependency C:\Users\Jose\Downloads\tesis2\node_modules\@napi-rs\canvas-linux-x64-musl
+100 silly reify mark deleted [
+100 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\@napi-rs\\canvas-linux-x64-musl'
+100 silly reify ]
+101 verbose reify failed optional dependency C:\Users\Jose\Downloads\tesis2\node_modules\@napi-rs\canvas-linux-x64-gnu
+102 silly reify mark deleted [
+102 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\@napi-rs\\canvas-linux-x64-gnu'
+102 silly reify ]
+103 verbose reify failed optional dependency C:\Users\Jose\Downloads\tesis2\node_modules\@napi-rs\canvas-linux-riscv64-gnu
+104 silly reify mark deleted [
+104 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\@napi-rs\\canvas-linux-riscv64-gnu'
+104 silly reify ]
+105 verbose reify failed optional dependency C:\Users\Jose\Downloads\tesis2\node_modules\@napi-rs\canvas-linux-arm64-musl
+106 silly reify mark deleted [
+106 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\@napi-rs\\canvas-linux-arm64-musl'
+106 silly reify ]
+107 verbose reify failed optional dependency C:\Users\Jose\Downloads\tesis2\node_modules\@napi-rs\canvas-linux-arm64-gnu
+108 silly reify mark deleted [
+108 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\@napi-rs\\canvas-linux-arm64-gnu'
+108 silly reify ]
+109 verbose reify failed optional dependency C:\Users\Jose\Downloads\tesis2\node_modules\@napi-rs\canvas-linux-arm-gnueabihf
+110 silly reify mark deleted [
+110 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\@napi-rs\\canvas-linux-arm-gnueabihf'
+110 silly reify ]
+111 verbose reify failed optional dependency C:\Users\Jose\Downloads\tesis2\node_modules\@napi-rs\canvas-darwin-x64
+112 silly reify mark deleted [
+112 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\@napi-rs\\canvas-darwin-x64'
+112 silly reify ]
+113 verbose reify failed optional dependency C:\Users\Jose\Downloads\tesis2\node_modules\@napi-rs\canvas-darwin-arm64
+114 silly reify mark deleted [
+114 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\@napi-rs\\canvas-darwin-arm64'
+114 silly reify ]
+115 verbose reify failed optional dependency C:\Users\Jose\Downloads\tesis2\node_modules\@napi-rs\canvas-android-arm64
+116 silly reify mark deleted [
+116 silly reify   'C:\\Users\\Jose\\Downloads\\tesis2\\node_modules\\@napi-rs\\canvas-android-arm64'
+116 silly reify ]
+117 http cache @napi-rs/canvas-win32-x64-msvc@https://registry.npmjs.org/@napi-rs/canvas-win32-x64-msvc/-/canvas-win32-x64-msvc-0.1.80.tgz 0ms (cache hit)
+118 http cache @napi-rs/canvas@https://registry.npmjs.org/@napi-rs/canvas/-/canvas-0.1.80.tgz 1ms (cache hit)
+119 http cache pdfjs-dist@https://registry.npmjs.org/pdfjs-dist/-/pdfjs-dist-5.4.296.tgz 0ms (cache hit)
+120 silly tarball no local data for @napi-rs/canvas-win32-x64-msvc@https://registry.npmjs.org/@napi-rs/canvas-win32-x64-msvc/-/canvas-win32-x64-msvc-0.1.80.tgz. Extracting by manifest.
+121 http cache pdf-parse@https://registry.npmjs.org/pdf-parse/-/pdf-parse-2.4.5.tgz 0ms (cache hit)
+122 silly tarball no local data for @napi-rs/canvas@https://registry.npmjs.org/@napi-rs/canvas/-/canvas-0.1.80.tgz. Extracting by manifest.
+123 silly tarball no local data for pdfjs-dist@https://registry.npmjs.org/pdfjs-dist/-/pdfjs-dist-5.4.296.tgz. Extracting by manifest.
+124 silly tarball no local data for pdf-parse@https://registry.npmjs.org/pdf-parse/-/pdf-parse-2.4.5.tgz. Extracting by manifest.
+125 http fetch GET 200 https://registry.npmjs.org/@napi-rs/canvas/-/canvas-0.1.80.tgz 257ms (cache miss)
+126 http fetch GET 200 https://registry.npmjs.org/pdf-parse/-/pdf-parse-2.4.5.tgz 621ms (cache miss)
+127 http fetch GET 200 https://registry.npmjs.org/@napi-rs/canvas-win32-x64-msvc/-/canvas-win32-x64-msvc-0.1.80.tgz 771ms (cache miss)
+128 http fetch GET 200 https://registry.npmjs.org/pdfjs-dist/-/pdfjs-dist-5.4.296.tgz 5425ms (cache miss)
+129 silly ADD node_modules/@napi-rs/canvas-win32-x64-msvc
+130 silly ADD
+131 silly ADD
+132 silly ADD
+133 silly ADD
+134 silly ADD
+135 silly ADD
+136 silly ADD
+137 silly ADD
+138 silly ADD
+139 silly ADD node_modules/pdfjs-dist
+140 silly ADD node_modules/@napi-rs/canvas
+141 silly ADD node_modules/pdf-parse
+142 silly REMOVE node_modules/unicode-trie
+143 silly REMOVE node_modules/unicode-properties
+144 silly REMOVE node_modules/tiny-inflate
+145 silly REMOVE node_modules/restructure
+146 silly REMOVE node_modules/png-js
+147 silly REMOVE node_modules/pdfkit
+148 silly REMOVE node_modules/pako
+149 silly REMOVE node_modules/linebreak
+150 silly REMOVE node_modules/linebreak/node_modules/base64-js
+151 silly REMOVE node_modules/fontkit
+152 silly REMOVE node_modules/fflate
+153 silly REMOVE node_modules/fast-deep-equal
+154 silly REMOVE node_modules/dfa
+155 silly REMOVE node_modules/clone
+156 silly REMOVE node_modules/brotli
+157 silly REMOVE node_modules/base64-js
+158 silly REMOVE node_modules/@swc/helpers
+159 silly REMOVE node_modules/@noble/hashes
+160 silly REMOVE node_modules/@noble/ciphers
+161 verbose cwd C:\Users\Jose\Downloads\tesis2
+162 verbose os Windows_NT 10.0.22000
+163 verbose node v22.20.0
+164 verbose npm  v10.9.3
+165 notice
+165 notice New major version of npm available! 10.9.3 -> 12.2.2
+165 notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+165 notice To update run: npm install -g npm@12.2.2
+165 notice  { force: true, [Symbol(proc-log.meta)]: true }
+166 verbose exit 0
+167 info ok

@@ -1,0 +1,17 @@
+DIAGRAMAS RAÍCES — BORRADOR V4, REGLAS V1 CONFIRMADAS
+
+- Proceso_AS_IS_Raices.bpmn / Proceso_TO_BE_Raices.bpmn: BPMN 2.0 para importar y editar en Bizagi Modeler.
+- Archivos .drawio: editar en diagrams.net.
+- Modelo_de_datos_Raices.drawio: vista comercial/cotizaciones.
+- Modelo_datos_Raices_02_Tarifas_Ambientes.drawio: tarifas, reglas, disponibilidad y ambientes.
+- Modelo_datos_Raices_03_Eventos_Pagos.drawio: reservas, contratos, pagos, asignaciones y auditoría.
+- Modelo_datos_Raices_04_Fase_Posterior.drawio: inventario, galería y extensión de control laboral.
+- Casos_de_uso_Raices.drawio y Arquitectura_Raices.drawio: propuestas preliminares.
+
+Fuentes: ZIP Instrumentos_Raices_llenos_v2, entrevistas U1/U2, documento de reglas, formularios y aclaraciones posteriores del investigador. En U1 varias respuestas remiten a lo que explicó U2; se conserva esa procedencia en vez de presentarlas como corroboraciones independientes.
+
+REGLAS CONFIRMADAS PARA V1: una reserva por fecha; cotización vence a los 15 días y se libera la fecha si no se paga adelanto en ese plazo; adelanto permitido 10–30 %; paquetes básico, estándar y premium; el nuevo sistema reemplazará el generador HTML; se guardarán nombre, celular, DNI y dirección; turnos, reemplazos, horas y pagos del personal se posponen a versiones futuras. Ambos roles pueden eliminar según Documento 3; se propone baja lógica con auditoría.
+
+Pendientes: quién puede autorizar una excepción fuera del adelanto 10–30 %; edades que separan tarifa de adulto/niño; importación de datos históricos de Drive/Excel al reemplazar el generador; reglas exactas de temporada/horario, calendario de cuotas y devolución; conservación y eliminación segura de DNI/dirección; definir en una futura versión si el salón dividido admitirá más de un evento por fecha.
+
+Estos modelos son un diseño lógico preliminar basado en la información actualizada; no describen software implementado ni sustituyen la validación final de las reglas.

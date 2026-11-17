@@ -1,0 +1,129 @@
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 1
+DOCUMENTO 3. REGLAS DE NEGOCIO, DATOS Y ROLES
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026
+Completar con los dueños. Las reglas que aparecen como candidatas vienen del proyecto; no se consideran
+aprobadas hasta que se confirmen y se firmen. Usar ejemplos sin nombres ni teléfonos de clientes.
+A. Paquetes, servicios y precios
+Paquetes que ofrecen y qué incluye cada uno (anotar nombre comercial, componentes y
+excepciones):
+El paquete básico. Incluye ambiente decorado con decoración básica, mensajería, cristalería. En el
+paquete estándar, la mesa, las sillas, la decoración, la minería, la cristalería, el equipo de sonido, la
+torta, dos bocaditos, la comida, las bebidas, los cócteles Adicional el equipo de filmación, la hora, Loca.
+Y en el paquete premium trae todo lo del estándar, pero mejor todo lo que es básico estándar y una
+decoración adicional personalizada.
+Precios vigentes por paquete/ambiente, moneda, vigencia y quién autoriza cambios:
+Los precios vigentes por paquete varían dependiendo a todos los ítems que quiera el cliente no cada
+evento es diferente porque lo hace a su gusto entonces no hay como una tarifa fija por el Cliente ese
+sería la tarifa fija, pero cuando altera cuando el cliente requiere personalizar personalizar sus servicios.
+Por ejemplo etiquetar las las bebidas, agregar más decoración en el área verde en el local más luces
+más detalles ahí es donde varía el costo del servicio . Cambiar tarifas: ambos (propietario y gerente).
+Temporadas, días de semana, horarios, aforo u otras condiciones que cambian el precio:
+La cotización que se le da al cliente es por la cantidad de personas, porque de hecho De que hay
+mientras más más personas asisten a un evento y el cliente quiere el paquete completo baja el costo del
+servicio mientras más poco sean la cantidad de personas asistentes al evento, sube más ahora en
+cuanto al horario si es de lunes a viernes a jueves si varía el costo es un porcentaje de promoción que se
+les hace un 20 o 30% porque de lunes a viernes no están movido, no es más tranquilo ahora en cuanto
+al horario si la fiesta empieza de día de 10 más tranquilo que de noche para cualquier persona trabajar
+en ese horario, entonces también es diferenciado en cuanto al costo , Como raíces es un negocio
+reciente, aún no tenemos definidos nuestras temporadas altas y bajas
+Opcionales, cantidades, precio y reglas de cálculo:
+Descuentos y promociones: quién autoriza, límites, compatibilidades y cómo quedan
+registrados:
+Autorizan descuentos: ambos (propietario y gerente).
+B. Reservas, disponibilidad y pagos
+☒ Un evento por fecha ☐ Otra regla
+Detalle/corrección:
+¿Qué estados usan y qué significa cada uno? (consulta, cotización, separada, confirmada,
+cancelada, etc.)
+Cuándo el cliente consulta es porque viene a preguntar qué tipo de Servicio Ofrecemos cómo es el local
+y es una posible es un proyecto de una posible, cuándo es cotización guía al cliente, está interesado en
+separar una fecha , quiere decir que el Cliente ha dado un adelanto, puede ser mínimo o de acuerdo a lo
+que él pueda, y eso significa que lo va a ejecutar el evento. Eso se separado, Confirmado, significa que
+el cliente ya dio el adelanto y es más que seguro, Y cancelado significa que el cliente va a pedir su
+adelanto de vuelta y que no se va a realizar el evento con nosotros.
+
+-- 1 of 3 --
+
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 2
+¿Cuándo se bloquea una fecha? ¿Cuánto dura la separación y quién puede extenderla?
+Se bloquea una fecha cuando un cliente ya hizo la reservación con tiempo. La separación dura 15 días
+de De la cotización realizada, La gerente puede extenderla. Propietario: la cotización tiene vigencia de
+15 días; el tiempo de separación es variable según el cliente (puede separar el mismo día para un
+evento dentro de un año, o en la misma semana del evento).
+El proyecto propone liberar fechas no confirmadas a los 7 días. ¿Aplica? Si no, indique regla
+exacta:
+A los 15 días se libera la fecha. Propietario confirma 15 días de vigencia (no 7).
+El proyecto propone adelanto entre 30 % y 60 %. ¿Cuál es la regla real por paquete/ocasión?
+Hay una variación, dependiendo del cliente y de la gerente con quienes deciden, si es que va a ser una
+reserva 20%, 30%, 40%, 50% hasta 60%. Propietario: 20 % a 30 %; depende del paquete (si se le resta
+algún ítem), del cliente (nuevo o conocido) y de la gerente cuando conversa internamente con el cliente.
+¿Cómo registran pagos, comprobantes, saldo, cancelaciones y devoluciones?
+Todo se registra manualmente en un cuaderno físico
+Configuración de ambientes: área verde, salón completo/medio salón y mezanine;
+combinaciones/restricciones:
+Área verde, salón completo. Área verde, salón completo más mezanine. Área verde más salón a la
+mitad. Área verde solo.
+C. Clientes, seguimiento y coordinación
+Datos mínimos del cliente que se necesitan y finalidad de cada dato:
+Nombre completo, número de celular, dirección y DNI. Finalidad (propietario): la dirección sirve para
+saber si es residente de Cusco o de San Jerónimo (posible descuento); el DNI, para corroborar nombre,
+edad y demás datos.
+Canales de consulta y qué información desean conservar de cada contacto:
+Redes sociales, más que nada Facebook, Instagram, TikTok y el principal de todos es WhatsApp,
+también llamadas por operador. Nombre completo y saber si ha sido nuestro Cliente o si es Cliente
+nuevo.
+Estados de seguimiento, recordatorios y quién se encarga de cada próxima acción:
+Necesitamos saber si un cliente es nuevo o ya me escribió antes. Necesito saber si este cliente ya le
+atendí una cotización o si es que me está pidiendo la misma cotización con otro tipo de paquete o si es
+que el mismo cliente quiere una nueva cotización pero sin tantas cosas., Muchas veces el Cliente
+escribe o llama y se le envía una cotización. Y me gustaría hacer el seguimiento de clientes para
+llamarles en tres días o dos días, para saber si siguen interesados o pendientes y si es que me dicen que
+sí lanzarles un ultimatum y si es que me dicen que no también lanzarles un ultimatum y ya.
+Datos de proveedores/personal, asignación, tareas, cambios y fechas límite:
+Nombres de proveedores, Qué tipo de producto o Servicio brindan al Local, Los cambios que pueden
+haber los horarios de entrega o los horarios de trabajo o los horarios que se puedan modificar.
+D. Roles, permisos y operación
+Para cada acción, marcar quién puede realizarla: Propietario (P), Gerente (G), ambos (A), nadie (N) o definir.
+Ver clientes/cotizaciones: ☐ P ☐ G ☒ A ☐ definir ______
+Crear o editar cotización: ☐ P ☐ G ☒ A ☐ definir ______
+Aplicar descuento: ☐ P ☐ G ☒ A ☐ definir ______
+Confirmar/cancelar reserva: ☐ P ☐ G ☒ A ☐ definir ______
+Cambiar tarifas: ☐ P ☐ G ☒ A ☐ definir ______
+Registrar pagos: ☐ P ☐ G ☒ A ☐ definir ______
+Gestionar usuarios: ☐ P ☐ G ☒ A ☐ definir ______
+Ver reportes: ☐ P ☐ G ☒ A ☐ definir ______
+
+-- 2 of 3 --
+
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 3
+Eliminar datos: ☐ P ☐ G ☒ A ☐ definir ______
+¿Se necesita auditoría de quién cambió un precio, estado o reserva? ¿Qué cambios?
+Muchas veces los cambios se hacen porque se conversa entre el Cliente y el gerente no hay
+necesariamente como una razón específica o un motivo por el cual le voy a rebajar, no simplemente se
+conversa y ya.
+Equipos, conectividad, copias de seguridad, recuperación y soporte esperado:
+Contamos con una laptop en estado medio de gama media, contamos con una impresora una una
+computadora estática también de gama media y los datos del Internet se comparten del celular, pero
+últimamente raíces piensa tener Wi-Fi para incorporar cámaras a todo el establecimiento Generador de
+cotizaciones actual (propietario): herramienta web básica en HTML que guarda la información en Drive y
+registra las cotizaciones en una tabla Excel.
+E. Confirmación de reglas
+Las reglas anotadas reflejan lo explicado por los responsables del Centro y podrán convertirse en criterios del
+sistema tras su revisión.
+Constancia y firmas
+Declaro que revisé las respuestas registradas en este formato y que reflejan la información proporcionada o la
+evidencia observada.
+Nombre y cargo
+(Propietario): WILLIAM PAÑO CHINCHAZO — Propietario
+Firma:
+Fecha:
+Nombre y cargo (Gerente): ANA FLORES — Gerente
+Firma:
+Fecha:
+Nombre y cargo
+(Investigador): José Adelky Andia Sullcaccori
+Firma:
+Fecha:
+
+-- 3 of 3 --
+

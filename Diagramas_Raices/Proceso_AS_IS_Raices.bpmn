@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_Raices" targetNamespace="https://uandina.edu.pe/raices/bpmn">
+ <bpmn:process id="Process_Raices" name="Proceso actual de consulta, cotización y reserva" isExecutable="false">
+  <bpmn:laneSet id="LaneSet_1"><bpmn:lane id="Lane_Internal" name="Gerencia / propietario — herramientas actuales"><bpmn:flowNodeRef>Start_Consulta</bpmn:flowNodeRef><bpmn:flowNodeRef>Task_Recibir</bpmn:flowNodeRef><bpmn:flowNodeRef>Task_Disponibilidad</bpmn:flowNodeRef><bpmn:flowNodeRef>Gateway_Fecha</bpmn:flowNodeRef><bpmn:flowNodeRef>Task_Alternativa</bpmn:flowNodeRef><bpmn:flowNodeRef>End_NoFecha</bpmn:flowNodeRef><bpmn:flowNodeRef>Task_Precio</bpmn:flowNodeRef><bpmn:flowNodeRef>Task_Cotizar</bpmn:flowNodeRef><bpmn:flowNodeRef>Task_Enviar</bpmn:flowNodeRef><bpmn:flowNodeRef>Gateway_Acepta</bpmn:flowNodeRef><bpmn:flowNodeRef>Task_SinSeg</bpmn:flowNodeRef><bpmn:flowNodeRef>End_Perdida</bpmn:flowNodeRef><bpmn:flowNodeRef>Task_Adelanto</bpmn:flowNodeRef><bpmn:flowNodeRef>Task_Contrato</bpmn:flowNodeRef><bpmn:flowNodeRef>Task_Bloquear</bpmn:flowNodeRef><bpmn:flowNodeRef>Task_Coord</bpmn:flowNodeRef><bpmn:flowNodeRef>End_Evento</bpmn:flowNodeRef></bpmn:lane></bpmn:laneSet>
+  <bpmn:startEvent id="Start_Consulta" name="Llega una consulta"><bpmn:outgoing>F01</bpmn:outgoing></bpmn:startEvent>
+<bpmn:manualTask id="Task_Recibir" name="Recibir consulta y entender tipo de evento, fecha y asistentes"><bpmn:incoming>F01</bpmn:incoming><bpmn:outgoing>F02</bpmn:outgoing></bpmn:manualTask>
+<bpmn:manualTask id="Task_Disponibilidad" name="Buscar fecha en calendarios físicos no sincronizados"><bpmn:incoming>F02</bpmn:incoming><bpmn:outgoing>F03</bpmn:outgoing></bpmn:manualTask>
+<bpmn:exclusiveGateway id="Gateway_Fecha" name="¿Fecha disponible?"><bpmn:incoming>F03</bpmn:incoming><bpmn:outgoing>F04</bpmn:outgoing><bpmn:outgoing>F06</bpmn:outgoing></bpmn:exclusiveGateway>
+<bpmn:manualTask id="Task_Alternativa" name="Informar o conversar otra fecha"><bpmn:incoming>F04</bpmn:incoming><bpmn:outgoing>F05</bpmn:outgoing></bpmn:manualTask>
+<bpmn:endEvent id="End_NoFecha" name="Oportunidad pendiente"><bpmn:incoming>F05</bpmn:incoming></bpmn:endEvent>
+<bpmn:manualTask id="Task_Precio" name="Consultar precios en Excel, mensajes o cuaderno"><bpmn:incoming>F06</bpmn:incoming><bpmn:outgoing>F07</bpmn:outgoing></bpmn:manualTask>
+<bpmn:manualTask id="Task_Cotizar" name="Preparar cotización con generador HTML o formulario en papel"><bpmn:incoming>F07</bpmn:incoming><bpmn:outgoing>F08</bpmn:outgoing></bpmn:manualTask>
+<bpmn:manualTask id="Task_Enviar" name="Guardar PDF en Drive y enviarlo al cliente"><bpmn:incoming>F08</bpmn:incoming><bpmn:outgoing>F09</bpmn:outgoing></bpmn:manualTask>
+<bpmn:exclusiveGateway id="Gateway_Acepta" name="¿Acepta/separa?"><bpmn:incoming>F09</bpmn:incoming><bpmn:outgoing>F10</bpmn:outgoing><bpmn:outgoing>F12</bpmn:outgoing></bpmn:exclusiveGateway>
+<bpmn:manualTask id="Task_SinSeg" name="No existe seguimiento sistemático"><bpmn:incoming>F10</bpmn:incoming><bpmn:outgoing>F11</bpmn:outgoing></bpmn:manualTask>
+<bpmn:endEvent id="End_Perdida" name="Oportunidad queda pendiente"><bpmn:incoming>F11</bpmn:incoming></bpmn:endEvent>
+<bpmn:manualTask id="Task_Adelanto" name="Negociar y recibir adelanto"><bpmn:incoming>F12</bpmn:incoming><bpmn:outgoing>F13</bpmn:outgoing></bpmn:manualTask>
+<bpmn:manualTask id="Task_Contrato" name="Completar contrato en papel y anotar pago en cuaderno"><bpmn:incoming>F13</bpmn:incoming><bpmn:outgoing>F14</bpmn:outgoing></bpmn:manualTask>
+<bpmn:manualTask id="Task_Bloquear" name="Marcar reserva en calendario físico"><bpmn:incoming>F14</bpmn:incoming><bpmn:outgoing>F15</bpmn:outgoing></bpmn:manualTask>
+<bpmn:manualTask id="Task_Coord" name="Coordinar detalles con cliente, proveedores y personal por llamadas/reuniones"><bpmn:incoming>F15</bpmn:incoming><bpmn:outgoing>F16</bpmn:outgoing></bpmn:manualTask>
+<bpmn:endEvent id="End_Evento" name="Evento atendido"><bpmn:incoming>F16</bpmn:incoming></bpmn:endEvent>
+  <bpmn:sequenceFlow id="F01" sourceRef="Start_Consulta" targetRef="Task_Recibir"/>
+<bpmn:sequenceFlow id="F02" sourceRef="Task_Recibir" targetRef="Task_Disponibilidad"/>
+<bpmn:sequenceFlow id="F03" sourceRef="Task_Disponibilidad" targetRef="Gateway_Fecha"/>
+<bpmn:sequenceFlow id="F04" sourceRef="Gateway_Fecha" targetRef="Task_Alternativa" name="No"/>
+<bpmn:sequenceFlow id="F05" sourceRef="Task_Alternativa" targetRef="End_NoFecha"/>
+<bpmn:sequenceFlow id="F06" sourceRef="Gateway_Fecha" targetRef="Task_Precio" name="Sí"/>
+<bpmn:sequenceFlow id="F07" sourceRef="Task_Precio" targetRef="Task_Cotizar"/>
+<bpmn:sequenceFlow id="F08" sourceRef="Task_Cotizar" targetRef="Task_Enviar"/>
+<bpmn:sequenceFlow id="F09" sourceRef="Task_Enviar" targetRef="Gateway_Acepta"/>
+<bpmn:sequenceFlow id="F10" sourceRef="Gateway_Acepta" targetRef="Task_SinSeg" name="No / no responde"/>
+<bpmn:sequenceFlow id="F11" sourceRef="Task_SinSeg" targetRef="End_Perdida"/>
+<bpmn:sequenceFlow id="F12" sourceRef="Gateway_Acepta" targetRef="Task_Adelanto" name="Sí"/>
+<bpmn:sequenceFlow id="F13" sourceRef="Task_Adelanto" targetRef="Task_Contrato"/>
+<bpmn:sequenceFlow id="F14" sourceRef="Task_Contrato" targetRef="Task_Bloquear"/>
+<bpmn:sequenceFlow id="F15" sourceRef="Task_Bloquear" targetRef="Task_Coord"/>
+<bpmn:sequenceFlow id="F16" sourceRef="Task_Coord" targetRef="End_Evento"/>
+ </bpmn:process>
+ <bpmndi:BPMNDiagram id="Diagram_Raices"><bpmndi:BPMNPlane id="Plane_Raices" bpmnElement="Process_Raices">
+  <bpmndi:BPMNShape id="Shape_Lane_Internal" bpmnElement="Lane_Internal" isHorizontal="true"><dc:Bounds x="20" y="20" width="1845" height="260"/></bpmndi:BPMNShape><bpmndi:BPMNShape id="Shape_Start_Consulta" bpmnElement="Start_Consulta"><dc:Bounds x="55" y="180" width="36" height="36"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Shape_Task_Recibir" bpmnElement="Task_Recibir"><dc:Bounds x="115" y="168" width="135" height="60"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Shape_Task_Disponibilidad" bpmnElement="Task_Disponibilidad"><dc:Bounds x="275" y="168" width="145" height="60"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Shape_Gateway_Fecha" bpmnElement="Gateway_Fecha" isMarkerVisible="true"><dc:Bounds x="445" y="173" width="50" height="50"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Shape_Task_Alternativa" bpmnElement="Task_Alternativa"><dc:Bounds x="525" y="55" width="140" height="60"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Shape_End_NoFecha" bpmnElement="End_NoFecha"><dc:Bounds x="700" y="67" width="36" height="36"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Shape_Task_Precio" bpmnElement="Task_Precio"><dc:Bounds x="530" y="168" width="145" height="60"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Shape_Task_Cotizar" bpmnElement="Task_Cotizar"><dc:Bounds x="705" y="168" width="150" height="60"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Shape_Task_Enviar" bpmnElement="Task_Enviar"><dc:Bounds x="880" y="168" width="135" height="60"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Shape_Gateway_Acepta" bpmnElement="Gateway_Acepta" isMarkerVisible="true"><dc:Bounds x="1045" y="173" width="50" height="50"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Shape_Task_SinSeg" bpmnElement="Task_SinSeg"><dc:Bounds x="1125" y="55" width="145" height="60"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Shape_End_Perdida" bpmnElement="End_Perdida"><dc:Bounds x="1300" y="67" width="36" height="36"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Shape_Task_Adelanto" bpmnElement="Task_Adelanto"><dc:Bounds x="1120" y="168" width="135" height="60"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Shape_Task_Contrato" bpmnElement="Task_Contrato"><dc:Bounds x="1280" y="168" width="150" height="60"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Shape_Task_Bloquear" bpmnElement="Task_Bloquear"><dc:Bounds x="1455" y="168" width="140" height="60"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Shape_Task_Coord" bpmnElement="Task_Coord"><dc:Bounds x="1620" y="168" width="160" height="60"/></bpmndi:BPMNShape>
+<bpmndi:BPMNShape id="Shape_End_Evento" bpmnElement="End_Evento"><dc:Bounds x="1805" y="180" width="36" height="36"/></bpmndi:BPMNShape><bpmndi:BPMNEdge id="Edge_F01" bpmnElement="F01"><di:waypoint x="91" y="198"/><di:waypoint x="115" y="198"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="Edge_F02" bpmnElement="F02"><di:waypoint x="250" y="198"/><di:waypoint x="275" y="198"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="Edge_F03" bpmnElement="F03"><di:waypoint x="420" y="198"/><di:waypoint x="445" y="198"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="Edge_F04" bpmnElement="F04"><di:waypoint x="495" y="198"/><di:waypoint x="517" y="198"/><di:waypoint x="517" y="85"/><di:waypoint x="525" y="85"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="Edge_F05" bpmnElement="F05"><di:waypoint x="665" y="85"/><di:waypoint x="700" y="85"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="Edge_F06" bpmnElement="F06"><di:waypoint x="495" y="198"/><di:waypoint x="530" y="198"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="Edge_F07" bpmnElement="F07"><di:waypoint x="675" y="198"/><di:waypoint x="705" y="198"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="Edge_F08" bpmnElement="F08"><di:waypoint x="855" y="198"/><di:waypoint x="880" y="198"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="Edge_F09" bpmnElement="F09"><di:waypoint x="1015" y="198"/><di:waypoint x="1045" y="198"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="Edge_F10" bpmnElement="F10"><di:waypoint x="1095" y="198"/><di:waypoint x="1117" y="198"/><di:waypoint x="1117" y="85"/><di:waypoint x="1125" y="85"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="Edge_F11" bpmnElement="F11"><di:waypoint x="1270" y="85"/><di:waypoint x="1300" y="85"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="Edge_F12" bpmnElement="F12"><di:waypoint x="1095" y="198"/><di:waypoint x="1120" y="198"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="Edge_F13" bpmnElement="F13"><di:waypoint x="1255" y="198"/><di:waypoint x="1280" y="198"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="Edge_F14" bpmnElement="F14"><di:waypoint x="1430" y="198"/><di:waypoint x="1455" y="198"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="Edge_F15" bpmnElement="F15"><di:waypoint x="1595" y="198"/><di:waypoint x="1620" y="198"/></bpmndi:BPMNEdge>
+<bpmndi:BPMNEdge id="Edge_F16" bpmnElement="F16"><di:waypoint x="1780" y="198"/><di:waypoint x="1805" y="198"/></bpmndi:BPMNEdge>
+ </bpmndi:BPMNPlane></bpmndi:BPMNDiagram>
+</bpmn:definitions>

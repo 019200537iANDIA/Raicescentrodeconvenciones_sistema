@@ -1,0 +1,49 @@
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 1
+DOCUMENTO 5. ENCUESTA DE SATISFACCIÓN Y PERCEPCIÓN
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026
+Aplicar individualmente a propietario y gerente antes de implementar el sistema. Repetir exactamente estas
+preguntas después de que ambos hayan usado la solución durante el periodo que se acuerde. No sugerir
+respuestas ni completar por la persona.
+Datos de aplicación
+Código: ☐ U1 ☒ U2 Momento: ☒ antes ☐ después
+Fecha: 03/11/2026 Aplicador: José Adelky Andia Sullcaccori Tiempo de respuesta: 20 min
+Escala para cada afirmación: 1 = totalmente en desacuerdo; 2 = en desacuerdo; 3 = ni de acuerdo ni en
+desacuerdo; 4 = de acuerdo; 5 = totalmente de acuerdo. Marque una opción. Si no puede responder, marque
+N/A.
+1. Puedo encontrar la información necesaria de una consulta o cliente cuando la necesito.
+☐ 1 ☐ 2 ☒ 3 ☐ 4 ☐ 5 ☐ N/A
+2. Puedo saber con claridad si una fecha está disponible.
+☐ 1 ☐ 2 ☒ 3 ☐ 4 ☐ 5 ☐ N/A
+3. El proceso actual me permite preparar cotizaciones sin pasos o búsquedas innecesarias.
+☐ 1 ☐ 2 ☒ 3 ☐ 4 ☐ 5 ☐ N/A
+4. La información de cotizaciones, precios y reservas se mantiene consistente.
+☐ 1 ☐ 2 ☒ 3 ☐ 4 ☐ 5 ☐ N/A
+5. Puedo recordar y dar seguimiento a las cotizaciones pendientes.
+☐ 1 ☒ 2 ☐ 3 ☐ 4 ☐ 5 ☐ N/A
+6. La coordinación de las tareas del evento queda clara para quienes participan.
+☐ 1 ☐ 2 ☒ 3 ☐ 4 ☐ 5 ☐ N/A
+7. Estoy satisfecho/a con la forma actual de gestionar las operaciones del Centro.
+☐ 1 ☐ 2 ☒ 3 ☐ 4 ☐ 5 ☐ N/A
+Preguntas abiertas
+¿Qué parte del proceso actual funciona bien y debería conservarse?
+El generador de cotizaciones es una herramienta útil, pero tiene tecnología básica que no permite ser
+escalable a los distintos módulos que también se necesita Para que toda la información se comparta.
+¿Qué problema le afecta más en su trabajo diario?
+Que la información esté dispersa
+Después de usar el sistema (solo en medición posterior): ¿qué mejoró y qué sigue siendo
+difícil?
+Comentario adicional:
+Uso de las respuestas
+
+-- 1 of 2 --
+
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 2
+Reportar resultados por código U1/U2 y momento (antes/después). Con dos usuarios, presentar respuestas y
+cambios descriptivamente; no afirmar representatividad estadística.
+Nombre y cargo
+(Participante): ANA FLORES — Gerente
+Firma:
+Fecha:
+
+-- 2 of 2 --
+

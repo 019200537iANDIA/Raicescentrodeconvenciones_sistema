@@ -1,0 +1,156 @@
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 1
+DOCUMENTO 2. LEVANTAMIENTO Y VALIDACIÓN DE
+REQUERIMIENTOS
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026
+Instrucción: la lista siguiente proviene del proyecto de tesis y es solo una hipótesis inicial. Con cada usuario
+marque confirmar, cambiar o descartar; registre sus palabras, prioridad y un criterio observable para aceptar la
+función. Agregue todo lo que falte.
+Participante: WILLIAM PAÑO CHINCHAZO — Propietario (U1)
+Declaración del participante: Declaración del propietario sobre la lista: «A qué 20 funciona te refieres
+si sólo estoy mencionando reservas, cotizaciones y seguimiento de Clientes , coordinación con
+proveedores y personal. Fechas dinámicas.» Prioridad: «Esas cinco son altas». No se prevé portal de
+clientes (usarán el sistema solo propietario y gerente). Generador de cotizaciones actual: El generador
+de cotizaciones es una herramienta que ha sido creada con tecnología básica, HTML y lápiz conectadas
+para guardar toda la información en una nube de Drive, además que todas las cotizaciones realizadas se
+guardan en una tabla Excel, Este de generador De Cotizaciones, ya te expliqué todo lo que permitía, así
+que no te voy a repetir Las funciones RF01–RF20 no fueron marcadas una por una por el propietario.
+A. Requerimientos funcionales iniciales para confirmar
+ID Función propuesta Decisión Prioridad Sus palabras / criterio
+RF01 Registrar clientes y canal de origen de la
+consulta. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RF02 Crear cotizaciones por evento, paquete,
+servicios y cantidades. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RF03 Calcular precios según paquete,
+temporada y día de la semana. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RF04 Aplicar y registrar
+descuentos/promociones autorizados. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RF05 Configurar adelantos y registrar
+pagos/saldos. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RF06 Manejar estados de cotización y reserva. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RF07 Generar cotización imprimible/PDF. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RF08 Crear reserva desde cotización. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RF09 Registrar reserva directa. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RF10 Consultar disponibilidad por fecha en
+calendario. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RF11 Configurar salón completo/medio salón,
+mezanine y área verde. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RF12 Evitar dos eventos en la misma fecha. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RF13 Liberar una fecha si no se confirma en el
+plazo acordado. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RF14 Registrar consultas y oportunidades por
+canal. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RF15 Guardar seguimiento, observaciones y
+próxima acción. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RF16 Consultar historial por cliente. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RF17 Registrar proveedores y personal
+asignado al evento. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+
+-- 1 of 4 --
+
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 2
+ID Función propuesta Decisión Prioridad Sus palabras / criterio
+RF18 Registrar tareas pendientes y cambios
+de preparación. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RF19 Generar reportes de cotizaciones,
+reservas, eventos y adelantos. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RF20 Autenticar usuarios y limitar funciones
+según su rol. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+B. Requerimientos no funcionales iniciales para confirmar
+ID Criterio propuesto Decisión Prioridad Umbral o detalle
+acordado
+RNF01 Interfaz simple, con pocos pasos para
+los usuarios. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RNF02 Uso desde navegador en computadora
+y celular. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RNF03 Autenticación, permisos por rol y
+respaldo de datos. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RNF04
+Respuesta rápida al buscar
+disponibilidad y generar cotizaciones
+(definir umbral).
+☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RNF05 Prevenir reservas duplicadas y cálculos
+de precio erróneos. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RNF06 Cambiar paquetes, tarifas y
+temporadas sin modificar el código. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+RNF07 Tecnologías de bajo costo/código
+abierto, si sigue siendo una restricción. ☐ C ☐ M ☐ D ☐ Alta
+☐ Med. ☐ Baja
+C. Ficha para requerimientos nuevos o modificados
+Requerimiento 1
+ID: ______ Tipo: ☐ funcional ☐ no funcional ☐ dato ☐ regla
+Actor/rol que lo necesita: ______________________
+Necesidad (Como [rol], necesito [acción], para [beneficio]):
+Datos de entrada y resultado esperado:
+Prioridad acordada: ☐ alta ☐ media ☐ baja
+Criterio de aceptación observable (cómo comprobaremos que funciona):
+Fuente: ☐ U1 ☐ U2 ☐ observación ☐ documento Observaciones: ______________
+Revisado por: ______________________ Firma: ______________ Fecha: _________
+
+-- 2 of 4 --
+
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 3
+Requerimiento 2
+ID: ______ Tipo: ☐ funcional ☐ no funcional ☐ dato ☐ regla
+Actor/rol que lo necesita: ______________________
+Necesidad (Como [rol], necesito [acción], para [beneficio]):
+Datos de entrada y resultado esperado:
+Prioridad acordada: ☐ alta ☐ media ☐ baja
+Criterio de aceptación observable (cómo comprobaremos que funciona):
+Fuente: ☐ U1 ☐ U2 ☐ observación ☐ documento Observaciones: ______________
+Revisado por: ______________________ Firma: ______________ Fecha: _________
+Requerimiento 3
+ID: ______ Tipo: ☐ funcional ☐ no funcional ☐ dato ☐ regla
+Actor/rol que lo necesita: ______________________
+Necesidad (Como [rol], necesito [acción], para [beneficio]):
+Datos de entrada y resultado esperado:
+Prioridad acordada: ☐ alta ☐ media ☐ baja
+Criterio de aceptación observable (cómo comprobaremos que funciona):
+Fuente: ☐ U1 ☐ U2 ☐ observación ☐ documento Observaciones: ______________
+Revisado por: ______________________ Firma: ______________ Fecha: _________
+Priorización de primera versión
+Imprescindible para usar desde el primer día:
+Las cinco áreas indicadas por el propietario, todas de prioridad alta: reservas, cotizaciones, seguimiento
+de clientes, coordinación con proveedores y personal, y fechas dinámicas (disponibilidad).
+Puede quedar para una versión posterior:
+Inventario de bienes y turnos/control del personal (indicado por el propietario: esperan a una versión
+posterior).
+Confirmación: revisamos esta lista como registro de necesidades levantadas. No certifica que las
+funcionalidades ya estén construidas.
+
+-- 3 of 4 --
+
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 4
+Nombre y cargo
+(Propietario): WILLIAM PAÑO CHINCHAZO — Propietario
+Firma:
+Fecha:
+
+-- 4 of 4 --
+

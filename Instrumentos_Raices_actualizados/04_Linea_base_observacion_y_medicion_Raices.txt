@@ -1,0 +1,183 @@
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 1
+DOCUMENTO 4. FICHAS DE LÍNEA BASE Y OBSERVACIÓN
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026
+Antes de comenzar
+Aplicar antes de usar el nuevo sistema. Observar cómo se trabaja ahora; no cambiar el proceso durante la
+medición. Identificar a los usuarios como U1 (propietario) y U2 (gerente). No escribir nombres, teléfonos,
+direcciones ni datos de pago de clientes. Registrar por separado: (1) casos reales observados con cronómetro;
+(2) datos reconstruidos de documentos históricos. No mezclar los dos tipos en un mismo promedio. Anotar
+fecha, número de casos y fuente.
+A. Resumen del periodo revisado
+Periodo exacto revisado: desde 14/08/2026 hasta 15/11/2026
+Fuentes disponibles: ☒ cotizaciones ☐ calendario ☐ hojas ☐ mensajes ☐ recibos ☐ otras (archivos
+guardados en el Drive)
+Número total de cotizaciones/casos localizados: 89 Reservas/eventos: por verificar (información
+dispersa entre cuaderno, Excel y nube)
+¿Se revisó todo el periodo o una selección? ☐ todo ☒ selección
+Criterio:
+1. Periodo revisado: del 14/08/2026 al 15/11/2026.
+2. Fuente incluida: únicamente las cotizaciones guardadas en el Drive.
+3. Unidad de análisis: una cotización/reserva, contada una sola vez.
+4. Se excluyen cotizaciones en cuaderno, calendario físico o mensajes que no estén en el Drive, porque
+su verificación está pendiente.
+5. Los casos se identifican con códigos (C1, C2, …); no se anotan nombres, teléfonos, direcciones ni
+pagos de clientes.
+6. Los tiempos observados con cronómetro y los reconstruidos de documentos históricos no se
+promedian juntos.
+7. El mismo criterio se aplica a todos los casos revisados.
+Responsable de la revisión y fecha: ______________________
+B. Registro de tiempo por cotización
+Cronometrar desde que el usuario inicia la búsqueda de información del caso hasta que deja lista la cotización
+para enviar/imprimir. Si el caso es histórico, consignar “reconstruido” y no combinar con tiempo observado.
+Códi
+go Tipo/fecha Usuari
+o Modalidad Inicio Fin Minut
+os Fuente/nota
+C1 Cotización /
+07/11/2026 U2 ☒ Obs. ☐ Hist. 13:00 13:11 11 Ficha 3
+C2 ☐ Obs. ☐ Hist.
+C3 ☐ Obs. ☐ Hist.
+C4 ☐ Obs. ☐ Hist.
+C5 ☐ Obs. ☐ Hist.
+C6 ☐ Obs. ☐ Hist.
+C7 ☐ Obs. ☐ Hist.
+C8 ☐ Obs. ☐ Hist.
+
+-- 1 of 6 --
+
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 2
+Resumen: n observado 1; promedio 11 min; mínimo 11; máximo 11. n histórico 0. No calcular diferencia
+antes/después hasta repetir las mismas tareas tras implementar.
+
+-- 2 of 6 --
+
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 3
+REGISTRO DE OBSERVACIÓN DE PROCESOS
+Completar una ficha por sesión o proceso observado.
+Ficha 1: Identificación de sesión
+Fecha: 07/11/2026 Usuario: ☒ U1 ☐ U2 Inicio: 10:04am Fin: 10:07am
+☐ llamada ☒ WhatsApp ☐ redes ☐ presencial ☐ otro
+Pasos realizados en orden y herramientas usadas:
+abre el whatsapp web en el navegador, busca el link del generador de cotizaciones, ingresa y pone la
+contraseña
+Búsquedas, repetición de datos, espera o interrupciones observadas (describir, no
+interpretar):
+Duración total (min): 3 Resultado: Ingreso al generador de cotizaciones
+Código de evidencia/documento (sin dato personal): ______________
+Ficha 2: Consulta y seguimiento
+Fecha: 07/11/2026 Usuario: ☐ U1 ☒ U2 Inicio: 11:07am Fin: 11:26am
+☐ llamada ☐ WhatsApp ☐ redes ☒ presencial ☐ otro
+Pasos realizados en orden y herramientas usadas:
+Un Cliente, consulta sobre algunos paquetes de su evento que ya Reservó con anticipación, Se va a
+buscar el cuaderno donde se tiene anotado, El cuaderno ha anotado, puede estar en muchos lugares de
+la oficina, se tarda tiempo en buscar, Si encuentra y se tarda tiempo en señalar la página correcta,
+Cotización.
+Búsquedas, repetición de datos, espera o interrupciones observadas (describir, no
+interpretar):
+Duración total (min): 19 Resultado: ____________________
+Código de evidencia/documento (sin dato personal): ______________
+Ficha 3: Cotización/tarifa
+Fecha: 07/11/2026 Usuario: ☐ U1 ☒ U2 Inicio: 1:00pm Fin: 1:11pm
+☐ llamada ☐ WhatsApp ☐ redes ☒ presencial ☐ otro
+Pasos realizados en orden y herramientas usadas:
+La gerente ya tiene dominio del generador de cotizaciones, aunque a veces utiliza también el método
+manual con la plantilla como formulario, pero si es que tiene la computadora en la mano ya puede
+generar las cotizaciones súper rápido con los precios con los arreglos con todo eso hizo en este caso,
+generó rápido todo y se tardó muy poco. Al final, la cotización salió hecha en PDF y se guardó en una
+carpeta para el gerente, y en otra carpeta para el Cliente, cuando se quiera buscar en el futuro
+Búsquedas, repetición de datos, espera o interrupciones observadas (describir, no
+interpretar):
+Duración total (min): 11 Resultado: Cotización generada en PDF y guardada en carpeta de la gerente
+y del cliente
+Código de evidencia/documento (sin dato personal): ______________
+
+-- 3 of 6 --
+
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 4
+Ficha 4: Reserva/disponibilidad
+Fecha: 07/11/2026 Usuario: ☐ U1 ☒ U2 Inicio: ______ Fin: ______
+☐ llamada ☐ WhatsApp ☐ redes ☒ presencial ☐ otro
+Pasos realizados en orden y herramientas usadas:
+Los clientes contactan al gerente para avisar que están en camino al centro de convenciones, Se reúnen
+en la oficina para conversar algunos detalles más del precio y de todo el evento, Al final se imprime un
+documento con espacios para llenar a lapicero. Realizan el pago de un porcentaje acordado y se firma
+un contrato por ambas partes.
+Búsquedas, repetición de datos, espera o interrupciones observadas (describir, no
+interpretar):
+Duración total (min): 25 Resultado: Pago de un porcentaje acordado y contrato firmado por ambas
+partes
+Código de evidencia/documento (sin dato personal): ______________
+Ficha 5: Coordinación del evento
+Fecha: 07/11/2026 Usuario: ☐ U1 ☒ U2 Inicio: 5:12pm Fin: 6:22pm
+☐ llamada ☐ WhatsApp ☐ redes ☒ presencial ☐ otro
+Pasos realizados en orden y herramientas usadas:
+Los clientes llaman al propietario para reunirse en la oficina del Centro de Convenciones, al reunirse
+comienzan a discutir los temas Sobre la mensajería el personal de servicio, algún beneficio más que se
+le pueda dar detalles extras para definir al jefe de ceremonia, etc. y para acordar bien la estructura de
+todos los detalles que va a haber en los ambientes los clientes junto con el propietario van a los
+ambientes y ven y piensan que debe de ir donde como se ve más bonito, etc..
+Búsquedas, repetición de datos, espera o interrupciones observadas (describir, no
+interpretar):
+Duración total (min): 70 Resultado: ____________________
+Código de evidencia/documento (sin dato personal): ______________
+
+-- 4 of 6 --
+
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 5
+AUDITORÍA DE INCONSISTENCIAS EN REGISTROS
+Unidad de análisis: un caso de cotización/reserva. Comparar las fuentes disponibles del mismo caso. Marcar
+como discrepante cuando exista al menos un dato que no coincida entre fuentes; contar el caso una sola vez
+para la tasa y describir aparte cada discrepancia.
+Periodo: 14/08/2026 – 15/11/2026 Casos revisados (denominador): ______ Responsable: Gerente
+Código Fuentes ¿Discrepancia? Categoría
+¿Requirió
+corrección/afectó
+decisión?
+C1 ☐ Sí ☐ No ☐ Sí ☐ No
+C2 ☐ Sí ☐ No ☐ Sí ☐ No
+C3 ☐ Sí ☐ No ☐ Sí ☐ No
+C4 ☐ Sí ☐ No ☐ Sí ☐ No
+C5 ☐ Sí ☐ No ☐ Sí ☐ No
+C6 ☐ Sí ☐ No ☐ Sí ☐ No
+C7 ☐ Sí ☐ No ☐ Sí ☐ No
+C8 ☐ Sí ☐ No ☐ Sí ☐ No
+C9 ☐ Sí ☐ No ☐ Sí ☐ No
+C10 ☐ Sí ☐ No ☐ Sí ☐ No
+Total de casos discrepantes: ____ / ____ revisados. Porcentaje: ____ %.
+Criterio de discrepancia aplicado por igual a todos los casos:
+Hallazgo/resumen y notas:
+Fórmula: casos con ≥1 discrepancia ÷ casos revisados × 100. Reportar el numerador, denominador y periodo.
+No reportar solo el porcentaje.
+
+-- 5 of 6 --
+
+Tesis: Sistema de información para la gestión operativa del Centro de Convenciones Raíces, Cusco — 2026 Pág. 6
+ANEXO. Incidentes operativos reportados por el participante
+Registrados en el formulario de la auditoría. Son problemas ocurridos antes o durante los eventos; no son
+discrepancias entre registros, por eso no se cuentan en la tasa de discrepancia.
+N.° Descripción Momento / detalle ¿Afectó la
+decisión?
+1 Servicio de descorche. Durante el evento. Los invitados traen sus
+propias bebidas y está prohibido.
+No
+2 Personal de servicio, se relajan,
+conversan, pueden sacarse tragos.
+Durante el evento Si
+3 Tamaño de las mesas Antes de evento, entregando vajilla No
+4 Horario de atención extra Hora excesiva del evento Si
+5 Mal uso de las instalaciones Durante el evento, derraman cerveza. Si
+6 Cristalería y mensajería dañadas Durante el evento, el cliente no reconoce los
+daños por sus invitados echando la culpa al
+personal
+Si
+7 Prestación de utencilios o demás
+acessorios y el cliente no devuelve, se
+hace perder, se le cobra y se molesta.
+Durante el evento Si
+8 Cuidado de área verde, en los eventos
+los niños rompen, malogran, y dañan las
+plantas y el pasto.
+Durante el evento Si
+
+-- 6 of 6 --
+
